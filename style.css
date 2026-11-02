@@ -1,0 +1,1009 @@
+/* ============================================================
+   Storytelling & Full-Page Slide Styles - Ultra Responsive
+   ============================================================ */
+
+/* Global Overflow Prevention */
+html, body {
+  max-width: 100vw;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================================
+   Jarak Antar Kata & Huruf yang Lega (Breathing Typography)
+   ============================================================ */
+body {
+  word-spacing: 0.05em;
+  letter-spacing: 0.01em;
+}
+
+p {
+  word-spacing: 0.06em;
+  letter-spacing: 0.012em;
+  line-height: 1.82;
+}
+
+h1, h2, h3, h4 {
+  word-spacing: 0.04em;
+  letter-spacing: 0.005em;
+}
+
+/* Netralkan tracking-tight yang mencekik jarak kata */
+.tracking-tight {
+  letter-spacing: -0.005em !important;
+}
+
+/* Setiap section = satu halaman mandiri di bawah header */
+:root { --hdr: 4rem; }
+@media (min-width: 640px) { :root { --hdr: 5rem; } }
+
+html {
+  /* Scroll bebas & mulus secara alami tanpa snap kaku di mouse wheel */
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--hdr);
+}
+.slide-section {
+  /* Tetap punya tinggi proporsional dan berdiri sendiri */
+  min-height: calc(100vh - var(--hdr));
+  min-height: calc(100svh - var(--hdr));
+  /* Jarak antar halaman (page-to-page breathing room) yang luas */
+  margin-bottom: clamp(4rem, 10vh, 7rem);
+}
+/* Ruang bernapas yang luas dan lega di setiap section */
+.slide-section.slide-section {
+  padding-top: clamp(4rem, 10vh, 7.5rem);
+  padding-bottom: clamp(4rem, 10vh, 7.5rem);
+  padding-left: clamp(1.5rem, 5vw, 4rem);
+  padding-right: clamp(1.5rem, 5vw, 4rem);
+}
+#slide-intro.slide-section {
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: calc(var(--hdr) + clamp(3.5rem, 8vh, 6rem));
+  padding-bottom: clamp(3.5rem, 8vh, 6rem);
+  padding-left: clamp(1.5rem, 5vw, 4rem);
+  padding-right: clamp(1.5rem, 5vw, 4rem);
+  margin-bottom: clamp(4rem, 10vh, 7rem);
+}
+footer {
+  /* Footer alami di bagian akhir halaman */
+}
+/* Saat efek swish berjalan, scroll dikendalikan script */
+html.is-swishing {
+  scroll-behavior: auto !important;
+}
+
+/* Efek swish: halaman tujuan meluncur masuk dari bawah */
+@keyframes swishIn {
+  0%   { opacity: 0.25; transform: translateY(48px) scale(0.985); filter: blur(5px); }
+  60%  { opacity: 1; filter: blur(0.5px); }
+  100% { opacity: 1; transform: none; filter: blur(0); }
+}
+.slide-section.swish-in > div {
+  animation: swishIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.12s backwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .slide-section.swish-in > div { animation: none; }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ============================================================
+   ONBOARDING SPOTLIGHT / FOCUS OVERLAY
+   Membuat latar belakang blur & redup saat kunang-kunang berkenalan
+   ============================================================ */
+.firefly-focus-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 52;
+  background: radial-gradient(circle at 50% 45%, rgba(15, 23, 42, 0.45) 0%, rgba(15, 23, 42, 0.75) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.6s ease;
+}
+
+.firefly-focus-overlay.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.focus-overlay-content {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: auto;
+}
+
+.focus-skip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.focus-skip-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+  color: #fff;
+}
+
+/* Saat mode fokus aktif, kunang-kunang dan header naik di atas overlay */
+#guide-fly-container.in-focus {
+  z-index: 65 !important;
+}
+
+header.in-focus {
+  z-index: 58 !important;
+}
+
+/* Efek spotlight bercahaya di sekitar kunang-kunang saat perkenalan */
+#guide-fly-container.in-focus .fly-body-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -45px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.45) 0%, rgba(6, 182, 212, 0) 70%);
+  animation: focusPulse 2s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes focusPulse {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+/* ============================================================
+   ANIMATED FLY GUIDE (LALAT PEMANDU CERITA) - RESPONSIVE
+   ============================================================ */
+#guide-fly-container {
+  position: fixed;
+  z-index: 55;
+  pointer-events: none;
+  touch-action: none;
+  /* Smooth aerodynamic gliding without jittery overshoots */
+  transition: top 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              left 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.35s ease;
+}
+
+.fly-body-wrapper {
+  pointer-events: none;
+}
+/* Modal pembuka: seluruh lalat melayang */
+#firdy-intro-modal .fly-body-wrapper {
+  animation: flyBob 2.4s ease-in-out infinite alternate;
+}
+/* Lalat pemandu: HANYA badan lalat yang bergerak. Gelembung teks dibiarkan diam,
+   tidak berputar/berfilter, supaya huruf dirender tajam. */
+#guide-fly-container #fly-svg {
+  animation: flyBob 2.4s ease-in-out infinite alternate;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+@keyframes flyBob {
+  0%   { translate: 0 0;    rotate: -2deg; }
+  50%  { translate: 0 -8px; rotate: 2.5deg; }
+  100% { translate: 0 3px;  rotate: -1deg; }
+}
+
+/* Guide-mode: lalat menyala lebih terang saat menunjuk target */
+#guide-fly-container.guide-mode #fly-svg {
+  animation: flyBobGuide 1.2s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.95));
+  scale: 1.08;
+}
+
+@keyframes flyBobGuide {
+  0%   { translate: 0 0;    rotate: -3deg; }
+  100% { translate: 0 -7px; rotate: 3deg; }
+}
+
+/* Clear visual highlight on the button/element that Firdy is pointing to */
+.target-button-glow {
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.5), 0 0 24px rgba(6, 182, 212, 0.35) !important;
+  border-color: rgba(6, 182, 212, 0.9) !important;
+  transform: scale(1.04);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* Wing Flapping Animation */
+.fly-wing-left {
+  transform-origin: 18px 12px;
+  animation: flapLeft 0.08s ease-in-out infinite alternate;
+}
+
+.fly-wing-right {
+  transform-origin: 22px 12px;
+  animation: flapRight 0.08s ease-in-out infinite alternate;
+}
+
+@keyframes flapLeft {
+  0% { transform: rotate(0deg) scaleY(1); }
+  100% { transform: rotate(-35deg) scaleY(0.7); }
+}
+
+@keyframes flapRight {
+  0% { transform: rotate(0deg) scaleY(1); }
+  100% { transform: rotate(35deg) scaleY(0.7); }
+}
+
+/* Fly Speech Bubble — solid (tanpa blur/transparansi), tajam di terang & gelap */
+.fly-speech-bubble {
+  --bub-bg: #ffffff;
+  --bub-fg: #1e293b;          /* slate-800 */
+  --bub-bd: #a5b4fc;          /* brand-300 */
+  --bub-shadow: 0 10px 28px -8px rgba(49, 46, 129, 0.28), 0 2px 6px rgba(15, 23, 42, 0.08);
+  position: absolute;
+  bottom: calc(100% + 14px);
+  top: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: min(300px, 74vw);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  padding: 10px 26px 10px 14px;
+  border-radius: 14px;
+  background: var(--bub-bg);
+  color: var(--bub-fg);
+  border: 1px solid var(--bub-bd);
+  box-shadow: var(--bub-shadow);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: left;
+  line-height: 1.5;
+  z-index: 60;
+}
+.dark .fly-speech-bubble {
+  --bub-bg: #0f172a;          /* slate-900 */
+  --bub-fg: #e0f2fe;
+  --bub-bd: rgba(34, 211, 238, 0.5);   /* accent-400 */
+  --bub-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(6, 182, 212, 0.12);
+}
+
+/* Tombol tutup bubble silang kecil */
+.fly-bubble-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 18px;
+  height: 18px;
+  font-size: 11px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  line-height: 1;
+  color: var(--bub-fg);
+  opacity: 0.45;
+  background: transparent;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: opacity 0.2s, background-color 0.2s;
+}
+.fly-bubble-close:hover {
+  opacity: 1;
+  background: rgba(100, 116, 139, 0.18);
+}
+
+/* Panah penunjuk standar (ke bawah menuju lalat) */
+.fly-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: calc(50% - var(--arrow-shift, 0px));
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  background: var(--bub-bg);
+  border-right: 1px solid var(--bub-bd);
+  border-bottom: 1px solid var(--bub-bd);
+  rotate: 45deg;
+}
+
+/* Bila lalat dekat tepi atas layar, bubble tampil di bawahnya */
+.fly-speech-bubble.bubble-below {
+  bottom: auto;
+  top: calc(100% + 12px);
+}
+.fly-speech-bubble.bubble-below::after {
+  bottom: auto;
+  top: -5px;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 1px solid var(--bub-bd);
+  border-top: 1px solid var(--bub-bd);
+}
+
+/* Bila lalat di kanan (menunjuk ke navigasi/tombol kanan): bubble di sebelah KIRI lalat */
+.fly-speech-bubble.bubble-left {
+  bottom: auto;
+  top: 50%;
+  left: auto;
+  right: calc(100% + 14px);
+  transform: translateY(-50%);
+}
+.fly-speech-bubble.bubble-left::after {
+  bottom: auto;
+  top: 50%;
+  left: auto;
+  right: -5px;
+  margin-top: -4px;
+  border-left: 0;
+  border-bottom: 0;
+  border-right: 1px solid var(--bub-bd);
+  border-top: 1px solid var(--bub-bd);
+}
+
+/* Bila lalat di kiri: bubble di sebelah KANAN lalat */
+.fly-speech-bubble.bubble-right {
+  bottom: auto;
+  top: 50%;
+  left: calc(100% + 14px);
+  right: auto;
+  transform: translateY(-50%);
+}
+.fly-speech-bubble.bubble-right::after {
+  bottom: auto;
+  top: 50%;
+  right: auto;
+  left: -5px;
+  margin-top: -4px;
+  border-right: 0;
+  border-top: 0;
+  border-left: 1px solid var(--bub-bd);
+  border-bottom: 1px solid var(--bub-bd);
+}
+
+/* Layar kecil: kecilkan hanya badan lalat, JANGAN skala teks gelembung */
+@media (max-width: 768px) {
+  #fly-svg { width: 34px; height: 34px; }
+  .fly-speech-bubble { font-size: 11.5px; padding: 8px 12px; max-width: 72vw; }
+}
+@media (max-width: 480px) {
+  #fly-svg { width: 30px; height: 30px; }
+  .fly-speech-bubble { font-size: 11px; padding: 7px 11px; }
+}
+
+/* Header Navigation Active States */
+.nav-link.is-active {
+  color: #4f46e5 !important;
+  background-color: rgba(99, 102, 241, 0.1) !important;
+  font-weight: 600 !important;
+}
+.dark .nav-link.is-active {
+  color: #c7d2fe !important;
+  background-color: rgba(99, 102, 241, 0.18) !important;
+  font-weight: 600 !important;
+}
+.mobile-link.is-active {
+  color: #4f46e5 !important;
+  background-color: rgba(99, 102, 241, 0.08) !important;
+  font-weight: 600 !important;
+}
+.dark .mobile-link.is-active {
+  color: #c7d2fe !important;
+  background-color: rgba(99, 102, 241, 0.16) !important;
+  font-weight: 600 !important;
+}
+
+/* Carousel Track & Slides */
+#exp-carousel-wrapper,
+#proj-carousel-wrapper {
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#exp-carousel-wrapper.is-dragging,
+#proj-carousel-wrapper.is-dragging {
+  cursor: grabbing;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.carousel-track.is-dragging {
+  transition: none !important;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+/* Accessible Focus Rings */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25) !important;
+}
+
+/* Selection */
+::selection {
+  background-color: #6366f1;
+  color: #ffffff;
+}
+
+/* ============================================================
+   Skill chips (dipakai bersama: Pengalaman Kerja & Kartu Proyek)
+   ============================================================ */
+.skill-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.875rem;
+}
+.skill-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #475569;
+}
+.dark .skill-label { color: #94a3b8; }
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+.skill-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 0.25rem 0.625rem;
+  border-radius: 0.375rem;
+  background: #eef2ff;                 /* brand-50 */
+  color: #3730a3;                      /* brand-800 */
+  border: 1px solid #c7d2fe;           /* brand-200 */
+}
+.dark .skill-chip {
+  background: rgba(99, 102, 241, 0.14);
+  color: #c7d2fe;
+  border-color: rgba(129, 140, 248, 0.28);
+}
+
+/* ============================================================
+   Tombol navigasi scroll melayang (kanan bawah layar, bebas halangan teks)
+   ============================================================ */
+.scroll-nav {
+  position: fixed;
+  right: max(1.5rem, env(safe-area-inset-right));
+  bottom: max(1.75rem, env(safe-area-inset-bottom));
+  top: auto;
+  transform: none;
+  z-index: 48;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  pointer-events: none; /* hanya tombol yang menerima klik */
+}
+.scroll-nav-btn {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  border: 1px solid #c7d2fe;
+  background: rgba(255, 255, 255, 0.96);
+  color: #4338ca;
+  box-shadow: 0 6px 20px rgba(49, 46, 129, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s,
+              border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+}
+.dark .scroll-nav-btn {
+  border-color: rgba(129, 140, 248, 0.5);
+  background: rgba(15, 23, 42, 0.92);
+  color: #e2e8f0;
+}
+.scroll-nav-btn:hover {
+  border-color: #6366f1;
+  color: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(49, 46, 129, 0.25);
+}
+.dark .scroll-nav-btn:hover { color: #a5b4fc; }
+.scroll-nav-btn:active { transform: scale(0.94); }
+.scroll-nav-btn:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+.scroll-nav-btn.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.7) translateY(8px);
+  position: absolute;
+}
+@media (max-width: 640px) {
+  .scroll-nav {
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1.25rem, env(safe-area-inset-bottom));
+    gap: 0.5rem;
+  }
+  .scroll-nav-btn {
+    width: 2.35rem;
+    height: 2.35rem;
+    opacity: 0.95;
+  }
+  .scroll-nav-btn.is-hidden { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-nav-btn { transition: none; }
+}
+
+/* Denyut halus saat tombol navigasi sedang ditunjuk lalat */
+.scroll-nav-btn.target-button-glow {
+  animation: navPulse 1.4s ease-in-out infinite;
+}
+@keyframes navPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.5), 0 0 18px rgba(6, 182, 212, 0.35); }
+  50%      { box-shadow: 0 0 0 7px rgba(6, 182, 212, 0.18), 0 0 30px rgba(6, 182, 212, 0.55); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-nav-btn.target-button-glow { animation: none; }
+}
+
+
+/* ============================================================
+   Pengantar Firdy (tanpa kotak, bernuansa malam yang magis)
+   ============================================================ */
+.firdy-intro {
+  background:
+    radial-gradient(ellipse 65% 55% at 78% 25%, rgba(99, 102, 241, 0.26), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 8% 95%, rgba(79, 70, 229, 0.22), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 95% 90%, rgba(6, 182, 212, 0.12), transparent 70%),
+    #070a1a;
+}
+.firdy-intro-stage {
+  pointer-events: none;            /* klik pada ruang kosong tetap memulai tur */
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+.firdy-intro.opacity-0 .firdy-intro-stage {
+  transform: scale(1.06);
+  filter: blur(8px);
+}
+.intro-interactive { pointer-events: auto; }
+
+.intro-backdrop {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Aurora yang bergerak perlahan */
+.intro-aurora {
+  position: absolute;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+}
+.intro-aurora-a {
+  left: -20vmax; top: -25vmax;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.34), transparent 65%);
+  animation: auroraDriftA 16s ease-in-out infinite alternate;
+}
+.intro-aurora-b {
+  right: -22vmax; bottom: -28vmax;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 65%);
+  animation: auroraDriftB 19s ease-in-out infinite alternate;
+}
+@keyframes auroraDriftA { to { transform: translate(8vmax, 6vmax) scale(1.1); } }
+@keyframes auroraDriftB { to { transform: translate(-7vmax, -5vmax) scale(1.12); } }
+
+/* Berkas cahaya dari atas, seolah menyorot Firdy */
+.intro-beam {
+  position: absolute;
+  top: 0; left: 50%;
+  width: min(46rem, 110vw);
+  height: 78%;
+  transform: translateX(-50%);
+  clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%);
+  background: linear-gradient(to bottom, rgba(165, 180, 252, 0.20), rgba(165, 180, 252, 0.04) 55%, transparent 90%);
+  filter: blur(10px);
+  animation: beamBreath 6s ease-in-out infinite;
+}
+@keyframes beamBreath { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+
+/* Kunang-kunang */
+.intro-sparks { position: absolute; inset: 0; }
+.intro-spark {
+  position: absolute;
+  left: var(--x); top: var(--y);
+  width: var(--s); height: var(--s);
+  border-radius: 50%;
+  background: #a5b4fc;
+  box-shadow: 0 0 10px 2px rgba(165, 180, 252, 0.75);
+  opacity: 0;
+  animation: sparkFloat var(--d) ease-in-out var(--delay) infinite;
+}
+.intro-spark.is-cyan {
+  background: #67e8f9;
+  box-shadow: 0 0 10px 2px rgba(103, 232, 249, 0.75);
+}
+@keyframes sparkFloat {
+  0%   { opacity: 0;   transform: translate(0, 0) scale(0.6); }
+  20%  { opacity: 0.9; }
+  75%  { opacity: 0.45; }
+  100% { opacity: 0;   transform: translate(var(--dx), -110px) scale(1.15); }
+}
+
+/* Firdy terbang masuk dengan lintasan melengkung */
+.intro-fly-flight { animation: introFlyIn 1.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes introFlyIn {
+  0%   { opacity: 0; transform: translate(-65vw, 26vh) rotate(-16deg) scale(0.45); }
+  45%  { opacity: 1; transform: translate(-14vw, -7vh) rotate(9deg) scale(1.05); }
+  75%  { transform: translate(3vw, 2vh) rotate(-4deg) scale(1); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* Cahaya & cincin di sekeliling Firdy */
+.intro-halo {
+  position: absolute;
+  inset: -2rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.42), rgba(34, 211, 238, 0.10) 45%, transparent 70%);
+  filter: blur(6px);
+  animation: haloPulse 3.2s ease-in-out infinite;
+}
+@keyframes haloPulse { 0%, 100% { transform: scale(0.92); opacity: 0.7; } 50% { transform: scale(1.12); opacity: 1; } }
+
+.intro-ring {
+  position: absolute;
+  inset: 0.5rem;
+  border-radius: 50%;
+  border: 1px dashed rgba(103, 232, 249, 0.38);
+  animation: ringSpin 20s linear infinite;
+}
+.intro-ring::after {
+  content: '';
+  position: absolute;
+  top: -3px; left: 50%;
+  width: 6px; height: 6px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: #67e8f9;
+  box-shadow: 0 0 12px 3px rgba(103, 232, 249, 0.9);
+}
+.intro-ring-2 {
+  inset: -0.9rem;
+  border-color: rgba(165, 180, 252, 0.30);
+  animation-duration: 30s;
+  animation-direction: reverse;
+}
+.intro-ring-2::after {
+  background: #a5b4fc;
+  box-shadow: 0 0 12px 3px rgba(165, 180, 252, 0.9);
+}
+@keyframes ringSpin { to { transform: rotate(360deg); } }
+
+/* Teks muncul bertahap seperti bercerita */
+.intro-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(6px);
+  animation: introReveal 1s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0s) forwards;
+}
+@keyframes introReveal { to { opacity: 1; transform: none; filter: blur(0); } }
+
+/* Tombol ajakan */
+.intro-cta {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 2rem;
+  border: 0;
+  border-radius: 9999px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(135deg, #4f46e5, #0891b2);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14) inset, 0 12px 40px -10px rgba(99, 102, 241, 0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.intro-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: -60%;
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-18deg);
+  animation: ctaShimmer 3.8s ease-in-out 4.2s infinite;
+}
+@keyframes ctaShimmer { 0% { left: -60%; } 40%, 100% { left: 130%; } }
+.intro-cta:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2) inset, 0 16px 48px -8px rgba(99, 102, 241, 0.85);
+}
+.intro-cta:active { transform: scale(0.97); }
+.intro-cta:focus-visible { outline: 2px solid #a5b4fc; outline-offset: 3px; }
+
+@media (max-width: 480px) {
+  .intro-cta { width: 100%; max-width: 20rem; }
+  .intro-beam { height: 62%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-fly-flight, .intro-reveal { animation: none; opacity: 1; transform: none; filter: none; }
+  .intro-aurora, .intro-beam, .intro-spark, .intro-halo, .intro-ring, .intro-cta::before { animation: none; }
+  .intro-spark { opacity: 0.5; }
+}
+
+
+/* ============================================================
+   Saklar bahasa ID / EN (di sebelah tombol tema)
+   Bulir (knob) bergeser ke bahasa yang aktif. Warna bulir memakai
+   gradasi brand -> accent yang sama dengan tombol "Download ATS CV"
+   dan teks "Driven to build", jalur memakai warna yang sama dengan
+   tombol tema, jadi semuanya satu keluarga.
+   ============================================================ */
+.lang-toggle {
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  width: 5.25rem;
+  height: 2.25rem;
+  padding: 3px;
+  border: 0;
+  border-radius: 9999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  color: #64748b;                               /* slate-500 */
+  background: rgba(241, 245, 249, 0.8);         /* = bg-slate-100/80 tombol tema */
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+@media (min-width: 640px) { .lang-toggle { height: 2.5rem; width: 5.5rem; } }
+.lang-toggle:hover { background: #e2e8f0; }
+.lang-toggle:active { transform: scale(0.97); }
+.lang-toggle:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
+
+.lang-toggle [data-l] {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  line-height: 1;
+  transition: color 0.25s ease;
+}
+.lang-toggle [data-l].is-on { color: #fff; }
+
+.lang-knob {
+  position: absolute;
+  top: 3px; bottom: 3px; left: 3px;
+  width: calc(50% - 3px);
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #4f46e5, #0891b2);   /* brand-600 -> accent-600 */
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+  transition: transform 0.28s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+.lang-toggle[data-lang="en"] .lang-knob { transform: translateX(100%); }
+
+.dark .lang-toggle { color: #94a3b8; background: rgba(30, 41, 59, 0.8); }  /* = dark:bg-slate-800/80 */
+.dark .lang-toggle:hover { background: #334155; }
+.dark .lang-knob {
+  background: linear-gradient(90deg, #6366f1, #06b6d4);
+  box-shadow: 0 2px 10px rgba(6, 182, 212, 0.3);
+}
+
+/* Versi di modal pembuka (latar gelap) */
+.lang-toggle--dark {
+  color: #94a3b8;
+  background: rgba(15, 23, 42, 0.7);
+  box-shadow: 0 0 0 1px rgba(103, 232, 249, 0.25) inset;
+}
+.lang-toggle--dark:hover { background: rgba(30, 41, 59, 0.9); }
+.dark .lang-toggle--dark { background: rgba(15, 23, 42, 0.7); }
+
+@media (prefers-reduced-motion: reduce) {
+  .lang-knob { transition: none; }
+}
+
+
+/* ---- Layar pembuka: sorotan kata, chip topik, posisi cahaya ---- */
+.intro-hl {
+  background-image: linear-gradient(90deg, #93c5fd, #67e8f9);   /* sky-300 -> accent-300 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: 800;
+  display: inline-block;
+  padding-bottom: 0.22em;
+  margin-bottom: -0.22em;
+}
+.intro-chips { list-style: none; margin: 0; padding: 0; }
+.intro-chips li {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  color: #94a3b8;                                  /* slate-400 */
+  background: rgba(15, 23, 42, 0.65);              /* translucent dark slate */
+  border: 1px solid rgba(148, 163, 184, 0.2);     /* subtle slate border */
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+.intro-chips li:hover {
+  color: #f8fafc;
+  border-color: rgba(103, 232, 249, 0.45);
+  background: rgba(30, 41, 59, 0.8);
+}
+@media (min-width: 1024px) {
+  .intro-beam { left: 76%; }                       /* cahaya menyorot kunang-kunang di kolom kanan */
+}
+
+/* ---- Hero section: sinkronisasi lebar bio persis dengan garis judul terpanjang ---- */
+.hero-line {
+  display: inline-block;
+}
+#hero-bio {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* ---- Proyek Unggulan: Thumbnail interaktif & kartu responsif ---- */
+.proj-thumb-btn {
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.proj-thumb-btn:hover {
+  transform: translateY(-2px);
+}
+.proj-thumb-btn.active {
+  box-shadow: 0 4px 14px -2px rgba(99, 102, 241, 0.3);
+}
+
+/* Justify only project body dossiers (Tantangan & Solusi) with clean left-aligned last lines */
+#slide-projects .carousel-slide p[data-i18n-html*="need"],
+#slide-projects .carousel-slide p[data-i18n-html*="sol"],
+#slide-projects .carousel-slide ul li span[data-i18n-html] {
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+}
+
+/* Tagline, titles, and headers must ALWAYS remain cleanly left-aligned */
+#slide-projects .carousel-slide p[data-i18n-html*="tagline"],
+#slide-projects .carousel-slide h3,
+#slide-projects .carousel-slide h4 {
+  text-align: left !important;
+  text-align-last: left !important;
+}
+
+/* ============================================================
+   CREDENTIAL VAULT & INSPECTOR (Apple / Linear Architecture)
+   ============================================================ */
+.cert-dir-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.cert-dir-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.cert-dir-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+.cert-dir-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.5);
+}
+
+.cert-list-item {
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.18s ease,
+              border-color 0.18s ease;
+}
+.cert-list-item:hover {
+  transform: translateX(2px);
+}
+.cert-list-item.is-active {
+  border-color: rgba(6, 182, 212, 0.75) !important;
+  background: rgba(6, 182, 212, 0.06) !important;
+  box-shadow: 0 2px 8px -2px rgba(6, 182, 212, 0.15) !important;
+}
+.dark .cert-list-item.is-active {
+  border-color: rgba(6, 182, 212, 0.65) !important;
+  background: rgba(6, 182, 212, 0.09) !important;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Executive Dossier Card Effect */
+.cert-paper-mockup {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%);
+  box-shadow:
+    0 4px 20px -2px rgba(15, 23, 42, 0.06),
+    0 0 0 1px rgba(226, 232, 240, 0.8);
+}
+.dark .cert-paper-mockup {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(10, 15, 30, 0.98) 100%);
+  box-shadow:
+    0 8px 24px -4px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(51, 65, 85, 0.65);
+}
+
+/* No scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
