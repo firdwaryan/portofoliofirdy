@@ -56,8 +56,8 @@
       'tip.email': 'Kirim email',
       'tip.whatsapp': 'Hubungi via WhatsApp',
       'href.mail': "mailto:firdy.dwi@gmail.com?subject=Tawaran%20Pekerjaan",
-      'href.waHero': "https://wa.me/6285894589454?text=Halo%20Firdy,%20saya%20tertarik%20dengan%20portofolio%20Anda",
-      'href.waContact': "https://wa.me/6285894589454?text=Selamat%20pagi,%20saya%20ingin%20berdiskusi%20mengenai%20peluang%20kerja%20sama",
+      'href.waHero': "https://wa.me/6285894689454?text=Halo%20Firdy,%20saya%20tertarik%20dengan%20portofolio%20Anda",
+      'href.waContact': "https://wa.me/6285894689454?text=Selamat%20pagi,%20saya%20ingin%20berdiskusi%20mengenai%20peluang%20kerja%20sama",
       'href.mailContact': 'mailto:firdy.dwi@gmail.com?subject=Peluang%20Kerja%20Sama',
 
       /* ---- pengalaman ---- */
@@ -399,8 +399,8 @@
       'tip.email': 'Send an email',
       'tip.whatsapp': 'Message on WhatsApp',
       'href.mail': "mailto:firdy.dwi@gmail.com?subject=Job%20Opportunity",
-      'href.waHero': "https://wa.me/6285894589454?text=Hello%20Firdy,%20I%27m%20interested%20in%20your%20portfolio",
-      'href.waContact': "https://wa.me/6285894589454?text=Good%20morning,%20I%27d%20like%20to%20discuss%20a%20collaboration%20opportunity",
+      'href.waHero': "https://wa.me/6285894689454?text=Hello%20Firdy,%20I%27m%20interested%20in%20your%20portfolio",
+      'href.waContact': "https://wa.me/6285894689454?text=Good%20morning,%20I%27d%20like%20to%20discuss%20a%20collaboration%20opportunity",
       'href.mailContact': 'mailto:firdy.dwi@gmail.com?subject=Collaboration%20Opportunity',
 
       'exp.title': "Work Experience",
