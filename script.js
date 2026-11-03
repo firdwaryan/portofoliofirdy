@@ -1563,7 +1563,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==============================================================
-  // 8. TOMBOL NAVIGASI MELAYANG — LONCAT PER HALAMAN DENGAN SWISH
+  // 8. TOMBOL NAVIGASI MELAYANG — LONCAT PER HALAMAN SECARA MULUS
   //    ↑ = halaman sebelumnya (atau awal halaman yang sedang dibaca)
   //    ↓ = halaman berikutnya (setelah Kontak → footer / paling bawah)
   // ==============================================================
@@ -1572,58 +1572,128 @@ document.addEventListener('DOMContentLoaded', () => {
     const bottomBtn = document.getElementById('scroll-bottom-btn');
     if (!topBtn || !bottomBtn) return;
 
-    const EDGE = 80;   // px dari ujung atas/bawah untuk menyembunyikan tombol
-    const TOL  = 8;    // toleransi pembulatan posisi
     let ticking = false;
 
-    function pageHeight() {
-      return Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+    function getScrollY() {
+      return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     }
 
-    // Posisi scroll (Y) tiap "halaman": semua section + footer
-    function pageTargets() {
+    function getMaxScrollY() {
+      const docHeight = Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight,
+        document.documentElement.offsetHeight,
+        document.body.offsetHeight
+      );
+      return Math.max(0, docHeight - window.innerHeight);
+    }
+
+    function getHeaderOffset() {
       const header = document.querySelector('header');
-      const offset = header ? header.offsetHeight : 0;
-      const maxY   = pageHeight() - window.innerHeight;
-      const els    = Array.from(document.querySelectorAll('.slide-section'));
-      const footer = document.querySelector('footer');
-      if (footer) els.push(footer);
-      return els.map(function (el) {
-        const y = el.getBoundingClientRect().top + window.scrollY - offset;
-        return { el: el, y: Math.round(Math.min(Math.max(y, 0), maxY)) };
+      return header ? header.offsetHeight : 70;
+    }
+
+    function smoothScrollTo(targetY) {
+      const maxY = getMaxScrollY();
+      const clampedY = Math.max(0, Math.min(Math.round(targetY), maxY));
+      try {
+        window.scrollTo({
+          top: clampedY,
+          behavior: 'smooth'
+        });
+      } catch (e) {
+        window.scrollTo(0, clampedY);
+      }
+    }
+
+    // Mengambil seluruh titik tujuan: semua .slide-section dan footer
+    function getSectionTargets() {
+      const currentY = getScrollY();
+      const offset   = getHeaderOffset();
+      const sections = Array.from(document.querySelectorAll('.slide-section'));
+      
+      const targets = sections.map(function(sec) {
+        const rect = sec.getBoundingClientRect();
+        return {
+          el: sec,
+          top: Math.round(rect.top + currentY - offset)
+        };
       });
+
+      const footer = document.querySelector('footer');
+      if (footer) {
+        const fRect = footer.getBoundingClientRect();
+        targets.push({
+          el: footer,
+          top: Math.round(fRect.top + currentY - offset)
+        });
+      }
+
+      // Urutkan berdasarkan koordinat vertikal
+      targets.sort(function(a, b) { return a.top - b.top; });
+      return targets;
     }
 
     function goPage(dir) {
-      // Saat swish masih berjalan, pakai tujuannya agar klik beruntun maju satu halaman tiap klik
-      const ref     = swishEndY !== null ? swishEndY : window.scrollY;
-      const targets = pageTargets();
-      let dest = null;
+      const currentY = getScrollY();
+      const targets  = getSectionTargets();
+      const TOL      = 25; // toleransi posisi piksel
 
       if (dir > 0) {
-        dest = targets.find(function (p) { return p.y > ref + TOL; });
+        // Cari seksi berikutnya di bawah posisi scroll saat ini
+        const next = targets.find(function(t) { return t.top > currentY + TOL; });
+        if (next) {
+          smoothScrollTo(next.top);
+        } else {
+          // Bila sudah berada di seksi terakhir, gulir ke paling bawah halaman
+          smoothScrollTo(getMaxScrollY());
+        }
       } else {
+        // Cari seksi sebelumnya di atas posisi scroll saat ini
+        let prev = null;
         for (let i = targets.length - 1; i >= 0; i--) {
-          if (targets[i].y < ref - TOL) { dest = targets[i]; break; }
+          if (targets[i].top < currentY - TOL) {
+            prev = targets[i];
+            break;
+          }
+        }
+        if (prev) {
+          smoothScrollTo(prev.top);
+        } else {
+          // Bila sudah di seksi pertama atau mendekati atas, gulir ke 0 (paling atas)
+          smoothScrollTo(0);
         }
       }
-      if (dest) swishTo(dest.el);
     }
 
     function update() {
       ticking = false;
-      const y    = window.pageYOffset || document.documentElement.scrollTop;
-      const maxY = pageHeight() - window.innerHeight;
-      topBtn.classList.toggle('is-hidden', y <= EDGE);
-      bottomBtn.classList.toggle('is-hidden', maxY <= EDGE || y >= maxY - EDGE);
+      const y    = getScrollY();
+      const maxY = getMaxScrollY();
+      topBtn.classList.toggle('is-hidden', y <= 50);
+      bottomBtn.classList.toggle('is-hidden', maxY <= 50 || y >= maxY - 50);
     }
 
     function requestUpdate() {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
     }
 
-    topBtn.addEventListener('click', function () { goPage(-1); });
-    bottomBtn.addEventListener('click', function () { goPage(1); });
+    // Handler klik dan touch responsif langsung
+    function handleTopClick(e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      goPage(-1);
+    }
+
+    function handleBottomClick(e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      goPage(1);
+    }
+
+    topBtn.addEventListener('click', handleTopClick);
+    bottomBtn.addEventListener('click', handleBottomClick);
 
     window.addEventListener('scroll', requestUpdate, { passive: true });
     window.addEventListener('resize', requestUpdate);
