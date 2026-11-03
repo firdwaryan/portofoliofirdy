@@ -81,6 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Safe stubs for fly-guide helpers if fly guide is absent/removed
+  let clearTargetHighlight = function() {};
+  let hideSpeech = function() {};
+  let enterExperienceSlide = function() {};
+  let enterProjectSlide = function() {};
+  let enterSection = function() {};
+
   // ==============================================================
   // 5. CAROUSEL PENGALAMAN KERJA (SLIDE PER HALAMAN)
   //    Full Interactive Drag/Swipe Engine (Mouse, Touch, Wheel, Keys)
@@ -89,12 +96,69 @@ document.addEventListener('DOMContentLoaded', () => {
   const expPrevBtn = document.getElementById('exp-prev-btn');
   const expNextBtn = document.getElementById('exp-next-btn');
   const expCounter = document.getElementById('exp-counter');
+  const expViewToggle = document.getElementById('exp-view-toggle');
+  const expViewLabel  = document.getElementById('exp-view-label');
+  const expViewIcon   = document.getElementById('exp-view-icon');
+  const expNavBtns    = document.getElementById('exp-nav-btns');
   const carouselWrapper = document.getElementById('exp-carousel-wrapper');
   const totalExpSlides = document.querySelectorAll('#exp-track .carousel-slide').length || 1;
   let currentExpSlide = 0;
+  let isExpAllView = false;
+
+  function setExpViewMode(allView) {
+    isExpAllView = allView;
+    if (!expTrack || !carouselWrapper) return;
+    const expHintText = document.querySelector('[data-i18n="exp.hint"]');
+
+    if (isExpAllView) {
+      expTrack.classList.add('is-all-view');
+      carouselWrapper.classList.add('is-all-view');
+      expTrack.style.transform = 'none';
+      if (expCounter) expCounter.classList.add('hidden');
+      if (expNavBtns) expNavBtns.classList.add('hidden');
+      if (expViewLabel) {
+        expViewLabel.textContent = (window.I18N && window.I18N.t) ? window.I18N.t('exp.viewSlide') : 'Mode Geser';
+      }
+      if (expViewIcon) {
+        expViewIcon.setAttribute('data-lucide', 'sliders-horizontal');
+      }
+      if (expHintText) {
+        expHintText.textContent = (window.I18N && window.I18N.t) ? window.I18N.t('exp.allHint') : 'Menampilkan semua 4 pengalaman kerja';
+      }
+      const expHintSub = document.getElementById('exp-hint-sub');
+      if (expHintSub) expHintSub.classList.add('hidden');
+    } else {
+      expTrack.classList.remove('is-all-view');
+      carouselWrapper.classList.remove('is-all-view');
+      if (expCounter) expCounter.classList.remove('hidden');
+      if (expNavBtns) expNavBtns.classList.remove('hidden');
+      if (expViewLabel) {
+        expViewLabel.textContent = (window.I18N && window.I18N.t) ? window.I18N.t('exp.viewAll') : 'Lihat Semua';
+      }
+      if (expViewIcon) {
+        expViewIcon.setAttribute('data-lucide', 'layout-grid');
+      }
+      if (expHintText) {
+        expHintText.textContent = (window.I18N && window.I18N.t) ? window.I18N.t('exp.hint') : 'Geser kartu, atau pakai tombol (>) dan tombol panah di keyboard';
+      }
+      const expHintSub = document.getElementById('exp-hint-sub');
+      if (expHintSub) expHintSub.classList.remove('hidden');
+      updateExpCarousel(false);
+    }
+    if (window.lucide && window.lucide.createIcons) {
+      window.lucide.createIcons();
+    }
+  }
+
+  if (expViewToggle) {
+    expViewToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setExpViewMode(!isExpAllView);
+    });
+  }
 
   function updateExpCarousel(triggerFly = true) {
-    if (!expTrack) return;
+    if (!expTrack || isExpAllView) return;
     expTrack.classList.remove('is-dragging');
     if (carouselWrapper) carouselWrapper.classList.remove('is-dragging');
     expTrack.style.transform = `translateX(-${currentExpSlide * 100}%)`;
@@ -115,6 +179,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function goToNextSlide() {
+    if (isExpAllView) return;
+    clearTargetHighlight();
+    hideSpeech();
     if (currentExpSlide < totalExpSlides - 1) {
       currentExpSlide++;
       updateExpCarousel(true);
@@ -124,6 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function goToPrevSlide() {
+    if (isExpAllView) return;
     clearTargetHighlight();
     hideSpeech();
     if (currentExpSlide > 0) {
@@ -162,6 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let hasMoved = false;
 
     carouselWrapper.addEventListener('pointerdown', (e) => {
+      if (isExpAllView) return; // Mode lihat semua tidak memakai swipe horizontal
       // Don't hijack button/link clicks directly
       if (e.target.closest('button, a, input, textarea')) return;
 
@@ -480,6 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //    Phase 2 (GUIDE) : swoop to next button & orbit it with glowing ring
   // ==============================================================
   const flyContainer = document.getElementById('guide-fly-container');
+  if (flyContainer) {
   const flySvg       = document.getElementById('fly-svg');
   const flySpeech    = document.getElementById('fly-speech');
 
@@ -771,21 +841,22 @@ document.addEventListener('DOMContentLoaded', () => {
       // JANGAN PERNAH hinggap di sebelah KIRI tombol next!
       // Karena rect.left - 48 akan MENUTUPI tombol prev (<), membuat tombol back tidak terlihat dan tidak bisa diklik!
       // Lalat melayang aman di ATAS tombol (> 50px di atas) atau di KANAN jika mepet atas.
+      // bubblePlacement harus 'top' atau 'right', JANGAN 'left' agar tidak menghalangi tombol prev!
       if (rect.top >= 95) {
         // Cukup ruang di atas tombol: melayang tepat di ATAS tombol (54px di atas tombol)
         leftPx = rect.left + (rect.width / 2) - 18;
         topPx  = rect.top - 54;
-        bubblePlacement = (topPx >= 115) ? 'top' : 'left';
-      } else if (vw - rect.right >= 55) {
+        bubblePlacement = 'top';
+      } else if (vw - rect.right >= 140) {
         // Mepet tepi atas tapi ada ruang di kanan: melayang di KANAN tombol
-        leftPx = rect.right + 12;
+        leftPx = rect.right + 14;
         topPx  = rect.top + (rect.height / 2) - 18;
-        bubblePlacement = (vw - rect.right >= 180) ? 'right' : 'top';
+        bubblePlacement = 'right';
       } else {
         // Fallback aman: di atas sedikit dengan margin aman
         leftPx = rect.left + (rect.width / 2) - 18;
-        topPx  = Math.max(68, rect.top - 52);
-        bubblePlacement = 'left';
+        topPx  = Math.max(68, rect.top - 54);
+        bubblePlacement = 'top';
       }
     } else if (rect.width <= 64) {
       // Tombol bulat / kecil mandiri (tanpa tombol saudara di sampingnya)
@@ -838,6 +909,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function glideToButton(sel, speechText) {
     const btn = sel ? document.querySelector(sel) : null;
     if (!btn || !flyContainer) return;
+    if (btn.offsetParent === null) {
+      showSpeech(speechText);
+      return;
+    }
 
     clearTargetHighlight();
     activeTargetButton = btn;
@@ -1280,15 +1355,48 @@ document.addEventListener('DOMContentLoaded', () => {
     enterSection('intro');
   }
 
-  // ── Welcome Spotlight Modal Controller: Firdy Pengenalan Awal ──────────
-  const firdyModal    = document.getElementById('firdy-intro-modal');
-  const btnStartTour  = document.getElementById('btn-start-tour');
-  const modalFlyIcon  = document.getElementById('modal-firdy-icon');
-  const reopenTourBtn = document.getElementById('reopen-firdy-tour');
+  // ── Welcome Spotlight Modal Controller: Firdy Pengenalan Awal (Opsional) ──────────
+  const firdyModal         = document.getElementById('firdy-intro-modal');
+  const btnStartTour       = document.getElementById('btn-start-tour');
+  const modalFlyIcon       = document.getElementById('modal-firdy-icon');
+  const btnCloseIntroModal = document.getElementById('btn-close-intro-modal');
+  const reopenTourBtn      = document.getElementById('reopen-firdy-tour');
+  const openTourBtns       = document.querySelectorAll('#open-intro-tour-btn, #open-intro-tour-btn-mobile, #open-intro-tour-btn-hero, #reopen-firdy-tour');
+
+  function openFirdyModal() {
+    if (!firdyModal) return;
+    firdyModal.style.display = 'block';
+    requestAnimationFrame(() => {
+      firdyModal.classList.remove('opacity-0', 'pointer-events-none');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function closeFirdyModal() {
+    if (!firdyModal) return;
+    firdyModal.classList.add('opacity-0', 'pointer-events-none');
+    setTimeout(() => {
+      firdyModal.style.display = 'none';
+      if (window.I18N && window.I18N.syncWidths) window.I18N.syncWidths();
+    }, 450);
+  }
+
+  openTourBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openFirdyModal();
+    });
+  });
+
+  if (btnCloseIntroModal) {
+    btnCloseIntroModal.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeFirdyModal();
+    });
+  }
 
   let tourStarted = false;
   function startFirdyExperience() {
-    if (tourStarted) return;          // klik/gulir berikutnya tidak memulai ulang
     tourStarted = true;
     if (firdyModal) {
       firdyModal.classList.add('opacity-0', 'pointer-events-none');
@@ -1334,23 +1442,20 @@ document.addEventListener('DOMContentLoaded', () => {
   if (firdyModal && btnStartTour) {
     if (flyContainer) flyContainer.style.opacity = '0';
 
-    btnStartTour.addEventListener('click', startFirdyExperience);
-    if (modalFlyIcon) {
-      modalFlyIcon.addEventListener('click', startFirdyExperience);
-    }
-    // Clicking backdrop also starts tour smoothly
-    firdyModal.addEventListener('click', (e) => {
-      if (e.target === firdyModal) startFirdyExperience();
-    });
-    // If user starts scrolling while modal is open, auto-start immediately
-    const onFirstScroll = () => {
-      if (window.scrollY < 12) return;   // abaikan "gulir" semu (mis. pemulihan posisi oleh browser)
+    btnStartTour.addEventListener('click', (e) => {
+      e.stopPropagation();
       startFirdyExperience();
-      window.removeEventListener('scroll', onFirstScroll);
-    };
-    window.addEventListener('scroll', onFirstScroll, { passive: true });
-  } else {
-    setTimeout(() => { runOnboarding(); }, 400);
+    });
+    if (modalFlyIcon) {
+      modalFlyIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        startFirdyExperience();
+      });
+    }
+    // Clicking backdrop also closes modal
+    firdyModal.addEventListener('click', (e) => {
+      if (e.target === firdyModal) closeFirdyModal();
+    });
   }
 
   // Sabuk pengaman: setelah semua aset termuat, pastikan masih di atas selama modal pembuka tampil
@@ -1434,6 +1539,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   })();
+  } // end if (flyContainer)
 
   // 7. Contact Form Simulation
   const contactForm = document.getElementById('contact-form');
@@ -1540,26 +1646,123 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 150);
   };
 
-  // ── The Credential Command Center (Split-Screen Vault Controller) ──
+  // ── Showcase Sertifikat & Modal Lightbox Controller ────────────────
+  (function initCertificateShowcase() {
+    const certImg = document.getElementById('cert-display-img');
+    const certLabel = document.getElementById('cert-display-label');
+    const tabPage1 = document.getElementById('cert-tab-page1');
+    const tabPage2 = document.getElementById('cert-tab-page2');
+    const previewTrigger = document.getElementById('cert-preview-trigger');
+    const modal = document.getElementById('cert-lightbox-modal');
+    const modalImg = document.getElementById('cert-modal-img');
+    const modalTitle = document.getElementById('cert-modal-title');
+    const modalClose = document.getElementById('cert-modal-close');
+
+    if (!certImg) return;
+
+    const page1Src = 'assets/docs/sertifikat-coding-camp-page-1.jpg';
+    const page2Src = 'assets/docs/sertifikat-coding-camp-page-2.jpg';
+
+    // Preload image transkrip
+    const p2Preload = new Image();
+    p2Preload.src = page2Src;
+
+    function setPage(pageNum) {
+      if (pageNum === 1) {
+        certImg.src = page1Src;
+        if (certLabel) certLabel.textContent = 'Halaman 1: Sertifikat Kelulusan';
+        if (tabPage1) {
+          tabPage1.className = 'cert-tab-btn active px-3 py-2 rounded-xl border-2 border-brand-500 bg-brand-500/10 dark:bg-brand-500/20 text-brand-600 dark:text-brand-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-sm';
+        }
+        if (tabPage2) {
+          tabPage2.className = 'cert-tab-btn px-3 py-2 rounded-xl border-2 border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 font-semibold text-xs flex items-center justify-center gap-1.5 hover:border-brand-500/50 hover:text-brand-500 transition-all shadow-sm';
+        }
+      } else {
+        certImg.src = page2Src;
+        if (certLabel) certLabel.textContent = 'Halaman 2: Transkrip Nilai Lengkap';
+        if (tabPage2) {
+          tabPage2.className = 'cert-tab-btn active px-3 py-2 rounded-xl border-2 border-brand-500 bg-brand-500/10 dark:bg-brand-500/20 text-brand-600 dark:text-brand-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-sm';
+        }
+        if (tabPage1) {
+          tabPage1.className = 'cert-tab-btn px-3 py-2 rounded-xl border-2 border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 font-semibold text-xs flex items-center justify-center gap-1.5 hover:border-brand-500/50 hover:text-brand-500 transition-all shadow-sm';
+        }
+      }
+    }
+
+    if (tabPage1) {
+      tabPage1.addEventListener('click', () => setPage(1));
+    }
+    if (tabPage2) {
+      tabPage2.addEventListener('click', () => setPage(2));
+    }
+
+    function openModal() {
+      if (!modal || !modalImg) return;
+      modalImg.src = certImg.src;
+      if (modalTitle) {
+        modalTitle.textContent = certImg.src.includes('page-2')
+          ? 'Transkrip Nilai Akademik Lengkap - Coding Camp 2025'
+          : 'Sertifikat Kelulusan Resmi - Coding Camp 2025';
+      }
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    if (previewTrigger) {
+      previewTrigger.addEventListener('click', openModal);
+    }
+    if (modalClose) {
+      modalClose.addEventListener('click', closeModal);
+    }
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+  })();
+
+  // ── The Credential Command Center (Interactive Syllabus & Vault Controller) ──
   (function initCredentialVault() {
     const listContainer = document.getElementById('cert-vault-list');
-    const inspectorCard = document.getElementById('cert-inspector-card');
-    if (!listContainer || !inspectorCard) return;
+    if (!listContainer) return;
 
-    const inspStatus = document.getElementById('insp-status-badge');
-    const inspYear = document.getElementById('insp-year');
-    const inspIcon = document.getElementById('insp-icon');
-    const inspType = document.getElementById('insp-type');
-    const inspWeight = document.getElementById('insp-weight');
-    const inspHours = document.getElementById('insp-hours');
-    const inspTitle = document.getElementById('insp-title');
-    const inspIssuer = document.getElementById('insp-issuer');
-    const inspDesc = document.getElementById('insp-desc');
-    const btnView = document.getElementById('btn-vault-view');
-    // btnDownload removed for credential security
     const dirCount = document.getElementById('cert-dir-count');
     const searchInput = document.getElementById('cert-search-input');
     const searchClear = document.getElementById('cert-search-clear');
+    const toggleBtn = document.getElementById('toggle-modules-btn');
+    const collapseContainer = document.getElementById('modules-collapse-container');
+    const toggleLabel = document.getElementById('toggle-modules-label');
+    const toggleIcon = document.getElementById('toggle-modules-icon');
+
+    if (toggleBtn && collapseContainer) {
+      toggleBtn.addEventListener('click', function() {
+        const isHidden = collapseContainer.classList.contains('hidden');
+        if (isHidden) {
+          collapseContainer.classList.remove('hidden');
+          toggleBtn.setAttribute('aria-expanded', 'true');
+          if (toggleLabel) toggleLabel.textContent = 'Tutup Silabus';
+          if (toggleIcon) toggleIcon.classList.add('rotate-180');
+        } else {
+          collapseContainer.classList.add('hidden');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+          if (toggleLabel) toggleLabel.textContent = 'Buka Silabus';
+          if (toggleIcon) toggleIcon.classList.remove('rotate-180');
+        }
+      });
+    }
 
     const CERTS_DATA = [
       // 2. Modul Front-End & Web Development (4 Berkas)
@@ -1573,7 +1776,7 @@ document.addEventListener('DOMContentLoaded', () => {
         year: "2024",
         file: "assets/docs/dicoding-front-end-pemula.pdf",
         icon: "code",
-        desc: "Kompetensi manipulasi DOM mendalam, pengelolaan event browser, Web Storage API (localStorage/sessionStorage), dan pembangunan aplikasi interaktif."
+        desc: "Kompetensi manipulasi DOM mendalam, pengelolaan event browser, Web Storage API, dan pembangunan aplikasi interaktif."
       },
       {
         id: "dbs-fe-fund",
@@ -1597,7 +1800,7 @@ document.addEventListener('DOMContentLoaded', () => {
         year: "2024",
         file: "assets/docs/dicoding-dasar-pemrograman-web.pdf",
         icon: "layout",
-        desc: "Fondasi semantik HTML5, arsitektur tata letak CSS3 modern (Flexbox, CSS Grid), responsive web design, dan aksesibilitas web."
+        desc: "Fondasi semantik HTML5, arsitektur tata letak CSS3 modern Flexbox dan CSS Grid, responsive web design, dan aksesibilitas web."
       },
       {
         id: "dbs-fe-expert",
@@ -1609,7 +1812,7 @@ document.addEventListener('DOMContentLoaded', () => {
         year: "2024",
         file: "assets/docs/dicoding-web-intermediate.pdf",
         icon: "sparkles",
-        desc: "Arsitektur Progressive Web Apps (PWA), Service Worker offline caching, Web Performance Optimization (Lighthouse), dan Continuous Integration."
+        desc: "Arsitektur Progressive Web Apps, Service Worker offline caching, optimasi performa web, dan Continuous Integration."
       },
 
       // 3. Modul JavaScript & Back-End (3 Berkas)
@@ -1647,7 +1850,7 @@ document.addEventListener('DOMContentLoaded', () => {
         year: "2024",
         file: "assets/docs/dicoding-dasar-git-github.pdf",
         icon: "git-branch",
-        desc: "Penerapan Version Control System (VCS) Git, branching strategy, pull requests, resolving merge conflicts, dan kolaborasi tim via GitHub."
+        desc: "Penerapan Version Control System Git, branching strategy, pull requests, resolving merge conflicts, dan kolaborasi tim via GitHub."
       },
 
       // 4. Fondasi, Cloud, AI & Soft Skills (5 Berkas)
@@ -1661,13 +1864,13 @@ document.addEventListener('DOMContentLoaded', () => {
         year: "2024",
         file: "assets/docs/dicoding-cloud-gen-ai-aws.pdf",
         icon: "cloud",
-        desc: "Prinsip cloud computing Amazon Web Services (AWS), arsitektur serverless, storage S3, compute EC2, serta fondasi aplikasi Generative AI."
+        desc: "Prinsip komputasi awan Amazon Web Services, arsitektur serverless, storage S3, compute EC2, serta fondasi aplikasi Generative AI."
       },
       {
         id: "dbs-tbi",
         category: "foundations",
         title: "Business English & Communication Skills",
-        issuer: "The British Institute (TBI) x DBS",
+        issuer: "The British Institute bersama DBS",
         type: "Soft Skills Global",
         hours: "50 Jam Pembelajaran",
         year: "2024",
@@ -1697,7 +1900,7 @@ document.addEventListener('DOMContentLoaded', () => {
         year: "2024",
         file: "assets/docs/dicoding-logika-pemrograman.pdf",
         icon: "cpu",
-        desc: "Pemecahan masalah komputasi (Computational Thinking), gerbang logika boolean, pemetaan pseudocode, dan perancangan flowchart sistem."
+        desc: "Pemecahan masalah komputasi, gerbang logika boolean, pemetaan pseudocode, dan perancangan flowchart sistem."
       },
       {
         id: "dbs-finance",
@@ -1734,12 +1937,7 @@ document.addEventListener('DOMContentLoaded', () => {
         );
       });
 
-      if (!filteredCerts.some(c => c.id === activeCert.id)) {
-        activeCert = filteredCerts[0] || null;
-      }
-
       renderList();
-      updateInspector();
       if (dirCount) {
         dirCount.textContent = `${filteredCerts.length} Modul`;
       }
@@ -1750,7 +1948,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (filteredCerts.length === 0) {
         listContainer.innerHTML = `
-          <div class="p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 text-center text-slate-500 dark:text-slate-400 text-xs">
+          <div class="p-6 text-center text-slate-500 dark:text-slate-400 text-xs">
             <i data-lucide="file-search" class="w-6 h-6 mx-auto mb-2 text-slate-400"></i>
             Tidak ada modul yang cocok dengan pencarian "${searchQuery}".
           </div>
@@ -1759,27 +1957,32 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      filteredCerts.forEach(cert => {
+      filteredCerts.forEach((cert, idx) => {
         const item = document.createElement('div');
-        item.className = 'cert-list-item p-3 rounded-xl border border-slate-200/70 dark:border-slate-800/80 bg-white/50 dark:bg-slate-900/30 hover:border-brand-500/50 hover:bg-slate-50 dark:hover:bg-slate-800/40 cursor-pointer flex items-center justify-between gap-3 transition-all';
+        item.className = 'px-3.5 py-3 sm:px-4 sm:py-3.5 flex items-center justify-between gap-3 hover:bg-slate-50/90 dark:hover:bg-slate-800/60 transition-colors cursor-pointer group';
         item.setAttribute('data-id', cert.id);
 
+        const num = String(idx + 1).padStart(2, '0');
+
         item.innerHTML = `
-          <div class="flex items-center gap-3 min-w-0">
-            <div class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 flex items-center justify-center shrink-0 border border-slate-200/60 dark:border-slate-700/60 shadow-xs">
-              <i data-lucide="${cert.icon}" class="w-4 h-4"></i>
+          <div class="flex items-center gap-3 min-w-0 flex-1">
+            <span class="font-mono text-xs font-bold text-slate-400 dark:text-slate-500 w-5 shrink-0 text-center">${num}</span>
+            <div class="w-7 h-7 rounded-lg bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">
+              <i data-lucide="${cert.icon}" class="w-3.5 h-3.5"></i>
             </div>
-            <div class="min-w-0">
-              <h5 class="text-xs font-semibold text-slate-900 dark:text-white truncate leading-snug">${cert.title}</h5>
-              <div class="flex items-center gap-1.5 mt-0.5 text-[11px] text-slate-500 dark:text-slate-400 font-normal">
-                <span class="truncate">${cert.issuer.split(' ')[0]}</span>
-                <span class="text-slate-300 dark:text-slate-600">·</span>
-                <span class="font-mono text-[10px] text-slate-400 dark:text-slate-500 shrink-0">${cert.hours.replace(' Pembelajaran', '')}</span>
+            <div class="min-w-0 flex-1">
+              <h5 class="text-xs sm:text-[13px] font-semibold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors truncate">${cert.title}</h5>
+              <div class="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 font-medium mt-0.5">
+                <span>${cert.type}</span>
+                <span class="text-slate-300 dark:text-slate-600">•</span>
+                <span class="font-mono text-[10px] text-slate-400 dark:text-slate-500">${cert.hours.replace(' Pembelajaran', '')}</span>
+                <span class="text-slate-300 dark:text-slate-600">•</span>
+                <span>${cert.year}</span>
               </div>
             </div>
           </div>
           <div class="flex items-center shrink-0">
-            <a href="${cert.file}" target="_blank" rel="noopener noreferrer" title="Buka Dokumen" onclick="event.stopPropagation();" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-brand-500 hover:text-white dark:bg-slate-800 dark:hover:bg-brand-500 text-slate-600 dark:text-slate-300 flex items-center justify-center transition-colors">
+            <a href="${cert.file}" target="_blank" rel="noopener noreferrer" title="Buka Dokumen PDF" onclick="event.stopPropagation();" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-brand-500 hover:text-white dark:bg-slate-800 dark:hover:bg-brand-500 text-slate-500 dark:text-slate-400 flex items-center justify-center transition-colors">
               <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
             </a>
           </div>
@@ -1821,6 +2024,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial Load
     applyFilterAndSearch();
+  })();
+
+  // ── Showcase Sertifikat Utama (Tab Switcher: Sertifikat vs Transkrip) ──
+  (function initCertShowcase() {
+    const tab1 = document.getElementById('cert-tab-page1');
+    const tab2 = document.getElementById('cert-tab-page2');
+    const displayImg = document.getElementById('cert-display-img');
+    const displayLabel = document.getElementById('cert-display-label');
+    const pdfLink = document.getElementById('cert-primary-pdf-link');
+    const pdfBtnLabel = document.getElementById('cert-pdf-btn-label');
+    const previewTrigger = document.getElementById('cert-preview-trigger');
+
+    if (!tab1 || !tab2 || !displayImg) return;
+
+    function setPage(page) {
+      if (page === 1) {
+        displayImg.src = 'assets/docs/sertifikat-coding-camp-page-1.jpg';
+        displayImg.alt = 'Sertifikat Kelulusan Coding Camp 2025 Firdy Dwi Aryani';
+        if (displayLabel) displayLabel.textContent = 'Halaman 1: Sertifikat Kelulusan';
+        if (pdfLink) pdfLink.href = 'assets/docs/sertifikat-coding-camp-2025.pdf';
+        if (pdfBtnLabel) pdfBtnLabel.textContent = 'Buka Dokumen PDF Resmi (Sertifikat)';
+
+        tab1.className = 'cert-tab-btn active px-3 py-2 rounded-xl border-2 border-brand-500 bg-brand-500/10 dark:bg-brand-500/20 text-brand-600 dark:text-brand-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-sm';
+        tab2.className = 'cert-tab-btn px-3 py-2 rounded-xl border-2 border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 font-semibold text-xs flex items-center justify-center gap-1.5 hover:border-brand-500/50 hover:text-brand-500 transition-all shadow-sm';
+      } else {
+        displayImg.src = 'assets/docs/sertifikat-coding-camp-page-2.jpg';
+        displayImg.alt = 'Transkrip Nilai Akademik Coding Camp 2025 Firdy Dwi Aryani';
+        if (displayLabel) displayLabel.textContent = 'Halaman 2: Transkrip Nilai Lengkap';
+        if (pdfLink) pdfLink.href = 'assets/docs/transkrip-akhir-coding-camp-2025.pdf';
+        if (pdfBtnLabel) pdfBtnLabel.textContent = 'Buka Dokumen PDF Resmi (Transkrip)';
+
+        tab2.className = 'cert-tab-btn active px-3 py-2 rounded-xl border-2 border-brand-500 bg-brand-500/10 dark:bg-brand-500/20 text-brand-600 dark:text-brand-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-sm';
+        tab1.className = 'cert-tab-btn px-3 py-2 rounded-xl border-2 border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 font-semibold text-xs flex items-center justify-center gap-1.5 hover:border-brand-500/50 hover:text-brand-500 transition-all shadow-sm';
+      }
+    }
+
+    tab1.addEventListener('click', () => setPage(1));
+    tab2.addEventListener('click', () => setPage(2));
+
+    if (previewTrigger) {
+      previewTrigger.addEventListener('click', () => {
+        if (pdfLink && pdfLink.href) {
+          window.open(pdfLink.href, '_blank');
+        }
+      });
+    }
   })();
 
 });

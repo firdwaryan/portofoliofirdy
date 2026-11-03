@@ -50,9 +50,7 @@
   <!-- Selalu mulai dari atas: jangan pulihkan posisi gulir / hash saat reload atau tombol back,
        supaya setiap kunjungan (juga saat ditunjukkan ke orang lain) diawali modal pembuka. -->
   <script>
-    try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
-    try { if (location.hash) history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
-    window.scrollTo(0, 0);
+    try { if ('scrollRestoration' in history) history.scrollRestoration = 'auto'; } catch (e) {}
   </script>
 
   <!-- Custom Styles -->
@@ -75,163 +73,6 @@
   </style>
 </head>
 <body class="bg-[#f8fafc] dark:bg-freshDark text-slate-800 dark:text-slate-200 antialiased selection:bg-brand-500 selection:text-white transition-colors duration-200 relative">
-
-  <!-- ==============================================================
-       MODAL PENGENALAN AWAL: FIRDY SI KUNANG-KUNANG PEMANDU CERITA
-       ============================================================== -->
-  <div id="firdy-intro-modal" class="firdy-intro fixed inset-0 z-[100] overflow-y-auto transition-all duration-500" role="dialog" aria-modal="true" aria-labelledby="firdy-intro-title">
-
-    <!-- Latar: aurora, cahaya dari atas, dan kunang-kunang -->
-    <div class="intro-backdrop" aria-hidden="true">
-      <div class="intro-aurora intro-aurora-a"></div>
-      <div class="intro-aurora intro-aurora-b"></div>
-      <div class="intro-beam"></div>
-      <div class="intro-sparks">
-        <span class="intro-spark" style="--x:45%;--y:54%;--s:3px;--d:8.4s;--delay:0.4s;--dx:28px"></span>
-        <span class="intro-spark" style="--x:50%;--y:42%;--s:4px;--d:6.5s;--delay:0.5s;--dx:13px"></span>
-        <span class="intro-spark" style="--x:34%;--y:46%;--s:4px;--d:7.4s;--delay:5.0s;--dx:-25px"></span>
-        <span class="intro-spark" style="--x:84%;--y:42%;--s:4px;--d:8.1s;--delay:0.3s;--dx:-12px"></span>
-        <span class="intro-spark" style="--x:75%;--y:52%;--s:3px;--d:7.4s;--delay:3.2s;--dx:33px"></span>
-        <span class="intro-spark" style="--x:75%;--y:58%;--s:2px;--d:8.1s;--delay:3.8s;--dx:7px"></span>
-        <span class="intro-spark" style="--x:74%;--y:43%;--s:4px;--d:5.8s;--delay:1.2s;--dx:28px"></span>
-        <span class="intro-spark" style="--x:44%;--y:94%;--s:4px;--d:9.7s;--delay:2.2s;--dx:-9px"></span>
-        <span class="intro-spark is-cyan" style="--x:93%;--y:66%;--s:2px;--d:8.1s;--delay:3.2s;--dx:3px"></span>
-        <span class="intro-spark" style="--x:61%;--y:71%;--s:4px;--d:9.9s;--delay:0.7s;--dx:13px"></span>
-        <span class="intro-spark is-cyan" style="--x:47%;--y:54%;--s:3px;--d:7.4s;--delay:5.8s;--dx:-31px"></span>
-        <span class="intro-spark" style="--x:77%;--y:75%;--s:3px;--d:8.6s;--delay:3.6s;--dx:34px"></span>
-        <span class="intro-spark is-cyan" style="--x:12%;--y:46%;--s:3px;--d:7.6s;--delay:4.0s;--dx:-33px"></span>
-        <span class="intro-spark is-cyan" style="--x:93%;--y:74%;--s:4px;--d:10.0s;--delay:4.9s;--dx:-4px"></span>
-        <span class="intro-spark" style="--x:53%;--y:79%;--s:2px;--d:9.7s;--delay:2.1s;--dx:38px"></span>
-        <span class="intro-spark" style="--x:67%;--y:42%;--s:2px;--d:9.0s;--delay:0.8s;--dx:-9px"></span>
-        <span class="intro-spark" style="--x:54%;--y:98%;--s:2px;--d:6.2s;--delay:2.4s;--dx:-5px"></span>
-        <span class="intro-spark" style="--x:59%;--y:70%;--s:3px;--d:9.9s;--delay:4.1s;--dx:8px"></span>
-        <span class="intro-spark" style="--x:23%;--y:45%;--s:2px;--d:6.2s;--delay:4.0s;--dx:-39px"></span>
-        <span class="intro-spark" style="--x:79%;--y:58%;--s:3px;--d:6.8s;--delay:0.9s;--dx:28px"></span>
-        <span class="intro-spark is-cyan" style="--x:82%;--y:75%;--s:2px;--d:8.6s;--delay:3.1s;--dx:39px"></span>
-        <span class="intro-spark" style="--x:90%;--y:41%;--s:3px;--d:9.5s;--delay:4.7s;--dx:31px"></span>
-        <span class="intro-spark" style="--x:54%;--y:86%;--s:3px;--d:6.0s;--delay:3.8s;--dx:-33px"></span>
-        <span class="intro-spark" style="--x:12%;--y:61%;--s:3px;--d:6.2s;--delay:2.0s;--dx:-34px"></span>
-        <span class="intro-spark" style="--x:4%;--y:54%;--s:4px;--d:6.0s;--delay:2.2s;--dx:-37px"></span>
-        <span class="intro-spark" style="--x:30%;--y:83%;--s:2px;--d:8.4s;--delay:5.7s;--dx:37px"></span>
-      </div>
-    </div>
-
-    <!-- Pilihan bahasa (juga tersedia sebelum tur dimulai) -->
-    <div class="fixed top-4 right-4 sm:top-6 sm:right-6 z-[101] intro-interactive">
-      <button type="button" data-lang-toggle role="switch" aria-checked="false" aria-label="Ganti bahasa" class="lang-toggle lang-toggle--dark" title="Bahasa: Indonesia (klik untuk English)">
-        <span class="lang-knob" aria-hidden="true"></span><span data-l="id">ID</span><span data-l="en">EN</span>
-      </button>
-    </div>
-
-    <!-- Panggung: teks di kiri (rata kiri di desktop), lalat bercahaya di kanan -->
-    <div class="firdy-intro-stage relative min-h-full flex items-center justify-center px-6 sm:px-10 lg:px-12 xl:px-14 py-14 sm:py-16">
-      <div class="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-
-        <!-- Teks pembuka -->
-        <div class="order-2 lg:order-1 lg:col-span-7 text-center lg:text-left space-y-6">
-
-          <div class="intro-reveal flex items-center justify-center lg:justify-start gap-3" style="--delay:1.0s">
-            <span class="h-px w-8 bg-accent-300/60"></span>
-            <span data-i18n="modal.eyebrow" class="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-accent-300">PORTOFOLIO</span>
-          </div>
-
-          <h2 id="firdy-intro-title" data-i18n-html="modal.title" class="intro-reveal text-xl sm:text-2xl md:text-3xl lg:text-[2.25rem] xl:text-[2.4rem] font-bold tracking-tight leading-[1.28] text-white" style="--delay:1.3s">
-            <span class="block pb-0.5"><span class="intro-line inline-block">Ruang kecil untuk <span class="intro-hl font-extrabold">karya</span></span></span><span class="block pb-1"><span class="intro-line inline-block intro-hl font-extrabold">dan hal yang saya tekuni.</span></span>
-          </h2>
-
-          <p data-i18n-html="modal.sub" class="intro-reveal mx-auto lg:mx-0 text-[0.84rem] sm:text-[0.91rem] lg:text-[0.92rem] text-slate-300/85 font-normal leading-[1.7] text-justify" style="--delay:1.8s; text-align: justify; text-justify: inter-word; hyphens: auto; -webkit-hyphens: auto;">
-            Saya Firdy, lulusan Informatika UIN Sunan Kalijaga Yogyakarta. Di sini, ada proyek yang saya kerjakan, pengalaman yang saya jalani, dan hal-hal yang saya pelajari sepanjang prosesnya.
-          </p>
-
-          <ul class="intro-reveal intro-chips flex flex-wrap justify-center lg:justify-start gap-2 pt-1" style="--delay:2.3s">
-            <li data-i18n="nav.experience">Pengalaman</li>
-            <li data-i18n="nav.certifications">Sertifikasi</li>
-            <li data-i18n="nav.projects">Proyek</li>
-            <li data-i18n="nav.organisasi">Organisasi</li>
-          </ul>
-
-          <div class="intro-reveal flex flex-col items-center lg:items-start gap-3 pt-2" style="--delay:2.7s">
-            <button id="btn-start-tour" type="button" class="intro-cta intro-interactive">
-              <span data-i18n="modal.cta">Jelajahi karya dan pengalaman saya</span>
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </button>
-            <p data-i18n="modal.hint" class="text-xs text-slate-400 font-normal">
-              Ikuti kunang-kunang kecil ini dan mari mulai menjelajah.
-            </p>
-          </div>
-        </div>
-
-        <!-- Kunang-kunang -->
-        <div class="order-1 lg:order-2 lg:col-span-5 flex justify-center">
-          <div class="intro-fly-flight">
-            <div class="relative mx-auto w-40 h-40 sm:w-48 sm:h-48 lg:w-64 lg:h-64 flex items-center justify-center cursor-pointer group intro-interactive" id="modal-firdy-icon" title="Klik untuk memulai" data-i18n-attr="title:tip.start">
-              <div class="intro-halo"></div>
-              <div class="intro-ring"></div>
-              <div class="intro-ring intro-ring-2"></div>
-              <div class="relative fly-body-wrapper group-hover:scale-110 transition-transform duration-500">
-                <svg class="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 drop-shadow-[0_6px_28px_rgba(6,182,212,0.9)]" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs><radialGradient id="ffg2"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".3" style="stop-color:var(--ac)" stop-opacity=".75"/><stop offset="1" style="stop-color:var(--ac)" stop-opacity="0"/></radialGradient></defs>
-        <circle class="ff-glow" cx="20" cy="29" r="12" fill="url(#ffg2)" />
-        <ellipse class="fly-wing-left" cx="14" cy="14" rx="8" ry="4" transform="rotate(-30 14 14)" fill="#e0f2fe" fill-opacity="0.3" stroke="#bae6fd" stroke-opacity="0.6" stroke-width="0.75" />
-        <ellipse class="fly-wing-right" cx="26" cy="14" rx="8" ry="4" transform="rotate(30 26 14)" fill="#e0f2fe" fill-opacity="0.3" stroke="#bae6fd" stroke-opacity="0.6" stroke-width="0.75" />
-        <path d="M14 22L8 26M13 24L7 30M15 26L10 34" stroke="#475569" stroke-width="1.1" stroke-linecap="round" />
-        <path d="M26 22L32 26M27 24L33 30M25 26L30 34" stroke="#475569" stroke-width="1.1" stroke-linecap="round" />
-        <ellipse cx="20" cy="27" rx="4.6" ry="7" fill="#1e293b" stroke="#334155" stroke-width="1.2" />
-        <ellipse class="ff-core" cx="20" cy="31" rx="3.6" ry="4.2" />
-        <ellipse cx="20" cy="19" rx="4.2" ry="4.2" fill="#0f172a" />
-        <circle cx="20" cy="13" r="3.4" fill="#0b1220" />
-        <circle cx="18" cy="12" r="1.9" fill="#e2e8f0" />
-        <circle cx="22" cy="12" r="1.9" fill="#e2e8f0" />
-      </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ==============================================================
-       ONBOARDING FOCUS OVERLAY (LATAR BLUR SAAT KUNANG-KUNANG BERKENALAN)
-       ============================================================== -->
-  <div id="firefly-focus-overlay" class="firefly-focus-overlay" aria-hidden="true">
-    <div class="focus-overlay-content">
-      <button id="btn-skip-onboarding" type="button" class="focus-skip-btn">
-        <span data-i18n="fly.skip">Lewati panduan &rarr;</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- ==============================================================
-       ANIMATED FLY (KUNANG-KUNANG PEMANDU CERITA INTERAKTIF)
-       ============================================================== -->
-  <div id="guide-fly-container" style="top: 120px; left: 75%;" aria-hidden="true">
-    <div class="relative fly-body-wrapper">
-      
-      <!-- Speech Bubble -->
-      <div id="fly-speech" class="fly-speech-bubble">
-        Selamat datang. Silakan gulir ke bawah.
-      </div>
-
-      <!-- Realistic Stylized Fly SVG with Animated Wings -->
-      <svg id="fly-svg" class="w-10 h-10 drop-shadow-[0_4px_10px_rgba(6,182,212,0.5)] transition-transform duration-300" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="ffcore" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#818cf8"/><stop offset="1" stop-color="#22d3ee"/></linearGradient><radialGradient id="ffg1"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".3" style="stop-color:var(--ac)" stop-opacity=".75"/><stop offset="1" style="stop-color:var(--ac)" stop-opacity="0"/></radialGradient></defs>
-        <circle class="ff-glow" cx="20" cy="29" r="12" fill="url(#ffg1)" />
-        <ellipse class="fly-wing-left" cx="14" cy="14" rx="8" ry="4" transform="rotate(-30 14 14)" fill="#e0f2fe" fill-opacity="0.3" stroke="#bae6fd" stroke-opacity="0.6" stroke-width="0.75" />
-        <ellipse class="fly-wing-right" cx="26" cy="14" rx="8" ry="4" transform="rotate(30 26 14)" fill="#e0f2fe" fill-opacity="0.3" stroke="#bae6fd" stroke-opacity="0.6" stroke-width="0.75" />
-        <path d="M14 22L8 26M13 24L7 30M15 26L10 34" stroke="#475569" stroke-width="1.1" stroke-linecap="round" />
-        <path d="M26 22L32 26M27 24L33 30M25 26L30 34" stroke="#475569" stroke-width="1.1" stroke-linecap="round" />
-        <ellipse cx="20" cy="27" rx="4.6" ry="7" fill="#1e293b" stroke="#334155" stroke-width="1.2" />
-        <ellipse class="ff-core" cx="20" cy="31" rx="3.6" ry="4.2" />
-        <ellipse cx="20" cy="19" rx="4.2" ry="4.2" fill="#0f172a" />
-        <circle cx="20" cy="13" r="3.4" fill="#0b1220" />
-        <circle cx="18" cy="12" r="1.9" fill="#e2e8f0" />
-        <circle cx="22" cy="12" r="1.9" fill="#e2e8f0" />
-      </svg>
-
-    </div>
-  </div>
 
   <!-- Notification Toast -->
   <div id="toast" class="fixed bottom-6 left-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 px-5 py-3 rounded-xl bg-slate-900 text-white shadow-2xl border border-slate-700 text-sm font-medium">
@@ -256,15 +97,12 @@
         <a href="#slide-experience" class="nav-link px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-brand-600 dark:hover:text-white transition-all whitespace-nowrap" data-i18n="nav.experience">Pengalaman</a>
         <a href="#slide-certifications" class="nav-link px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-brand-600 dark:hover:text-white transition-all whitespace-nowrap" data-i18n="nav.certifications">Sertifikasi</a>
         <a href="#slide-projects" class="nav-link px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-brand-600 dark:hover:text-white transition-all whitespace-nowrap" data-i18n="nav.projects">Proyek</a>
-        <a href="#slide-organisasi" class="nav-link px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-brand-600 dark:hover:text-white transition-all whitespace-nowrap" data-i18n="nav.organisasi">Organisasi</a>
+        <a href="#slide-organisasi" class="nav-link px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-brand-600 dark:hover:text-white transition-all whitespace-nowrap" data-i18n="nav.organisasi">Organisasi & Kepanitiaan</a>
         <a href="#slide-contact" class="nav-link px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-brand-600 dark:hover:text-white transition-all whitespace-nowrap" data-i18n="nav.contact">Kontak</a>
       </nav>
 
       <!-- Actions: Theme Toggle + Language Toggle + Mobile Menu -->
       <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
-        <!-- Separator halus antara Nav dan Controls -->
-        <div class="hidden lg:block h-4 w-px bg-slate-200 dark:bg-slate-700/80 mr-1" aria-hidden="true"></div>
-
         <!-- Language Toggle: ID / EN -->
         <button type="button" data-lang-toggle role="switch" aria-checked="false" aria-label="Ganti bahasa" class="lang-toggle shrink-0" title="Bahasa: Indonesia (klik untuk English)">
           <span class="lang-knob" aria-hidden="true"></span><span data-l="id">ID</span><span data-l="en">EN</span>
@@ -291,7 +129,7 @@
       <a href="#slide-experience" class="mobile-link block py-2 px-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-i18n="nav.experience">Pengalaman</a>
       <a href="#slide-certifications" class="mobile-link block py-2 px-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-i18n="nav.certifications">Sertifikasi</a>
       <a href="#slide-projects" class="mobile-link block py-2 px-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-i18n="nav.projects">Proyek</a>
-      <a href="#slide-organisasi" class="mobile-link block py-2 px-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-i18n="nav.organisasi">Organisasi</a>
+      <a href="#slide-organisasi" class="mobile-link block py-2 px-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-i18n="nav.organisasi">Organisasi & Kepanitiaan</a>
       <a href="#slide-contact" class="mobile-link block py-2 px-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-i18n="nav.contact">Kontak</a>
     </div>
   </header>
@@ -314,6 +152,12 @@
             <div class="absolute -inset-2.5 bg-gradient-to-tr from-brand-500/25 via-brand-400/10 to-accent-400/25 rounded-[2rem] blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
             
             <div class="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-brand-800 via-brand-900 to-brand-950 shadow-xl shadow-brand-900/20 ring-1 ring-slate-900/10 dark:ring-white/10 flex-1">
+              <!-- Badge #OpenToWork -->
+              <div class="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-600/90 text-white text-[10px] sm:text-[11px] font-semibold tracking-wide shadow-lg backdrop-blur-md border border-emerald-400/30">
+                <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                <span>#OpenToWork</span>
+              </div>
+
               <img 
                 src="profile.jpg" 
                 alt="Firdy Dwi Aryani" 
@@ -321,9 +165,12 @@
                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]"
                 onerror="this.src='https://images.unsplash.com/photo-1534972195531-a756b1126f24?auto=format&fit=crop&w=800&q=80'"
               />
-              <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-slate-950/75 to-transparent pointer-events-none"></div>
-              <div class="absolute bottom-3.5 left-3.5 right-3.5 sm:bottom-4 sm:left-4 sm:right-4 text-white">
-                <div class="text-sm sm:text-base font-bold tracking-tight">Firdy Dwi Aryani</div>
+              <div class="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent pointer-events-none"></div>
+              <div class="absolute bottom-4 left-4 right-4 text-white z-10 space-y-1.5">
+                <div class="text-base sm:text-lg font-bold tracking-tight text-white drop-shadow-md">Firdy Dwi Aryani</div>
+                <div class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] sm:text-xs text-slate-200 font-medium tracking-wide">
+                  <span data-i18n="hero.role">IT Support</span>
+                </div>
               </div>
             </div>
           </div>
@@ -344,7 +191,7 @@
             </div>
 
             <p id="hero-bio" class="text-xs sm:text-sm lg:text-[0.93rem] text-slate-600 dark:text-slate-300 leading-[1.8] font-normal text-justify" style="text-align: justify; text-justify: inter-word; hyphens: auto; -webkit-hyphens: auto;" data-i18n-html="hero.bio">
-              Pengalaman saya membentang dari pengembangan web dan dukungan IT hingga pengelolaan kanal digital dan koordinasi kegiatan. Dari setiap peran, saya belajar menata langkah kerja, memperhatikan detail, dan menyesuaikan pendekatan dengan kebutuhan yang ada. Saya menikmati proses mencari tahu apa yang perlu dilakukan, menentukan cara yang tepat, dan memastikan setiap pekerjaan terselesaikan dengan baik.
+              Perjalanan kerja saya diwarnai beragam peran, dari pengembangan web dan dukungan IT hingga pengelolaan kanal digital dan koordinasi kegiatan. Dari setiap peran, saya belajar menata langkah kerja, memperhatikan detail, dan menyesuaikan pendekatan dengan kebutuhan. Saya menikmati proses mencari tahu apa yang perlu dilakukan dan memastikan setiap pekerjaan selesai dengan baik.
             </p>
           </div>
 
@@ -404,10 +251,14 @@
             </h2>
           </div>
 
-          <!-- Carousel Controls (< >) -->
-          <div class="flex items-center gap-3 relative z-20">
+          <!-- Carousel Controls (< >) + Opsi Lihat Semua -->
+          <div class="flex items-center gap-2 sm:gap-3 relative z-[60]">
+            <button id="exp-view-toggle" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-freshCard/90 text-slate-700 dark:text-slate-300 hover:border-brand-500 hover:text-brand-500 transition-all shadow-sm" aria-label="Ganti tampilan pengalaman">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5" id="exp-view-icon"></i>
+              <span id="exp-view-label" data-i18n="exp.viewAll">Lihat Semua</span>
+            </button>
             <span id="exp-counter" class="text-xs font-mono text-slate-500 font-bold">1 / 4</span>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2" id="exp-nav-btns">
               <button id="exp-prev-btn" class="p-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-freshCard/90 text-slate-700 dark:text-slate-300 hover:border-brand-500 hover:text-brand-500 transition-colors shadow-sm disabled:opacity-40 disabled:cursor-not-allowed" aria-label="Previous Slide" data-i18n-attr="aria-label:exp.prev">
                 <i data-lucide="chevron-left" class="w-4 h-4"></i>
               </button>
@@ -423,50 +274,49 @@
           <div class="overflow-hidden rounded-3xl border border-slate-200/60 dark:border-slate-800/60 bg-white/80 dark:bg-freshCard/80 backdrop-blur-xl shadow-2xl ring-1 ring-slate-900/5 dark:ring-white/5" id="exp-carousel-wrapper">
           <div class="carousel-track" id="exp-track">
 
-            <!-- SLIDE 1: UIN Sunan Kalijaga (Feb 2026 — Agt 2026) -->
+            <!-- SLIDE 1: KAI Medika (Jul 2025 — Agt 2025) -->
             <div class="carousel-slide p-6 sm:p-8 lg:p-9 space-y-6 sm:space-y-7">
               <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-x-6 gap-y-1 sm:gap-y-1.5 items-center">
                 <div class="sm:col-start-1 sm:row-start-1">
-                  <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="exp.1.title">Anggota Tim Pengelola Website, Email &amp; Media Sosial</h3>
+                  <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="exp.3.title">IT Support (Intern)</h3>
                 </div>
                 <div class="sm:col-start-1 sm:row-start-2">
-                  <p class="text-sm sm:text-base font-semibold text-brand-600 dark:text-brand-400 font-sans" data-i18n-html="exp.1.company">Fakultas Sains dan Teknologi, UIN Sunan Kalijaga</p>
+                  <p class="text-sm sm:text-base font-semibold text-brand-600 dark:text-brand-400 font-sans" data-i18n-html="exp.3.company">PT KAI Medika Indonesia • Brawijaya Hospital Tangerang</p>
                 </div>
                 <div class="sm:col-start-2 sm:row-start-1 sm:justify-self-end mt-1 sm:mt-0">
-                  <span data-period class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="exp.1.period">Feb 2026 &mdash; Agt 2026</span>
+                  <span data-period class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="exp.3.period">Jul 2025 — Agt 2025</span>
                 </div>
                 <div class="sm:col-start-2 sm:row-start-2 sm:justify-self-end">
-                  <a href="assets/docs/sertifikat-pengelola-website-email-medsos-uin.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-500 hover:text-white border border-brand-500/20 transition-all shadow-sm"><i data-lucide="file-text" class="w-3.5 h-3.5"></i><span data-i18n="doc.cert">Lihat sertifikat</span></a>
+                  <a href="assets/docs/surat-keterangan-kerja-kai-medika.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-500 hover:text-white border border-brand-500/20 transition-all shadow-sm"><i data-lucide="file-text" class="w-3.5 h-3.5"></i><span data-i18n="doc.letter">Lihat surat keterangan kerja</span></a>
                 </div>
               </div>
 
               <div class="h-px bg-slate-200 dark:bg-slate-800"></div>
 
-              <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12">
-                <div class="md:col-span-3 space-y-5 sm:space-y-6">
-                  <div>
-                    <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                      <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.challenge">Tantangan</span></h4>
-                    <p class="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300" data-i18n-html="exp.1.p1">Informasi dan publikasi resmi Fakultas Sains dan Teknologi bagi mahasiswa, akademisi, dan publik membutuhkan tata kelola komunikasi yang terpusat, konsisten, dan akurat di setiap kanal.</p>
-                  </div>
-                  <div>
-                    <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                      <i data-lucide="wrench" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.solution">Solusi Saya</span></h4>
-                    <p class="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300" data-i18n-html="exp.1.p2">Mengemban tanggung jawab operasional dalam pengelolaan <strong>website resmi</strong> fakultas, korespondensi <strong>email kelembagaan</strong>, dan publikasi <strong>media sosial</strong> fakultas secara terintegrasi.</p>
-                  </div>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-y-6 md:gap-x-8 items-start">
+                <div>
+                  <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                    <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.challenge">Tantangan</span>
+                  </h4>
+                  <p class="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.3.p1">Operasional rumah sakit di gedung 5 lantai menuntut keandalan seluruh infrastruktur IT, sistem informasi, dan konektivitas jaringan agar pelayanan medis berjalan tanpa hambatan.</p>
                 </div>
 
-                <div class="md:col-span-2 md:border-l md:border-slate-200 md:dark:border-slate-800 md:pl-10">
+                <div class="md:col-span-2 md:border-l md:border-slate-200/80 md:dark:border-slate-800/80 md:pl-8">
                   <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                      <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.results">Hasil &amp; Kontribusi</span></h4>
-                  <ul class="mt-3 space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.results">Hasil & Kontribusi</span>
+                  </h4>
+                  <ul class="mt-3 space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300 text-justify">
                     <li class="flex items-start gap-3">
                       <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
-                      <span data-i18n-html="exp.1.b1"><strong>Tiga Kanal Komunikasi Resmi:</strong> Mengelola pembaruan konten website, alur korespondensi email, dan media sosial fakultas secara konsisten dan terkoordinasi.</span>
+                      <span class="flex-1 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.3.b1">Menangani lebih dari 15 tiket insiden IT per hari di 5 lantai operasional rumah sakit secara end-to-end, mulai dari diagnosis hingga penyelesaian, meliputi troubleshooting hardware, sistem operasi, dan jaringan (konfigurasi IP, konektivitas server), baik secara on-site maupun remote melalui AnyDesk.</span>
                     </li>
                     <li class="flex items-start gap-3">
                       <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
-                      <span data-i18n-html="exp.1.b2"><strong>Apresiasi Sertifikat Resmi Dekan:</strong> Dianugerahi Sertifikat Penghargaan resmi oleh Dekan FST atas dedikasi dan kontribusi aktif selama Semester Genap TA 2025/2026.</span>
+                      <span class="flex-1 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.3.b2">Mengoptimalkan operasional mesin anjungan pendaftaran mandiri (kiosk check-in) dengan merancang panduan visual langsung pada fisik mesin sehingga berhasil mengurai antrean dan memperlancar registrasi pasien.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
+                      <span class="flex-1 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.3.b3">Menata ulang tata kelola 300+ aset IT rumah sakit menggunakan label barcode ber-ID unik, memproses pengajuan pengadaan perangkat baru, serta memasang instalasi komputer dan jaringan untuk operasional gedung baru.</span>
                     </li>
                   </ul>
                 </div>
@@ -475,24 +325,143 @@
               <div class="skill-row">
                 <span class="skill-label" data-i18n="label.skill">Skill</span>
                 <div class="skill-chips">
-                  <span class="skill-chip">Website Management</span>
-                  <span class="skill-chip">Content Strategy</span>
-                  <span class="skill-chip">Public Communication</span>
+                  <span class="skill-chip">IT Support & Helpdesk</span>
+                  <span class="skill-chip">Hardware & OS Troubleshooting</span>
+                  <span class="skill-chip">Network (TCP/IP)</span>
+                  <span class="skill-chip">Remote Support</span>
+                  <span class="skill-chip">IT Asset Management</span>
+                  <span class="skill-chip">Ticketing System</span>
                 </div>
               </div>
             </div>
 
-            <!-- SLIDE 2: Vinix Seven Aurum (Agt 2025 — Des 2025) -->
+            <!-- SLIDE 2: Diskominfo Lebak (Jul 2024 — Agt 2024) -->
             <div class="carousel-slide p-6 sm:p-8 lg:p-9 space-y-6 sm:space-y-7">
               <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-x-6 gap-y-1 sm:gap-y-1.5 items-center">
                 <div class="sm:col-start-1 sm:row-start-1">
-                  <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="exp.2.title">Junior Web Developer &amp; UI/UX Designer (Intern)</h3>
+                  <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="exp.4.title">Staf Magang Bidang Statistika & Persandian</h3>
+                </div>
+                <div class="sm:col-start-1 sm:row-start-2">
+                  <p class="text-sm sm:text-base font-semibold text-brand-600 dark:text-brand-400 font-sans" data-i18n-html="exp.4.company">Bidang Statistika dan Persandian, Diskominfo Kab. Lebak</p>
+                </div>
+                <div class="sm:col-start-2 sm:row-start-1 sm:justify-self-end mt-1 sm:mt-0">
+                  <span data-period class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="exp.4.period">Jul 2024 — Agt 2024</span>
+                </div>
+                <div class="sm:col-start-2 sm:row-start-2 sm:justify-self-end">
+                  <a href="assets/docs/sertifikat-magang-diskominfo-lebak.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-500 hover:text-white border border-brand-500/20 transition-all shadow-sm"><i data-lucide="file-text" class="w-3.5 h-3.5"></i><span data-i18n="doc.cert">Lihat sertifikat</span></a>
+                </div>
+              </div>
+
+              <div class="h-px bg-slate-200 dark:bg-slate-800"></div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-y-6 md:gap-x-8 items-start">
+                <div>
+                  <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                    <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.challenge">Tantangan</span>
+                  </h4>
+                  <p class="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.4.p1">Pemerintah daerah membutuhkan pengawasan keamanan situs web secara berkala dari serangan siber serta penerapan tanda tangan digital resmi guna menjamin keaslian dokumen kedinasan aparatur sipil.</p>
+                </div>
+
+                <div class="md:col-span-2 md:border-l md:border-slate-200/80 md:dark:border-slate-800/80 md:pl-8">
+                  <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.results">Hasil & Kontribusi</span>
+                  </h4>
+                  <ul class="mt-3 space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300 text-justify">
+                    <li class="flex items-start gap-3">
+                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
+                      <span class="flex-1 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.4.b1">Memonitor situs resmi pemerintah daerah secara berkala dari insiden keamanan siber seperti peretasan tampilan situs (<em>defacement</em>) dan penyusupan konten ilegal, serta menyusun laporan teknis untuk eskalasi penanganan tim tanggap insiden.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
+                      <span class="flex-1 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.4.b2">Memproses registrasi dan verifikasi teknis tanda tangan digital bagi Aparatur Sipil Negara (ASN) bekerja sama dengan balai sertifikasi elektronik guna menjamin keaslian berkas kedinasan.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
+                      <span class="flex-1 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.4.b3">Melayani konsultasi teknis helpdesk bagi masyarakat sipil dan staf dinas dalam mengatasi kendala akun serta akses portal layanan sistem informasi daerah.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="skill-row">
+                <span class="skill-label" data-i18n="label.skill">Skill</span>
+                <div class="skill-chips">
+                  <span class="skill-chip">IT Helpdesk Support</span>
+                  <span class="skill-chip">User Access Management</span>
+                  <span class="skill-chip">Web Security Monitoring</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 3: UIN Sunan Kalijaga (Feb 2026 — Agt 2026) -->
+            <div class="carousel-slide p-6 sm:p-8 lg:p-9 space-y-6 sm:space-y-7">
+              <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-x-6 gap-y-1 sm:gap-y-1.5 items-center">
+                <div class="sm:col-start-1 sm:row-start-1">
+                  <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="exp.1.title">Digital Communication Officer</h3>
+                </div>
+                <div class="sm:col-start-1 sm:row-start-2">
+                  <p class="text-sm sm:text-base font-semibold text-brand-600 dark:text-brand-400 font-sans" data-i18n-html="exp.1.company">Fakultas Sains dan Teknologi, UIN Sunan Kalijaga</p>
+                </div>
+                <div class="sm:col-start-2 sm:row-start-1 sm:justify-self-end mt-1 sm:mt-0">
+                  <span data-period class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="exp.1.period">Feb 2026 — Agt 2026</span>
+                </div>
+                <div class="sm:col-start-2 sm:row-start-2 sm:justify-self-end">
+                  <a href="assets/docs/sertifikat-pengelola-website-email-medsos-uin.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-500 hover:text-white border border-brand-500/20 transition-all shadow-sm"><i data-lucide="file-text" class="w-3.5 h-3.5"></i><span data-i18n="doc.cert">Lihat sertifikat</span></a>
+                </div>
+              </div>
+
+              <div class="h-px bg-slate-200 dark:bg-slate-800"></div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-y-6 md:gap-x-8 items-start">
+                <div>
+                  <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                    <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.challenge">Tantangan</span>
+                  </h4>
+                  <p class="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.1.p1">Kebutuhan publikasi dan tata kelola informasi terintegrasi lintas 9 program studi serta 20+ agenda fakultas menuntut koordinasi jadwal yang ketat, standardisasi konten multi-kanal, dan komunikasi stakeholder yang responsif.</p>
+                </div>
+
+                <div class="md:col-span-2 md:border-l md:border-slate-200/80 md:dark:border-slate-800/80 md:pl-8">
+                  <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.results">Hasil & Kontribusi</span>
+                  </h4>
+                  <ul class="mt-3 space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300 text-justify">
+                    <li class="flex items-start gap-3">
+                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
+                      <span class="flex-1 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.1.b1">Mengelola kebutuhan publikasi 9 program studi serta 20+ agenda fakultas secara paralel dan end-to-end, mulai dari perancangan identitas visual, pembuatan materi promosi, hingga produksi konten digital, iklan, dan dokumentasi, dengan penjadwalan pekerjaan berdasarkan kalender kegiatan dan tenggat masing-masing program studi.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
+                      <span class="flex-1 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.1.b2">Mengkoordinasikan kebutuhan publikasi dan sistem informasi dengan dosen, staf, dan panitia kegiatan, mulai dari pengumpulan kebutuhan (<em>requirement gathering</em>), penentuan spesifikasi teknis, hingga memastikan <em>delivery</em> pekerjaan selesai sesuai jadwal.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
+                      <span class="flex-1 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.1.b3">Mengelola 4 kanal digital fakultas (website, Instagram, Facebook, dan YouTube), meliputi pembaruan informasi, pengelolaan konten, serta pengeditan dan pengembangan tampilan website.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="skill-row">
+                <span class="skill-label" data-i18n="label.skill">Skill</span>
+                <div class="skill-chips">
+                  <span class="skill-chip">IT Project Coordination</span>
+                  <span class="skill-chip">Website CMS Management</span>
+                  <span class="skill-chip">Quality Assurance (UAT)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 4: Vinix Seven Aurum (Agt 2025 — Des 2025) -->
+            <div class="carousel-slide p-6 sm:p-8 lg:p-9 space-y-6 sm:space-y-7">
+              <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-x-6 gap-y-1 sm:gap-y-1.5 items-center">
+                <div class="sm:col-start-1 sm:row-start-1">
+                  <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="exp.2.title">Junior Web Developer & UI/UX Designer — Intern</h3>
                 </div>
                 <div class="sm:col-start-1 sm:row-start-2">
                   <p class="text-sm sm:text-base font-semibold text-brand-600 dark:text-brand-400 font-sans" data-i18n-html="exp.2.company">PT Vinix Seven Aurum</p>
                 </div>
                 <div class="sm:col-start-2 sm:row-start-1 sm:justify-self-end mt-1 sm:mt-0">
-                  <span data-period class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="exp.2.period">Agt 2025 &mdash; Des 2025</span>
+                  <span data-period class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="exp.2.period">Agt 2025 — Des 2025</span>
                 </div>
                 <div class="sm:col-start-2 sm:row-start-2 sm:justify-self-end">
                   <a href="assets/docs/sertifikat-magang-vinix-seven-aurum.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-500 hover:text-white border border-brand-500/20 transition-all shadow-sm"><i data-lucide="file-text" class="w-3.5 h-3.5"></i><span data-i18n="doc.cert">Lihat sertifikat</span></a>
@@ -501,35 +470,30 @@
 
               <div class="h-px bg-slate-200 dark:bg-slate-800"></div>
 
-              <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12">
-                <div class="md:col-span-3 space-y-5 sm:space-y-6">
-                  <div>
-                    <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                      <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.challenge">Tantangan</span></h4>
-                    <p class="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300" data-i18n-html="exp.2.p1">Wisatawan muslim sering kesulitan menemukan tempat makan halal di Bali.</p>
-                  </div>
-                  <div>
-                    <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                      <i data-lucide="wrench" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.solution">Solusi Saya</span></h4>
-                    <p class="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300" data-i18n-html="exp.2.p2">Saya merancang UI/UX sekaligus membangun website <strong>Bali Kuliner Finder</strong> dengan <strong>PHP</strong>, sendirian selama 5 bulan.</p>
-                  </div>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-y-6 md:gap-x-8 items-start">
+                <div>
+                  <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                    <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.challenge">Tantangan</span>
+                  </h4>
+                  <p class="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.2.p1">Klien dan pengguna membutuhkan platform web komersial yang cepat, stabil, dan bebas kendala teknis saat peluncuran, terutama pada penanganan data kuliner dalam jumlah besar serta tampilan yang harus tetap rapi di berbagai jenis perangkat.</p>
                 </div>
 
-                <div class="md:col-span-2 md:border-l md:border-slate-200 md:dark:border-slate-800 md:pl-10">
+                <div class="md:col-span-2 md:border-l md:border-slate-200/80 md:dark:border-slate-800/80 md:pl-8">
                   <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                      <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.results">Hasil &amp; Kontribusi</span></h4>
-                  <ul class="mt-3 space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.results">Hasil & Kontribusi</span>
+                  </h4>
+                  <ul class="mt-3 space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300 text-justify">
                     <li class="flex items-start gap-3">
                       <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
-                      <span data-i18n-html="exp.2.b1"><strong>Semua tugas selesai</strong> dan dinilai &ldquo;sangat baik&rdquo; oleh perusahaan.</span>
+                      <span class="flex-1 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.2.b1">Menjaga stabilitas operasional platform web komersial agar siap diluncurkan sesuai jadwal melalui pengembangan modul backend berbasis PHP dan penataan alur logika sistem yang rapi.</span>
                     </li>
                     <li class="flex items-start gap-3">
                       <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
-                      <span data-i18n-html="exp.2.b2"><strong>Satu orang, dua peran:</strong> dari rancangan UI/UX sampai website berjalan.</span>
+                      <span class="flex-1 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.2.b2">Merancang dan mengelola struktur basis data relasional MySQL untuk direktori tempat makan, menu, dan ulasan guna memastikan proses pencarian serta filter informasi berjalan lancar.</span>
                     </li>
                     <li class="flex items-start gap-3">
                       <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
-                      <span data-i18n-html="exp.2.b3"><strong>Proyek nyata perusahaan,</strong> belum dipublikasikan karena milik perusahaan.</span>
+                      <span class="flex-1 text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;" data-i18n-html="exp.2.b3">Memperoleh predikat evaluasi Sangat Baik dari manajemen atas kinerja selama masa magang berkat ketepatan waktu dalam menyelesaikan setiap tugas teknis dan kerja sama aktif bersama tim.</span>
                     </li>
                   </ul>
                 </div>
@@ -539,132 +503,9 @@
                 <span class="skill-label" data-i18n="label.skill">Skill</span>
                 <div class="skill-chips">
                   <span class="skill-chip">PHP</span>
-                  <span class="skill-chip">UI/UX Design</span>
-                  <span class="skill-chip">Responsive Web Design</span>
-                  <span class="skill-chip">Figma</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- SLIDE 3: KAI Medika (Jul 2025 — Agt 2025) -->
-            <div class="carousel-slide p-6 sm:p-8 lg:p-9 space-y-6 sm:space-y-7">
-              <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-x-6 gap-y-1 sm:gap-y-1.5 items-center">
-                <div class="sm:col-start-1 sm:row-start-1">
-                  <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="exp.3.title">Staf Magang IT Support (First Responder)</h3>
-                </div>
-                <div class="sm:col-start-1 sm:row-start-2">
-                  <p class="text-sm sm:text-base font-semibold text-brand-600 dark:text-brand-400 font-sans" data-i18n-html="exp.3.company">PT KAI Medika Indonesia &bull; Brawijaya Hospital Tangerang</p>
-                </div>
-                <div class="sm:col-start-2 sm:row-start-1 sm:justify-self-end mt-1 sm:mt-0">
-                  <span data-period class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="exp.3.period">Jul 2025 &mdash; Agt 2025</span>
-                </div>
-                <div class="sm:col-start-2 sm:row-start-2 sm:justify-self-end">
-                  <a href="assets/docs/surat-keterangan-kerja-kai-medika.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-500 hover:text-white border border-brand-500/20 transition-all shadow-sm"><i data-lucide="file-text" class="w-3.5 h-3.5"></i><span data-i18n="doc.letter">Lihat surat keterangan kerja</span></a>
-                </div>
-              </div>
-
-              <div class="h-px bg-slate-200 dark:bg-slate-800"></div>
-
-              <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12">
-                <div class="md:col-span-3 space-y-5 sm:space-y-6">
-                  <div>
-                    <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                      <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.challenge">Tantangan</span></h4>
-                    <p class="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300" data-i18n-html="exp.3.p1">Di lingkungan rumah sakit yang beroperasi cepat, kelancaran workstation komputer, printer resep/label rekam medis, dan stabilitas jaringan sangat krusial bagi keselamatan pelayanan pasien. Kendala teknis sekecil apa pun harus ditangani secara tanggap.</p>
-                  </div>
-                  <div>
-                    <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                      <i data-lucide="wrench" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.solution">Solusi Saya</span></h4>
-                    <p class="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300" data-i18n-html="exp.3.p2">Menjadi <strong>first responder</strong> dalam menerima dan mendiagnosis seluruh kendala IT pengguna: mengelola alur <strong>sistem ticketing</strong>, troubleshooting on-site ke unit poliklinik/administrasi maupun jarak jauh via <strong>AnyDesk</strong>, serta berkoordinasi dengan vendor saat membutuhkan pergantian suku cadang.</p>
-                  </div>
-                </div>
-
-                <div class="md:col-span-2 md:border-l md:border-slate-200 md:dark:border-slate-800 md:pl-10">
-                  <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                      <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.results">Hasil &amp; Kontribusi</span></h4>
-                  <ul class="mt-3 space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                    <li class="flex items-start gap-3">
-                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
-                      <span data-i18n-html="exp.3.b1"><strong>Sekitar 9 tiket per hari</strong> saya tangani sebagai kontak pertama, dari keluhan ringan sampai gangguan perangkat.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
-                      <span data-i18n-html="exp.3.b2"><strong>Menguasai beragam perangkat:</strong> printer, komputer dengan berbagai sistem operasi, dan koordinasi dengan vendor saat perlu eskalasi.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
-                      <span data-i18n-html="exp.3.b3"><strong>Penanganan jarak jauh dengan AnyDesk</strong> dari laptop, dan setiap kasus tercatat rapi di ticketing.</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="skill-row">
-                <span class="skill-label" data-i18n="label.skill">Skill</span>
-                <div class="skill-chips">
-                  <span class="skill-chip">IT Support &amp; Helpdesk</span>
-                  <span class="skill-chip">Hardware &amp; OS Troubleshooting</span>
-                  <span class="skill-chip">Remote Diagnostics</span>
-                  <span class="skill-chip">Vendor Coordination</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- SLIDE 4: Diskominfo Lebak (Jul 2024 — Agt 2024) -->
-            <div class="carousel-slide p-6 sm:p-8 lg:p-9 space-y-6 sm:space-y-7">
-              <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-x-6 gap-y-1 sm:gap-y-1.5 items-center">
-                <div class="sm:col-start-1 sm:row-start-1">
-                  <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="exp.4.title">Magang Keamanan Siber dan Persandian</h3>
-                </div>
-                <div class="sm:col-start-1 sm:row-start-2">
-                  <p class="text-sm sm:text-base font-semibold text-brand-600 dark:text-brand-400 font-sans" data-i18n-html="exp.4.company">Diskominfo Kabupaten Lebak</p>
-                </div>
-                <div class="sm:col-start-2 sm:row-start-1 sm:justify-self-end mt-1 sm:mt-0">
-                  <span data-period class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="exp.4.period">Jul 2024 &mdash; Agt 2024</span>
-                </div>
-                <div class="sm:col-start-2 sm:row-start-2 sm:justify-self-end">
-                  <a href="assets/docs/sertifikat-magang-diskominfo-lebak.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-500 hover:text-white border border-brand-500/20 transition-all shadow-sm"><i data-lucide="file-text" class="w-3.5 h-3.5"></i><span data-i18n="doc.cert">Lihat sertifikat</span></a>
-                </div>
-              </div>
-
-              <div class="h-px bg-slate-200 dark:bg-slate-800"></div>
-
-              <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12">
-                <div class="md:col-span-3 space-y-5 sm:space-y-6">
-                  <div>
-                    <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                      <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.challenge">Tantangan</span></h4>
-                    <p class="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300" data-i18n-html="exp.4.p1">Kebutuhan digitalisasi birokrasi pemerintahan daerah menuntut keabsahan dokumen kedinasan, keamanan otentikasi data, dan kepatuhan standar persandian agar terhindar dari pemalsuan dokumen elektronik.</p>
-                  </div>
-                  <div>
-                    <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                      <i data-lucide="wrench" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.solution">Solusi Saya</span></h4>
-                    <p class="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300" data-i18n-html="exp.4.p2">Mendukung operasional teknis penerbitan dan verifikasi <strong>sertifikat elektronik / tanda tangan digital (TTE)</strong> bekerja sama dengan Balai Sertifikasi Elektronik (BSrE BSSN), memvalidasi kelayakan berkas kedinasan aparatur ASN, serta mendampingi sosialisasi keamanan siber.</p>
-                  </div>
-                </div>
-
-                <div class="md:col-span-2 md:border-l md:border-slate-200 md:dark:border-slate-800 md:pl-10">
-                  <h4 class="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                      <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="exp.results">Hasil &amp; Kontribusi</span></h4>
-                  <ul class="mt-3 space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                    <li class="flex items-start gap-3">
-                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
-                      <span data-i18n-html="exp.4.b1"><strong>Verifikasi Tanda Tangan Digital BSrE:</strong> Memvalidasi dan membantu penerbitan sertifikat digital resmi bagi pegawai ASN di lingkungan instansi daerah.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
-                      <span data-i18n-html="exp.4.b2"><strong>Kepatuhan Standar Persandian:</strong> Memastikan seluruh dokumen elektronik kedinasan tervalidasi sesuai prosedur tata kelola keamanan informasi resmi.</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="skill-row">
-                <span class="skill-label" data-i18n="label.skill">Skill</span>
-                <div class="skill-chips">
-                  <span class="skill-chip">Digital Signature</span>
-                  <span class="skill-chip">Cybersecurity</span>
-                  <span class="skill-chip">Technical Documentation</span>
+                  <span class="skill-chip">MySQL</span>
+                  <span class="skill-chip">Technical Troubleshooting</span>
+                  <span class="skill-chip">UI/UX (Figma)</span>
                 </div>
               </div>
             </div>
@@ -674,7 +515,7 @@
 
         <!-- Hint Navigasi (Mepet pas di bawah kartu) -->
         <div class="flex items-center gap-2 px-1 text-xs font-mono text-slate-500 dark:text-slate-400">
-          <span data-i18n="exp.hint">Geser kartu, atau pakai tombol (>) dan tombol panah di keyboard</span>
+          <span data-i18n="exp.hint">Geser kartu, atau gunakan tombol (&gt;) dan tombol panah pada keyboard</span>
         </div>
       </div>
 
@@ -692,7 +533,7 @@
 
         <div>
           <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight" data-i18n="cert.title">
-            Pelatihan &amp; Sertifikasi
+            Pelatihan & Sertifikasi
           </h2>
         </div>
 
@@ -701,7 +542,7 @@
 
           <!-- 1. Header Informasi Program & Validasi -->
           <div class="space-y-3">
-            <div class="flex items-center justify-between flex-wrap gap-2">
+            <div>
               <span class="text-xs font-mono text-slate-500 dark:text-slate-400 font-semibold" data-i18n-html="cert.1.meta">
                 Dicoding Academy x DBS Foundation 2025
               </span>
@@ -712,12 +553,12 @@
                 Coding Camp powered by DBS Foundation
               </h3>
               <p class="text-xs sm:text-sm font-semibold text-brand-600 dark:text-brand-400 mt-1" data-i18n="cert.track">
-                Full-Stack Web Development Track (910 Jam Pembelajaran Terakreditasi)
+                Jalur Full-Stack Web Development
               </p>
             </div>
 
-            <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed text-justify" data-i18n="cert.1.pitch">
-              Program beasiswa 6 bulan dari DBS Foundation dan Dicoding Academy dengan total 910 jam belajar. Kurikulumnya mencakup pengembangan Full-Stack Web dari hulu ke hilir: dasar logika, front-end modern, REST API dengan Node.js, dasar cloud AWS, hingga komunikasi bahasa Inggris bisnis. Setiap modul diselesaikan lewat proyek coding langsung yang diperiksa oleh tim reviewer Dicoding.
+            <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed text-justify" data-i18n-html="cert.1.pitch">
+              Terpilih dari 63.356 pendaftar (tingkat penerimaan 5%) pada program beasiswa intensif kolaborasi DBS Foundation dan Dicoding Academy, dengan beban belajar 910 jam yang terakreditasi Kemendikbudristek. Kurikulumnya mencakup logika komputasi, front-end modern, RESTful API dengan Node.js dan Hapi, komputasi awan AWS, hingga komunikasi bisnis bersama The British Institute. Saya menyelesaikannya dengan predikat Grade A, Full Graduate, serta nilai proyek akhir Capstone 96,4 dari 100.
             </p>
           </div>
 
@@ -741,108 +582,191 @@
             </div>
           </div>
 
-          <!-- 3. ARSITEKTUR UTAMA: THE CREDENTIAL COMMAND CENTER (Split-Screen Vault) -->
-          <div class="pt-1">
+          <!-- 3. BUKTI INSTAN HR: SHOWCASE SERTIFIKAT & PETA SKILL (FRONT & CENTER) -->
+          <div class="pt-2">
             
-            <!-- Two Columns Split: Left Directory List | Right Hero Inspector -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               
-              <!-- LEFT COLUMN: Directory List (5 Cols on LG) -->
-              <div class="lg:col-span-5 space-y-2.5 order-2 lg:order-1">
-                <div class="flex items-center justify-between text-xs font-mono font-bold text-slate-500 dark:text-slate-400 px-1">
-                  <span class="flex items-center gap-1.5 uppercase tracking-wider text-[11px]">
-                    <i data-lucide="folder-open" class="w-3.5 h-3.5 text-brand-500"></i>
-                    <span data-i18n="cert.vault.dirTitle">12 Modul Pembelajaran</span>
-                  </span>
-                  <span id="cert-dir-count" class="text-[11px] text-brand-600 dark:text-brand-400 font-semibold">12 Modul</span>
+              <!-- KOLOM KIRI (lg:col-span-6): Pajangan Sertifikat Kelulusan & Transkrip Visual -->
+              <div class="lg:col-span-6 space-y-3">
+                
+                <!-- Frame Sertifikat Interaktif -->
+                <div class="rounded-2xl overflow-hidden border border-slate-200/90 dark:border-slate-800 bg-slate-950 shadow-xl ring-1 ring-slate-900/10 flex flex-col">
+                  <!-- Frame Header / Status Bar -->
+                  <div class="flex items-center justify-between px-3.5 py-2.5 border-b border-slate-800 bg-slate-900/95 text-xs font-mono">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                      <span class="text-[11px] text-emerald-400 font-semibold tracking-wide uppercase" data-i18n="cert.showcase.verified">Terverifikasi Resmi</span>
+                    </div>
+                    <span id="cert-display-label" class="text-[11px] text-slate-400 font-medium" data-i18n="cert.showcase.page1">Halaman 1: Sertifikat Kelulusan</span>
+                  </div>
+
+                  <!-- Container Foto Sertifikat (Klik untuk Zoom) -->
+                  <div class="relative bg-slate-950 overflow-hidden aspect-[16/11.3] flex items-center justify-center group cursor-zoom-in" id="cert-preview-trigger" title="Klik untuk memperbesar sertifikat">
+                    <img
+                      id="cert-display-img"
+                      src="assets/docs/sertifikat-coding-camp-page-1.jpg"
+                      alt="Sertifikat Kelulusan Coding Camp 2025 Firdy Dwi Aryani"
+                      class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                    />
+                    <div class="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/5 transition-colors pointer-events-none"></div>
+                    <div class="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-lg bg-slate-900/85 backdrop-blur text-white text-[10px] font-mono flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity pointer-events-none">
+                      <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-brand-400"></i>
+                      <span data-i18n="cert.showcase.zoom">Klik untuk Perbesar</span>
+                    </div>
+                  </div>
                 </div>
 
-                <!-- Live Search Box in Directory Column -->
-                <div class="relative w-full">
-                  <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-                  <input type="text" id="cert-search-input" placeholder="Cari modul atau skill..." class="w-full pl-8 pr-7 py-1.5 text-xs rounded-xl bg-slate-100/70 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800/80 text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 transition-all font-sans" />
-                  <button type="button" id="cert-search-clear" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-white text-xs">
-                    <i data-lucide="x" class="w-3 h-3"></i>
+                <!-- Tab Switcher: Halaman 1 (Sertifikat) vs Halaman 2 (Transkrip Nilai) -->
+                <div class="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    id="cert-tab-page1"
+                    class="cert-tab-btn active px-3 py-2 rounded-xl border-2 border-brand-500 bg-brand-500/10 dark:bg-brand-500/20 text-brand-600 dark:text-brand-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                  >
+                    <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                    <span data-i18n="cert.showcase.tab1">Sertifikat Kelulusan</span>
+                  </button>
+                  <button
+                    type="button"
+                    id="cert-tab-page2"
+                    class="cert-tab-btn px-3 py-2 rounded-xl border-2 border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 font-semibold text-xs flex items-center justify-center gap-1.5 hover:border-brand-500/50 hover:text-brand-500 transition-all shadow-sm"
+                  >
+                    <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                    <span data-i18n="cert.showcase.tab2">Transkrip Nilai Lengkap</span>
                   </button>
                 </div>
 
-                <!-- Scrollable List of Certificates -->
-                <div id="cert-vault-list" class="cert-dir-scroll space-y-2 max-h-[500px] overflow-y-auto pr-1.5">
-                  <!-- Dynamically populated rows -->
-                </div>
+                <!-- Tombol Buka PDF Resmi -->
+
               </div>
 
-              <!-- RIGHT COLUMN: Master Credential Inspector Vault Card (7 Cols on LG) -->
-              <div class="lg:col-span-7 order-1 lg:order-2 sticky top-24">
-                <div id="cert-inspector-card" class="cert-paper-mockup rounded-2xl p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800/80 transition-all space-y-4">
-                  
-                  <div class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 pb-1 border-b border-slate-200/60 dark:border-slate-800/80 flex items-center justify-between">
-                    <span class="flex items-center gap-1.5">
-                      <i data-lucide="award" class="w-4 h-4 text-brand-500"></i>
-                      <span>Dokumen Kelulusan Utama</span>
+              <!-- KOLOM KANAN (lg:col-span-6): Nilai Total & Peta Keahlian yang Dipelajari -->
+              <div class="lg:col-span-6 space-y-3.5">
+                
+                <!-- Card A: Rekap Nilai Akademik & Predikat -->
+                <div class="p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-gradient-to-br from-slate-50/80 via-white to-brand-500/[0.04] dark:from-slate-900/60 dark:via-freshCard/80 dark:to-brand-500/[0.06] shadow-sm space-y-3">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                      <div class="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                        <i data-lucide="check-check" class="w-4 h-4"></i>
+                      </div>
+                      <span class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider font-mono" data-i18n="cert.eval.title">Hasil Evaluasi Kelulusan</span>
+                    </div>
+                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30" data-i18n="cert.eval.status">
+                      Full Graduate
                     </span>
-                    <span class="text-brand-600 dark:text-brand-400">2 Dokumen</span>
                   </div>
 
-                  <!-- 1. Sertifikat Kelulusan Utama -->
-                  <div class="p-4 rounded-xl border border-slate-200/80 dark:border-slate-800/80 bg-slate-50/70 dark:bg-slate-900/40 space-y-2.5">
-                    <div class="flex items-start gap-3">
-                      <div class="w-9 h-9 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 flex items-center justify-center shrink-0 shadow-sm">
-                        <i data-lucide="award" class="w-4.5 h-4.5"></i>
-                      </div>
-                      <div class="min-w-0 flex-1">
-                        <h4 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-snug">
-                          Sertifikat Kelulusan Coding Camp 2025
-                        </h4>
-                        <div class="flex items-center flex-wrap gap-x-2 gap-y-0.5 mt-0.5 text-xs text-slate-500 dark:text-slate-400 font-medium">
-                          <span>Dicoding Academy x DBS Foundation</span>
-                          <span class="text-slate-300 dark:text-slate-700">·</span>
-                          <span class="font-mono text-slate-600 dark:text-slate-300">910 Jam Intensif</span>
-                        </div>
-                      </div>
+                  <!-- Grid 3 Nilai Utama -->
+                  <div class="grid grid-cols-3 gap-2.5 pt-1">
+                    <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-100 dark:border-slate-800/80 text-center">
+                      <div class="text-[11px] font-mono text-slate-400 dark:text-slate-500" data-i18n="cert.eval.pred">Predikat</div>
+                      <div class="text-xl sm:text-2xl font-black text-brand-600 dark:text-brand-400 mt-0.5" data-i18n="cert.eval.predVal">A</div>
+                      <div class="text-[10px] text-slate-500 font-medium" data-i18n="cert.eval.predSub">Sangat Memuaskan</div>
                     </div>
-                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed text-justify">
-                      Sertifikat kelulusan beasiswa 6 bulan alur Full-Stack Web Development, mencakup 910 jam materi teori dan praktik coding.
-                    </p>
-                    <div class="pt-1">
-                      <a href="assets/docs/sertifikat-coding-camp-2025.pdf" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white shadow-sm transition-all cursor-pointer">
-                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                        <span data-i18n="cert.vault.view">Buka Dokumen</span>
-                      </a>
+                    <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-100 dark:border-slate-800/80 text-center">
+                      <div class="text-[11px] font-mono text-slate-400 dark:text-slate-500" data-i18n="cert.eval.cap">Proyek Akhir</div>
+                      <div class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-0.5" data-i18n="cert.eval.capVal">96,4</div>
+                      <div class="text-[10px] text-slate-500 font-medium" data-i18n="cert.eval.capSub">Capstone Tested</div>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900/70 border border-slate-100 dark:border-slate-800/80 text-center">
+                      <div class="text-[11px] font-mono text-slate-400 dark:text-slate-500" data-i18n="cert.eval.soft">Soft Skills</div>
+                      <div class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-0.5" data-i18n="cert.eval.softVal">93,2</div>
+                      <div class="text-[10px] text-slate-500 font-medium" data-i18n="cert.eval.softSub">Komunikasi Bisnis</div>
                     </div>
                   </div>
-
-                  <!-- 2. Transkrip Nilai Akademik -->
-                  <div class="p-4 rounded-xl border border-slate-200/80 dark:border-slate-800/80 bg-slate-50/70 dark:bg-slate-900/40 space-y-2.5">
-                    <div class="flex items-start gap-3">
-                      <div class="w-9 h-9 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 flex items-center justify-center shrink-0 shadow-sm">
-                        <i data-lucide="file-text" class="w-4.5 h-4.5"></i>
-                      </div>
-                      <div class="min-w-0 flex-1">
-                        <h4 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-snug">
-                          Transkrip Nilai Akademik Akhir
-                        </h4>
-                        <div class="flex items-center flex-wrap gap-x-2 gap-y-0.5 mt-0.5 text-xs text-slate-500 dark:text-slate-400 font-medium">
-                          <span>Dicoding Academy x DBS Foundation</span>
-                          <span class="text-slate-300 dark:text-slate-700">·</span>
-                          <span class="font-mono text-slate-600 dark:text-slate-300">12 Modul Kurikulum</span>
-                        </div>
-                      </div>
-                    </div>
-                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed text-justify">
-                      Daftar nilai dari 12 modul teknis dan soft skills yang diselesaikan dengan kehadiran 100% serta seluruh tugas proyek dinyatakan lulus.
-                    </p>
-                    <div class="pt-1">
-                      <a href="assets/docs/transkrip-akhir-coding-camp-2025.pdf" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white shadow-sm transition-all cursor-pointer">
-                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                        <span data-i18n="cert.vault.view">Buka Dokumen</span>
-                      </a>
-                    </div>
-                  </div>
-
                 </div>
+
+                <!-- Card B: Peta Keahlian & Materi yang Dipelajari (Daftar Bersih Tanpa Kotak-Kotak) -->
+                <div class="p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-freshCard/80 shadow-sm space-y-3.5">
+                  <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-lg bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center">
+                      <i data-lucide="layers" class="w-4 h-4"></i>
+                    </div>
+                    <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" data-i18n="cert.skills.heading">
+                      Keahlian & Materi 910 Jam Pembelajaran
+                    </h4>
+                  </div>
+
+                  <!-- Daftar Keahlian Bersih & Rapi (Tanpa Kotak-Kotak / Tanpa Pills) -->
+                  <ul class="space-y-3 pt-1 text-xs sm:text-[13px] text-slate-700 dark:text-slate-300">
+                    <li class="flex items-start gap-2.5">
+                      <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
+                      <div class="leading-relaxed">
+                        <strong class="text-slate-900 dark:text-white font-semibold">Front-End Web Development:</strong>
+                        <span class="text-slate-600 dark:text-slate-300"> HTML5, CSS3, JavaScript ES6+, Responsive Design, Progressive Web Apps</span>
+                      </div>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                      <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
+                      <div class="leading-relaxed">
+                        <strong class="text-slate-900 dark:text-white font-semibold">Back-End & RESTful API:</strong>
+                        <span class="text-slate-600 dark:text-slate-300"> Node.js, Hapi Framework, RESTful API Design, Postman API Testing</span>
+                      </div>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                      <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
+                      <div class="leading-relaxed">
+                        <strong class="text-slate-900 dark:text-white font-semibold">Cloud & Tooling:</strong>
+                        <span class="text-slate-600 dark:text-slate-300"> AWS Cloud, Git, GitHub</span>
+                      </div>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                      <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></span>
+                      <div class="leading-relaxed">
+                        <strong class="text-slate-900 dark:text-white font-semibold">Soft Skills & Komunikasi:</strong>
+                        <span class="text-slate-600 dark:text-slate-300"> Business English, Problem Solving, Kolaborasi Tim</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
               </div>
 
+            </div>
+
+            <!-- COLLAPSIBLE ACCORDION FOR 12 CURRICULUM MODULES -->
+            <div class="mt-6 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl bg-white/60 dark:bg-freshCard/60 backdrop-blur-sm overflow-hidden transition-all">
+              <button type="button" id="toggle-modules-btn" class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors focus:outline-none" aria-expanded="false">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">
+                    <i data-lucide="folder-open" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                      <span>Rincian 12 Modul Silabus Pembelajaran</span>
+                      <span id="cert-dir-count" class="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-brand-100 dark:bg-brand-950 text-brand-700 dark:text-brand-300">12 Modul</span>
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">Front-End, Back-End Node.js/Hapi, AWS Cloud, Git & Soft Skills</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-1.5 text-xs font-semibold text-brand-600 dark:text-brand-400 shrink-0">
+                  <span id="toggle-modules-label">Buka Silabus</span>
+                  <i id="toggle-modules-icon" data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
+                </div>
+              </button>
+
+              <div id="modules-collapse-container" class="hidden border-t border-slate-200/60 dark:border-slate-800/60 p-4 sm:p-5 space-y-4">
+                <!-- Live Search Box: Full Width Stretch & Clean -->
+                <div class="relative w-full">
+                  <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                  <input 
+                    type="text" 
+                    id="cert-search-input" 
+                    placeholder="Cari modul atau skill..." 
+                    class="w-full pl-10 pr-9 py-2 sm:py-2.5 text-xs sm:text-sm rounded-xl bg-slate-100/70 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800/80 text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-1.5 focus:ring-brand-500 font-sans transition-all shadow-xs" 
+                  />
+                  <button type="button" id="cert-search-clear" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-white text-xs">
+                    <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+
+                <!-- Daftar Rapi 12 Modul Silabus (List Baris, Bukan Kotak) -->
+                <div id="cert-vault-list" class="divide-y divide-slate-200/70 dark:divide-slate-800/70 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/40 overflow-hidden shadow-xs">
+                  <!-- Dynamically populated via script.js -->
+                </div>
+              </div>
             </div>
 
           </div>
@@ -869,7 +793,7 @@
           </div>
 
           <!-- Carousel Controls (< >) -->
-          <div class="flex items-center gap-3 relative z-20">
+          <div class="flex items-center gap-3 relative z-[60]">
             <span id="proj-counter" class="text-xs font-mono text-slate-500 font-bold">1 / 3</span>
             <div class="flex items-center gap-2">
               <button id="proj-prev-btn" class="p-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-freshCard/90 text-slate-700 dark:text-slate-300 hover:border-brand-500 hover:text-brand-500 transition-colors shadow-sm disabled:opacity-40 disabled:cursor-not-allowed" aria-label="Previous Project" data-i18n-attr="aria-label:proj.prev">
@@ -901,7 +825,7 @@
                         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
                         <span class="text-[11px] ml-2 text-slate-400 font-mono">skripsi-srs-llm.app</span>
                       </div>
-                      <span class="text-[11px] text-brand-400 font-bold" id="proj1-photo-title" data-i18n="proj.1.ph1">Foto 1: Beranda &amp; Alur Kerja</span>
+                      <span class="text-[11px] text-brand-400 font-bold" id="proj1-photo-title" data-i18n="proj.1.ph1">Foto 1: Beranda & Alur Kerja</span>
                     </div>
                     <div class="relative bg-slate-900 overflow-hidden aspect-[16/10] flex items-center justify-center">
                       <img
@@ -921,7 +845,7 @@
                       data-target="proj1-main-img"
                       data-title-target="proj1-photo-title"
                       data-src="assets/projects/skripsi-srs-1.png"
-                      data-title="Foto 1: Beranda &amp; Alur Kerja" data-i18n-attr="data-title:proj.1.ph1"
+                      data-title="Foto 1: Beranda & Alur Kerja" data-i18n-attr="data-title:proj.1.ph1"
                     >
                       <div class="aspect-[16/10] overflow-hidden rounded-lg bg-slate-950">
                         <img src="assets/projects/skripsi-srs-1.png" alt="Thumb 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
@@ -964,8 +888,8 @@
                   <!-- Header -->
                   <div class="space-y-1.5 pb-3 border-b border-slate-200/60 dark:border-slate-800/80">
                     <div class="flex items-center justify-between flex-wrap gap-2">
-                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20" data-i18n-html="proj.1.tag">Full-Stack &amp; AI</span>
-                      <span class="text-xs font-mono text-slate-500 dark:text-slate-400 font-medium" data-i18n-html="proj.1.period">Skripsi S1 &bull; 2026</span>
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20" data-i18n-html="proj.1.tag">Full-Stack & AI</span>
+                      <span class="text-xs font-mono text-slate-500 dark:text-slate-400 font-medium" data-i18n-html="proj.1.period">Skripsi S1 • 2026</span>
                     </div>
                     <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="proj.1.name">
                       Sistem Penyusunan Dokumen SRS (Multi-LLM)
@@ -975,7 +899,7 @@
                     </p>
                     <div class="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium pt-1">
                       <span class="font-mono text-[11px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">Peran:</span>
-                      <span class="text-slate-800 dark:text-slate-200 font-semibold" data-i18n="proj.1.role">Full-Stack Developer &amp; Prompt Engineer (Solo Project)</span>
+                      <span class="text-slate-800 dark:text-slate-200 font-semibold" data-i18n="proj.1.role">Full-Stack Developer & Prompt Engineer (Solo Project)</span>
                     </div>
                   </div>
 
@@ -984,36 +908,36 @@
                     <!-- Tantangan -->
                     <div class="p-3 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-800/60 space-y-1">
                       <div class="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                        <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="proj.challenge">Tantangan &amp; Kebutuhan</span>
+                        <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="proj.challenge">Tantangan & Kebutuhan</span>
                       </div>
-                      <p class="text-slate-600 dark:text-slate-300 text-justify" data-i18n-html="proj.1.need">Banyak pengembang dan mahasiswa yang kebingungan memahami struktur baku dokumen Software Requirements Specification (SRS) standar resmi IEEE (seperti IEEE 830). Menulis dari nol memakan waktu berhari-hari, formatnya rawan tidak teratur, dan jika memakai AI biasa tanpa aturan ketat, AI sering berhalusinasi dan menghasilkan poin teknis yang melenceng dari kebutuhan nyata.</p>
+                      <p class="text-slate-600 dark:text-slate-300 text-justify" data-i18n-html="proj.1.need">Banyak pengembang sistem dan akademisi menghadapi kendala dalam menyusun dokumen Software Requirements Specification (SRS) yang sesuai dengan standar IEEE. Penyusunan secara manual memerlukan waktu signifikan, rentan terjadi inkonsistensi format, dan penggunaan model AI generatif tanpa pembatasan (guardrail) ketat kerap memicu halusinasi yang menyimpang dari kebutuhan riil sistem.</p>
                     </div>
 
                     <!-- Solusi Saya -->
                     <div class="p-3 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-800/60 space-y-1">
                       <div class="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                        <i data-lucide="wrench" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="proj.solution">Solusi &amp; Arsitektur</span>
+                        <i data-lucide="wrench" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="proj.solution">Solusi & Arsitektur</span>
                       </div>
-                      <p class="text-slate-600 dark:text-slate-300 text-justify" data-i18n-html="proj.1.sol">Membangun aplikasi web full-stack mandiri (JavaScript &amp; Node.js Express REST API) yang berfungsi sebagai sistem pemandu langkah demi langkah: memandu pengguna mendefinisikan kebutuhan sistem, membatasi AI dengan guardrail dan aturan prompt ketat agar tidak berhalusinasi, serta fleksibel dihubungkan ke model AI mana pun (OpenAI, Claude, Gemini, DeepSeek, Groq, hingga LLM lokal) dengan konfigurasi API key langsung dari UI.</p>
+                      <p class="text-slate-600 dark:text-slate-300 text-justify" data-i18n-html="proj.1.sol">Membangun aplikasi web full-stack mandiri (JavaScript & Node.js Express REST API) yang berfungsi sebagai sistem pemandu langkah demi langkah: memandu pengguna mendefinisikan kebutuhan sistem, membatasi AI dengan guardrail dan aturan prompt ketat agar tidak berhalusinasi, serta fleksibel dihubungkan ke model AI mana pun (OpenAI, Claude, Gemini, DeepSeek, Groq, hingga LLM lokal) dengan konfigurasi API key langsung dari UI.</p>
                     </div>
 
                     <!-- Dampak & Kontribusi -->
                     <div class="space-y-1.5 pt-1">
                       <div class="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-500"></i> <span data-i18n="proj.impact">Dampak &amp; Kontribusi Nyata</span>
+                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-500"></i> <span data-i18n="proj.impact">Dampak & Kontribusi Nyata</span>
                       </div>
                       <ul class="space-y-2 text-slate-600 dark:text-slate-300">
                         <li class="flex items-start gap-2.5">
                           <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
-                          <span class="flex-1 text-justify" data-i18n-html="proj.1.b1"><strong class="text-slate-800 dark:text-slate-200 font-semibold">Hasil Standar IEEE &amp; Terstruktur:</strong> Memandu pengguna dari nol hingga menghasilkan dokumen SRS lengkap yang rapi dan konsisten sesuai standar resmi industri.</span>
+                          <span class="flex-1 text-justify" data-i18n-html="proj.1.b1">Memandu pengguna dari nol hingga menghasilkan dokumen SRS lengkap yang rapi dan konsisten sesuai standar resmi industri.</span>
                         </li>
                         <li class="flex items-start gap-2.5">
                           <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
-                          <span class="flex-1 text-justify" data-i18n-html="proj.1.b2"><strong class="text-slate-800 dark:text-slate-200 font-semibold">AI Terarah Tanpa Halusinasi:</strong> Aturan prompt ketat memastikan AI hanya menghasilkan spesifikasi fungsional dan teknis yang realistis, logis, dan dapat dieksekusi tim developer.</span>
+                          <span class="flex-1 text-justify" data-i18n-html="proj.1.b2">Aturan prompt ketat memastikan AI hanya menghasilkan spesifikasi fungsional dan teknis yang realistis, logis, dan dapat dieksekusi tim developer.</span>
                         </li>
                         <li class="flex items-start gap-2.5">
                           <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
-                          <span class="flex-1 text-justify" data-i18n-html="proj.1.b3"><strong class="text-slate-800 dark:text-slate-200 font-semibold">Model-Agnostic &amp; Ekspor Instan:</strong> Bebas memakai model cloud berbayar, gratisan, maupun model lokal offline, lalu mengekspor hasilnya langsung ke format DOCX dan Markdown.</span>
+                          <span class="flex-1 text-justify" data-i18n-html="proj.1.b3">Mendukung penggunaan beragam model cloud berbayar, layanan tingkat gratis (free tier), maupun model lokal offline, serta ekspor hasil dokumen secara langsung ke format DOCX dan Markdown.</span>
                         </li>
                       </ul>
                     </div>
@@ -1027,7 +951,7 @@
                       <span class="skill-chip">Node.js</span>
                       <span class="skill-chip">Express.js</span>
                       <span class="skill-chip">REST API</span>
-                      <span class="skill-chip">Multi-LLM Integration</span>
+                      <span class="skill-chip">Multi-LLM API</span>
                     </div>
                   </div>
                 </div>
@@ -1050,7 +974,7 @@
                         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
                         <span class="text-[11px] ml-2 text-slate-400 font-mono">balikuliner.vinix.id</span>
                       </div>
-                      <span class="text-[11px] text-accent-300 font-bold" id="proj2-photo-title" data-i18n="proj.2.ph1">Foto 1: Beranda &amp; Pencarian Cepat</span>
+                      <span class="text-[11px] text-accent-300 font-bold" id="proj2-photo-title" data-i18n="proj.2.ph1">Foto 1: Beranda & Pencarian Cepat</span>
                     </div>
                     <div class="relative bg-slate-900 overflow-hidden aspect-[16/10] flex items-center justify-center">
                       <img
@@ -1070,7 +994,7 @@
                       data-target="proj2-main-img"
                       data-title-target="proj2-photo-title"
                       data-src="assets/projects/bali-kuliner-1.png"
-                      data-title="Foto 1: Beranda &amp; Pencarian Cepat" data-i18n-attr="data-title:proj.2.ph1"
+                      data-title="Foto 1: Beranda & Pencarian Cepat" data-i18n-attr="data-title:proj.2.ph1"
                     >
                       <div class="aspect-[16/10] overflow-hidden rounded-lg bg-slate-950">
                         <img src="assets/projects/bali-kuliner-1.png" alt="Thumb 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
@@ -1084,7 +1008,7 @@
                       data-target="proj2-main-img"
                       data-title-target="proj2-photo-title"
                       data-src="assets/projects/bali-kuliner-2.png"
-                      data-title="Foto 2: Hasil Pencarian &amp; Filter Halal" data-i18n-attr="data-title:proj.2.ph2"
+                      data-title="Foto 2: Hasil Pencarian & Filter Halal" data-i18n-attr="data-title:proj.2.ph2"
                     >
                       <div class="aspect-[16/10] overflow-hidden rounded-lg bg-slate-950">
                         <img src="assets/projects/bali-kuliner-2.png" alt="Thumb 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
@@ -1098,7 +1022,7 @@
                       data-target="proj2-main-img"
                       data-title-target="proj2-photo-title"
                       data-src="assets/projects/bali-kuliner-3.png"
-                      data-title="Foto 3: Detail Merchant &amp; Jam Buka" data-i18n-attr="data-title:proj.2.ph3"
+                      data-title="Foto 3: Detail Merchant & Jam Buka" data-i18n-attr="data-title:proj.2.ph3"
                     >
                       <div class="aspect-[16/10] overflow-hidden rounded-lg bg-slate-950">
                         <img src="assets/projects/bali-kuliner-3.png" alt="Thumb 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
@@ -1112,7 +1036,7 @@
                       data-target="proj2-main-img"
                       data-title-target="proj2-photo-title"
                       data-src="assets/projects/bali-kuliner-4.png"
-                      data-title="Foto 4: Peta Lokasi &amp; Rute Restoran" data-i18n-attr="data-title:proj.2.ph4"
+                      data-title="Foto 4: Peta Lokasi & Rute Restoran" data-i18n-attr="data-title:proj.2.ph4"
                     >
                       <div class="aspect-[16/10] overflow-hidden rounded-lg bg-slate-950">
                         <img src="assets/projects/bali-kuliner-4.png" alt="Thumb 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
@@ -1127,18 +1051,18 @@
                   <!-- Header -->
                   <div class="space-y-1.5 pb-3 border-b border-slate-200/60 dark:border-slate-800/80">
                     <div class="flex items-center justify-between flex-wrap gap-2">
-                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-accent-500/10 text-accent-700 dark:text-accent-400 border border-accent-500/20" data-i18n-html="proj.2.tag">Web App &amp; UI/UX</span>
-                      <span class="text-xs font-mono text-slate-500 dark:text-slate-400 font-medium" data-i18n-html="proj.2.period">Magang Tim Vinix &bull; 2025</span>
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-accent-500/10 text-accent-700 dark:text-accent-400 border border-accent-500/20" data-i18n-html="proj.2.tag">Web App & Proyek Komersial</span>
+                      <span class="text-xs font-mono text-slate-500 dark:text-slate-400 font-medium" data-i18n-html="proj.2.period">PT Vinix Seven Aurum • Proyek Pre-Release (2025)</span>
                     </div>
                     <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="proj.2.name">
                       Bali Kuliner Finder
                     </h3>
                     <p class="text-xs sm:text-sm font-semibold text-accent-700 dark:text-accent-400 leading-snug text-left" data-i18n-html="proj.2.tagline">
-                      Platform Direktori &amp; Panduan Kuliner Bali Interaktif dengan Kurasi Kategori &amp; Navigasi Rute
+                      Platform Web Direktori Kuliner Komersial (Pre-Release) dengan Kurasi Halal & Navigasi Rute
                     </p>
                     <div class="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium pt-1">
                       <span class="font-mono text-[11px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">Peran:</span>
-                      <span class="text-slate-800 dark:text-slate-200 font-semibold" data-i18n="proj.2.role">Web Developer &amp; UI Designer (Tim Magang)</span>
+                      <span class="text-slate-800 dark:text-slate-200 font-semibold" data-i18n="proj.2.role">Web Developer & UI Designer (Proyek Perusahaan)</span>
                     </div>
                   </div>
 
@@ -1147,7 +1071,7 @@
                     <!-- Tantangan -->
                     <div class="p-3 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-800/60 space-y-1">
                       <div class="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                        <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-accent-600"></i> <span data-i18n="proj.challenge">Tantangan &amp; Kebutuhan</span>
+                        <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-accent-600"></i> <span data-i18n="proj.challenge">Tantangan & Kebutuhan</span>
                       </div>
                       <p class="text-slate-600 dark:text-slate-300 text-justify" data-i18n-html="proj.2.need">Wisatawan di Bali sering kesulitan menemukan tempat makan yang tepat sesuai preferensi mereka—baik mencari kuliner halal yang terverifikasi, kuliner khas non-halal, tempat dengan pemandangan terindah (sunset/alam), maupun tempat terdekat dengan ulasan jujur.</p>
                     </div>
@@ -1155,28 +1079,28 @@
                     <!-- Solusi Saya -->
                     <div class="p-3 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-800/60 space-y-1">
                       <div class="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                        <i data-lucide="wrench" class="w-3.5 h-3.5 text-accent-600"></i> <span data-i18n="proj.solution">Solusi &amp; Arsitektur</span>
+                        <i data-lucide="wrench" class="w-3.5 h-3.5 text-accent-600"></i> <span data-i18n="proj.solution">Solusi & Arsitektur</span>
                       </div>
-                      <p class="text-slate-600 dark:text-slate-300 text-justify" data-i18n-html="proj.2.sol">Berkolaborasi bersama sesama tim pengembang magang di PT Vinix Seven Aurum untuk membangun platform direktori kuliner: merancang prototipe antarmuka interaktif di Figma, merancang database relasional MySQL, mengembangkan backend PHP, serta membuat sistem filter multi-kategori, fitur ulasan &amp; favorit pengguna, dan peta navigasi rute.</p>
+                      <p class="text-slate-600 dark:text-slate-300 text-justify" data-i18n-html="proj.2.sol">Berkolaborasi bersama tim pengembang di PT Vinix Seven Aurum untuk membangun platform direktori kuliner komersial (tahap pre-release): merancang prototipe antarmuka interaktif di Figma, merancang database relasional MySQL, mengembangkan backend PHP, serta membuat sistem filter multi-kategori, fitur ulasan & favorit pengguna, dan peta navigasi rute.</p>
                     </div>
 
                     <!-- Dampak & Kontribusi -->
                     <div class="space-y-1.5 pt-1">
                       <div class="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-500"></i> <span data-i18n="proj.impact">Dampak &amp; Kontribusi Nyata</span>
+                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-500"></i> <span data-i18n="proj.impact">Dampak & Kontribusi Nyata</span>
                       </div>
                       <ul class="space-y-2 text-slate-600 dark:text-slate-300">
                         <li class="flex items-start gap-2.5">
                           <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
-                          <span class="flex-1 text-justify" data-i18n-html="proj.2.b1"><strong class="text-slate-800 dark:text-slate-200 font-semibold">Kategori Jelas &amp; Filter Lengkap:</strong> Memisahkan section Halal dan Non-Halal secara transparan, serta menyediakan filter cerdas berdasarkan view terindah, rating tertinggi, favorit, dan jarak terdekat.</span>
+                          <span class="flex-1 text-justify" data-i18n-html="proj.2.b1">Memisahkan kategori Halal dan Non-Halal secara transparan, serta menyediakan filter pencarian berdasarkan panorama pemandangan, penilaian tertinggi, daftar favorit, dan jarak terdekat.</span>
                         </li>
                         <li class="flex items-start gap-2.5">
                           <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
-                          <span class="flex-1 text-justify" data-i18n-html="proj.2.b2"><strong class="text-slate-800 dark:text-slate-200 font-semibold">Interaksi Pengguna Lengkap:</strong> Pengunjung dapat memberi rating bintang, menulis ulasan pengalaman bersantap, serta menyimpan restoran favorit ke daftar pribadi.</span>
+                          <span class="flex-1 text-justify" data-i18n-html="proj.2.b2">Pengunjung dapat memberi rating bintang, menulis ulasan pengalaman bersantap, serta menyimpan restoran favorit ke daftar pribadi.</span>
                         </li>
                         <li class="flex items-start gap-2.5">
                           <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
-                          <span class="flex-1 text-justify" data-i18n-html="proj.2.b3"><strong class="text-slate-800 dark:text-slate-200 font-semibold">Navigasi Peta Rute Langsung:</strong> Terintegrasi peta interaktif agar pengguna dapat langsung membuka petunjuk arah jalan ke lokasi tempat makan dari browser.</span>
+                          <span class="flex-1 text-justify" data-i18n-html="proj.2.b3">Terintegrasi peta interaktif agar pengguna dapat langsung membuka petunjuk arah jalan ke lokasi tempat makan dari browser.</span>
                         </li>
                       </ul>
                     </div>
@@ -1189,8 +1113,7 @@
                       <span class="skill-chip">PHP</span>
                       <span class="skill-chip">MySQL</span>
                       <span class="skill-chip">JavaScript</span>
-                      <span class="skill-chip">UI/UX Design</span>
-                      <span class="skill-chip">Figma</span>
+                      <span class="skill-chip">UI/UX (Figma)</span>
                     </div>
                   </div>
                 </div>
@@ -1213,7 +1136,7 @@
                         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
                         <span class="text-[11px] ml-2 text-slate-400 font-mono">capstone.andreasadi.my.id</span>
                       </div>
-                      <span class="text-[11px] text-brand-300 font-bold" id="proj3-photo-title" data-i18n="proj.3.ph1">Foto 1: Unggah Gambar &amp; Kamera</span>
+                      <span class="text-[11px] text-brand-300 font-bold" id="proj3-photo-title" data-i18n="proj.3.ph1">Foto 1: Unggah Gambar & Kamera</span>
                     </div>
                     <div class="relative bg-slate-900 overflow-hidden aspect-[16/10] flex items-center justify-center">
                       <img
@@ -1233,12 +1156,12 @@
                       data-target="proj3-main-img"
                       data-title-target="proj3-photo-title"
                       data-src="assets/projects/borobudurtales-1.png"
-                      data-title="Foto 1: Unggah Gambar &amp; Kamera" data-i18n-attr="data-title:proj.3.ph1"
+                      data-title="Foto 1: Unggah Gambar & Kamera" data-i18n-attr="data-title:proj.3.ph1"
                     >
                       <div class="aspect-[16/10] overflow-hidden rounded-lg bg-slate-950">
                         <img src="assets/projects/borobudurtales-1.png" alt="Thumb 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                       </div>
-                      <div class="text-[10px] sm:text-[11px] font-mono font-bold text-slate-700 dark:text-slate-300 mt-1 truncate" data-i18n="proj.3.lb1">1. Unggah &amp; Kamera</div>
+                      <div class="text-[10px] sm:text-[11px] font-mono font-bold text-slate-700 dark:text-slate-300 mt-1 truncate" data-i18n="proj.3.lb1">1. Unggah & Kamera</div>
                     </button>
 
                     <button
@@ -1276,14 +1199,14 @@
                   <!-- Header -->
                   <div class="space-y-1.5 pb-3 border-b border-slate-200/60 dark:border-slate-800/80">
                     <div class="flex items-center justify-between flex-wrap gap-2">
-                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20" data-i18n-html="proj.3.tag">Front-End &amp; AI</span>
-                      <span class="text-xs font-mono text-slate-500 dark:text-slate-400 font-medium" data-i18n-html="proj.3.period">Coding Camp &bull; 2025</span>
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20" data-i18n-html="proj.3.tag">Front-End & AI</span>
+                      <span class="text-xs font-mono text-slate-500 dark:text-slate-400 font-medium" data-i18n-html="proj.3.period">Coding Camp • 2025</span>
                     </div>
                     <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="proj.3.name">
                       BorobudurTales
                     </h3>
                     <p class="text-xs sm:text-sm font-semibold text-brand-600 dark:text-brand-400 leading-snug text-left" data-i18n-html="proj.3.tagline">
-                      Aplikasi Web Edukasi Budaya &amp; Identifikasi Relief Karmawibhangga Berbasis Kamera AI
+                      Aplikasi Web Edukasi Budaya & Identifikasi Relief Karmawibhangga Berbasis Kamera AI
                     </p>
                     <div class="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium pt-1">
                       <span class="font-mono text-[11px] uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">Peran:</span>
@@ -1296,36 +1219,36 @@
                     <!-- Tantangan -->
                     <div class="p-3 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-800/60 space-y-1">
                       <div class="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                        <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="proj.challenge">Tantangan &amp; Kebutuhan</span>
+                        <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="proj.challenge">Tantangan & Kebutuhan</span>
                       </div>
-                      <p class="text-slate-600 dark:text-slate-300 text-justify" data-i18n-html="proj.3.need">Banyak wisatawan datang ke Candi Borobudur hanya menjadikannya latar foto estetik tanpa memahami kisah dan nilai filosofis di balik reliefnya. Di internet pun, informasi makna tiap panel relief Karmawibhangga sangat terbatas dan tercerai-berai, membuat pengunjung sulit belajar secara mandiri.</p>
+                      <p class="text-slate-600 dark:text-slate-300 text-justify" data-i18n-html="proj.3.need">Sebagian besar pengunjung Candi Borobudur menikmati keindahan arsitektur tanpa memahami narasi sejarah serta nilai filosofis pada reliefnya. Selain itu, referensi digital mengenai makna setiap panel relief Karmawibhangga masih sangat terbatas dan tersebar secara fragmentaris, sehingga menyulitkan proses pembelajaran mandiri.</p>
                     </div>
 
                     <!-- Solusi Saya -->
                     <div class="p-3 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-800/60 space-y-1">
                       <div class="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                        <i data-lucide="wrench" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="proj.solution">Solusi &amp; Arsitektur</span>
+                        <i data-lucide="wrench" class="w-3.5 h-3.5 text-brand-500"></i> <span data-i18n="proj.solution">Solusi & Arsitektur</span>
                       </div>
-                      <p class="text-slate-600 dark:text-slate-300 text-justify" data-i18n-html="proj.3.sol">Berperan sebagai Front-End Developer dalam tim Capstone: merancang dan membangun antarmuka web interaktif yang modern dan responsif (Tailwind CSS &amp; Vite), membuat alur kamera real-time dan upload foto yang mulus, serta menghubungkan input visual pengguna ke endpoint API model Machine Learning tim untuk menampilkan narasi kisah budaya secara instan.</p>
+                      <p class="text-slate-600 dark:text-slate-300 text-justify" data-i18n-html="proj.3.sol">Berperan sebagai Front-End Developer dalam tim Capstone: merancang dan membangun antarmuka web interaktif yang modern dan responsif (Tailwind CSS & Vite), membuat alur kamera real-time dan upload foto yang mulus, serta menghubungkan input visual pengguna ke endpoint API model Machine Learning tim untuk menampilkan narasi kisah budaya secara instan.</p>
                     </div>
 
                     <!-- Dampak & Kontribusi -->
                     <div class="space-y-1.5 pt-1">
                       <div class="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-500"></i> <span data-i18n="proj.impact">Dampak &amp; Kontribusi Nyata</span>
+                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-500"></i> <span data-i18n="proj.impact">Dampak & Kontribusi Nyata</span>
                       </div>
                       <ul class="space-y-2 text-slate-600 dark:text-slate-300">
                         <li class="flex items-start gap-2.5">
                           <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
-                          <span class="flex-1 text-justify" data-i18n-html="proj.3.b1"><strong class="text-slate-800 dark:text-slate-200 font-semibold">Ubah 'Sekadar Foto' Jadi Edukasi:</strong> Mengubah pengalaman berkunjung menjadi interaktif; pengunjung cukup membidik kamera ke relief untuk langsung membaca kisah dan makna moral di baliknya.</span>
+                          <span class="flex-1 text-justify" data-i18n-html="proj.3.b1">Mengubah wisata pasif menjadi eksplorasi edukatif interaktif dengan mengarahkan kamera ke relief candi untuk memunculkan narasi sejarah dan nilai moralnya seketika.</span>
                         </li>
                         <li class="flex items-start gap-2.5">
                           <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
-                          <span class="flex-1 text-justify" data-i18n-html="proj.3.b2"><strong class="text-slate-800 dark:text-slate-200 font-semibold">Pustaka Kisah &amp; Pencarian Interaktif:</strong> Menyediakan katalog digital lengkap relief Karmawibhangga yang dapat dicari lewat teks maupun dicocokkan via input gambar.</span>
+                          <span class="flex-1 text-justify" data-i18n-html="proj.3.b2">Menyediakan katalog digital panel relief Karmawibhangga lengkap yang dapat dicari melalui kata kunci maupun pencocokan foto visual.</span>
                         </li>
                         <li class="flex items-start gap-2.5">
                           <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
-                          <span class="flex-1 text-justify" data-i18n-html="proj.3.b3"><strong class="text-slate-800 dark:text-slate-200 font-semibold">Performa Mobile Front-End yang Cepat:</strong> Mengoptimasi performa antarmuka web di perangkat mobile agar proses jepret kamera, kompresi foto, dan tampilan cerita berjalan ringan dan responsif.</span>
+                          <span class="flex-1 text-justify" data-i18n-html="proj.3.b3">Performa web mobile dioptimalkan agar tangkapan kamera, kompresi foto, dan rendering narasi berjalan mulus di perangkat ponsel pengguna.</span>
                         </li>
                       </ul>
                     </div>
@@ -1335,8 +1258,8 @@
                   <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800/80">
                     <div class="flex items-center gap-1.5 flex-wrap">
                       <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 mr-1" data-i18n="label.skill">Skill:</span>
-                      <span class="skill-chip">Tailwind CSS</span>
                       <span class="skill-chip">JavaScript (ES6+)</span>
+                      <span class="skill-chip">Tailwind CSS</span>
                       <span class="skill-chip">Vite</span>
                       <span class="skill-chip">REST API Integration</span>
                       <span class="skill-chip">Figma</span>
@@ -1365,13 +1288,13 @@
         
         <div>
           <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight" data-i18n="org.title">
-            Kepanitiaan &amp; Organisasi
+            Organisasi & Kepanitiaan
           </h2>
         </div>
 
         <div class="space-y-4">
 
-          <!-- Org 1 -->
+          <!-- Org 1: Symphony of Saintek 20th Extravaganza -->
           <div class="p-5 sm:p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 bg-white/80 dark:bg-freshCard/80 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-brand-500/40 transition-all hover:-translate-y-0.5 space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-x-6 gap-y-2 items-start sm:items-center">
               <div>
@@ -1379,12 +1302,12 @@
                   Koordinator Logistik
                 </h3>
                 <p class="text-xs sm:text-sm font-semibold text-brand-600 dark:text-brand-400 mt-0.5" data-i18n-html="org.1.context">
-                  Symphony of Saintek 20th Extravaganza <span class="text-slate-400 dark:text-slate-500 font-normal">&bull;</span> <span class="text-slate-500 dark:text-slate-400 font-normal">FST UIN Sunan Kalijaga</span>
+                  Dies Natalis ke-20 Fakultas Sains dan Teknologi (Symphony of Saintek) <span class="text-slate-400 dark:text-slate-500 font-normal">•</span> <span class="text-slate-500 dark:text-slate-400 font-normal">FST UIN Sunan Kalijaga</span>
                 </p>
               </div>
               <div class="flex items-center flex-wrap sm:flex-col sm:items-end gap-2 mt-1 sm:mt-0">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="org.1.period">
-                  Sep 2024 &mdash; Okt 2024
+                  Sep 2024 — Okt 2024
                 </span>
                 <a href="assets/docs/sertifikat-symphony-of-saintek-koordinator-logistik.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-500 hover:text-white border border-brand-500/20 transition-all shadow-sm">
                   <i data-lucide="file-text" class="w-3.5 h-3.5"></i><span data-i18n="doc.cert">Lihat sertifikat</span>
@@ -1395,68 +1318,69 @@
             <div class="h-px bg-slate-100 dark:bg-slate-800/60"></div>
 
             <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto" data-i18n-html="org.1.desc">
-              Saya memimpin divisi logistik dan mengatur koordinasi antardivisi supaya perlengkapan, alat, dan konsumsi siap sesuai rundown.
+              Memimpin operasional divisi logistik untuk pengadaan perlengkapan teknis panggung Dies Natalis Fakultas ke-20. Menangani seleksi vendor, instalasi perangkat keras di lokasi acara, serta kontrol inventaris hingga seluruh rangkaian acara berjalan tanpa kendala teknis.
             </p>
 
             <div class="skill-row pt-1">
               <span class="skill-label" data-i18n="label.skill">Skill</span>
               <div class="skill-chips">
-                <span class="skill-chip">Operational Planning</span>
-                <span class="skill-chip">Vendor &amp; Procurement Coordination</span>
-                <span class="skill-chip">Stakeholder Management</span>
-                <span class="skill-chip">Team Coordination</span>
+                <span class="skill-chip">Hardware &amp; AV Setup</span>
+                <span class="skill-chip">Vendor Management</span>
+                <span class="skill-chip">Inventory Control</span>
               </div>
             </div>
           </div>
 
-          <!-- Org 2 -->
+          <!-- Org 2: HMPS Informatika -->
           <div class="p-5 sm:p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 bg-white/80 dark:bg-freshCard/80 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-brand-500/40 transition-all hover:-translate-y-0.5 space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-x-6 gap-y-2 items-start sm:items-center">
               <div>
                 <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="org.2.role">
-                  Bendahara
+                  Staf Divisi Minat & Bakat
                 </h3>
                 <p class="text-xs sm:text-sm font-semibold text-brand-600 dark:text-brand-400 mt-0.5" data-i18n-html="org.2.context">
-                  Infonite (Informatics Night &amp; Orientation) <span class="text-slate-400 dark:text-slate-500 font-normal">&bull;</span> <span class="text-slate-500 dark:text-slate-400 font-normal">HMPS Informatika UIN Sunan Kalijaga</span>
+                  Himpunan Mahasiswa Informatika (HMPS Informatika) <span class="text-slate-400 dark:text-slate-500 font-normal">•</span> <span class="text-slate-500 dark:text-slate-400 font-normal">UIN Sunan Kalijaga</span>
                 </p>
               </div>
               <div class="flex items-center flex-wrap sm:flex-col sm:items-end gap-2 mt-1 sm:mt-0">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="org.2.period">
-                  Agt 2023 &mdash; Okt 2023
+                  Jan 2023 — Des 2024
                 </span>
+                <a href="assets/docs/sertifikat-hmps-informatika-anggota.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-500 hover:text-white border border-brand-500/20 transition-all shadow-sm">
+                  <i data-lucide="file-text" class="w-3.5 h-3.5"></i><span data-i18n="doc.cert">Lihat sertifikat</span>
+                </a>
               </div>
             </div>
 
             <div class="h-px bg-slate-100 dark:bg-slate-800/60"></div>
 
             <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto" data-i18n-html="org.2.desc">
-              Saya menyusun anggaran, mengawasi pengeluaran, dan membuat laporan keuangan supaya dana acara terpakai efisien dan transparan.
+              Mengarahkan koordinasi operasional minat bakat mahasiswa Informatika dan mengawal kesiapan agenda divisi; mengelola alokasi anggaran belanja sebagai Bendahara acara orientasi serta menangani komunikasi dan alur registrasi peserta sebagai Humas turnamen tahunan hingga seluruh kegiatan terlaksana tepat waktu tanpa kendala operasional.
             </p>
 
             <div class="skill-row pt-1">
               <span class="skill-label" data-i18n="label.skill">Skill</span>
               <div class="skill-chips">
-                <span class="skill-chip">Budget Planning</span>
-                <span class="skill-chip">Financial Control</span>
-                <span class="skill-chip">Financial Reporting</span>
+                <span class="skill-chip">Budget Management</span>
+                <span class="skill-chip">Event Operations</span>
               </div>
             </div>
           </div>
 
-          <!-- Org 3 -->
+          <!-- Org 3: UIN Informatic Competition 5.0 (UINIC) -->
           <div class="p-5 sm:p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 bg-white/80 dark:bg-freshCard/80 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-brand-500/40 transition-all hover:-translate-y-0.5 space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-x-6 gap-y-2 items-start sm:items-center">
               <div>
                 <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="org.3.role">
-                  Sekretaris
+                  Sekretaris Pelaksana
                 </h3>
                 <p class="text-xs sm:text-sm font-semibold text-brand-600 dark:text-brand-400 mt-0.5" data-i18n-html="org.3.context">
-                  UIN Informatic Competition 5.0 (UINIC) <span class="text-slate-400 dark:text-slate-500 font-normal">&bull;</span> <span class="text-slate-500 dark:text-slate-400 font-normal">HMPS Informatika UIN Sunan Kalijaga</span>
+                  UIN Informatic Competition 5.0 (UINIC) <span class="text-slate-400 dark:text-slate-500 font-normal">•</span> <span class="text-slate-500 dark:text-slate-400 font-normal">HMPS Informatika UIN Sunan Kalijaga</span>
                 </p>
               </div>
               <div class="flex items-center flex-wrap sm:flex-col sm:items-end gap-2 mt-1 sm:mt-0">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="org.3.period">
-                  Apr 2023 &mdash; Nov 2023
+                  Apr 2023 — Nov 2023
                 </span>
                 <a href="assets/docs/sertifikat-uinic-5-panitia.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-500 hover:text-white border border-brand-500/20 transition-all shadow-sm">
                   <i data-lucide="file-text" class="w-3.5 h-3.5"></i><span data-i18n="doc.cert">Lihat sertifikat</span>
@@ -1467,33 +1391,33 @@
             <div class="h-px bg-slate-100 dark:bg-slate-800/60"></div>
 
             <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto" data-i18n-html="org.3.desc">
-              Saya mengurus surat resmi, notulen rapat, dan laporan pertanggungjawaban (LPJ) supaya semua dokumen rapi dan mudah dilacak.
+              Mengelola administrasi pendaftaran UIN IT Competition (UINIC), kompetisi IT tahunan himpunan tingkat DIY dengan banyak cabang lomba, dengan memverifikasi kelengkapan berkas seluruh peserta menggunakan spreadsheet sehingga data siap sebelum technical meeting. Menyusun surat perizinan kampus dan surat kerja sama dengan vendor eksternal, serta menerbitkan sertifikat digital peserta dan panitia sesuai jadwal acara.
             </p>
 
             <div class="skill-row pt-1">
               <span class="skill-label" data-i18n="label.skill">Skill</span>
               <div class="skill-chips">
+                <span class="skill-chip">Data Management</span>
                 <span class="skill-chip">Project Administration</span>
-                <span class="skill-chip">Information Coordination</span>
-                <span class="skill-chip">Records &amp; Archiving</span>
+                <span class="skill-chip">Vendor Coordination</span>
               </div>
             </div>
           </div>
 
-          <!-- Org 4 -->
+          <!-- Org 4: Welcoming Ceremony DEMA & SEMA -->
           <div class="p-5 sm:p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 bg-white/80 dark:bg-freshCard/80 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-brand-500/40 transition-all hover:-translate-y-0.5 space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-x-6 gap-y-2 items-start sm:items-center">
               <div>
                 <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="org.4.role">
-                  Humas
+                  Humas & Kemitraan
                 </h3>
                 <p class="text-xs sm:text-sm font-semibold text-brand-600 dark:text-brand-400 mt-0.5" data-i18n-html="org.4.context">
-                  Sport and Art Informatics (Sportif) <span class="text-slate-400 dark:text-slate-500 font-normal">&bull;</span> <span class="text-slate-500 dark:text-slate-400 font-normal">HMPS Informatika UIN Sunan Kalijaga</span>
+                  Penyambutan Mahasiswa Baru (Welcoming Ceremony) <span class="text-slate-400 dark:text-slate-500 font-normal">•</span> <span class="text-slate-500 dark:text-slate-400 font-normal">BEM & Senat Mahasiswa Universitas (DEMA & SEMA UIN)</span>
                 </p>
               </div>
               <div class="flex items-center flex-wrap sm:flex-col sm:items-end gap-2 mt-1 sm:mt-0">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="org.4.period">
-                  Okt 2024 &mdash; Des 2024
+                  Agt 2022 — Sep 2022
                 </span>
               </div>
             </div>
@@ -1501,102 +1425,32 @@
             <div class="h-px bg-slate-100 dark:bg-slate-800/60"></div>
 
             <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto" data-i18n-html="org.4.desc">
-              Saya menjaga komunikasi dengan pihak internal dan eksternal, dan mengumumkan acara lewat media sosial.
+              Memimpin komunikasi eksternal dan negosiasi teknis kemitraan dengan puluhan perusahaan serta vendor logistik; mengamankan 10+ kesepakatan sponsorship dan pasokan produk resmi guna mendukung kebutuhan operasional orientasi ribuan mahasiswa baru universitas.
             </p>
 
             <div class="skill-row pt-1">
               <span class="skill-label" data-i18n="label.skill">Skill</span>
               <div class="skill-chips">
-                <span class="skill-chip">Public Relations</span>
-                <span class="skill-chip">External Communication</span>
-                <span class="skill-chip">Media Campaign</span>
+                <span class="skill-chip">Sponsorship Negotiation</span>
+                <span class="skill-chip">Stakeholder Management</span>
               </div>
             </div>
           </div>
 
-          <!-- Org 5 -->
+          <!-- Org 5: FKIST -->
           <div class="p-5 sm:p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 bg-white/80 dark:bg-freshCard/80 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-brand-500/40 transition-all hover:-translate-y-0.5 space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-x-6 gap-y-2 items-start sm:items-center">
               <div>
                 <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="org.5.role">
-                  Humas
+                  Staf Media dan Jaringan
                 </h3>
                 <p class="text-xs sm:text-sm font-semibold text-brand-600 dark:text-brand-400 mt-0.5" data-i18n-html="org.5.context">
-                  Welcoming Ceremony <span class="text-slate-400 dark:text-slate-500 font-normal">&bull;</span> <span class="text-slate-500 dark:text-slate-400 font-normal">DEMA &amp; SEMA UIN Sunan Kalijaga</span>
+                  Forum Kajian Islam dan Sains Teknologi (FKIST) <span class="text-slate-400 dark:text-slate-500 font-normal">•</span> <span class="text-slate-500 dark:text-slate-400 font-normal">UIN Sunan Kalijaga</span>
                 </p>
               </div>
               <div class="flex items-center flex-wrap sm:flex-col sm:items-end gap-2 mt-1 sm:mt-0">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="org.5.period">
-                  Agt 2022 &mdash; Sep 2022
-                </span>
-              </div>
-            </div>
-
-            <div class="h-px bg-slate-100 dark:bg-slate-800/60"></div>
-
-            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto" data-i18n-html="org.5.desc">
-              Saya menyusun proposal pendanaan dan menghubungi calon sponsor, termasuk vendor logistik.
-            </p>
-
-            <div class="skill-row pt-1">
-              <span class="skill-label" data-i18n="label.skill">Skill</span>
-              <div class="skill-chips">
-                <span class="skill-chip">Sponsorship Acquisition</span>
-                <span class="skill-chip">External Communication</span>
-                <span class="skill-chip">Partnership Coordination</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Org 6 -->
-          <div class="p-5 sm:p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 bg-white/80 dark:bg-freshCard/80 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-brand-500/40 transition-all hover:-translate-y-0.5 space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-x-6 gap-y-2 items-start sm:items-center">
-              <div>
-                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="org.6.role">
-                  Staf Publikasi, Desain &amp; Dokumentasi
-                </h3>
-                <p class="text-xs sm:text-sm font-semibold text-brand-600 dark:text-brand-400 mt-0.5" data-i18n-html="org.6.context">
-                  Konferensi Integrasi &amp; Interkoneksi Islam dan Sains (KIIS) <span class="text-slate-400 dark:text-slate-500 font-normal">&bull;</span> <span class="text-slate-500 dark:text-slate-400 font-normal">FST UIN Sunan Kalijaga</span>
-                </p>
-              </div>
-              <div class="flex items-center flex-wrap sm:flex-col sm:items-end gap-2 mt-1 sm:mt-0">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="org.6.period">
-                  24 Jul 2024 &mdash; 2 Okt 2024
-                </span>
-              </div>
-            </div>
-
-            <div class="h-px bg-slate-100 dark:bg-slate-800/60"></div>
-
-            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto" data-i18n-html="org.6.desc">
-              Saya mendesain materi promosi (poster, banner, konten digital) dan mendokumentasikan acara lewat foto, video, dan laporan dokumentasi.
-            </p>
-
-            <div class="skill-row pt-1">
-              <span class="skill-label" data-i18n="label.skill">Skill</span>
-              <div class="skill-chips">
-                <span class="skill-chip">Visual Communication</span>
-                <span class="skill-chip">Publication Design</span>
-                <span class="skill-chip">Multimedia Production</span>
-                <span class="skill-chip">Digital Documentation</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Org 7 -->
-          <div class="p-5 sm:p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 bg-white/80 dark:bg-freshCard/80 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-brand-500/40 transition-all hover:-translate-y-0.5 space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-x-6 gap-y-2 items-start sm:items-center">
-              <div>
-                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="org.7.role">
-                  Staf Media dan Jaringan
-                </h3>
-                <p class="text-xs sm:text-sm font-semibold text-brand-600 dark:text-brand-400 mt-0.5" data-i18n-html="org.7.context">
-                  Forum Kajian Islam dan Sains Teknologi (FKIST) <span class="text-slate-400 dark:text-slate-500 font-normal">&bull;</span> <span class="text-slate-500 dark:text-slate-400 font-normal">UIN Sunan Kalijaga</span>
-                </p>
-              </div>
-              <div class="flex items-center flex-wrap sm:flex-col sm:items-end gap-2 mt-1 sm:mt-0">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="org.7.period">
-                  Feb 2024 &mdash; Jan 2025
+                  Feb 2024 — Jan 2025
                 </span>
                 <a href="assets/docs/sertifikat-fkist-anggota-medjar.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-500 hover:text-white border border-brand-500/20 transition-all shadow-sm">
                   <i data-lucide="file-text" class="w-3.5 h-3.5"></i><span data-i18n="doc.cert">Lihat sertifikat</span>
@@ -1606,60 +1460,20 @@
 
             <div class="h-px bg-slate-100 dark:bg-slate-800/60"></div>
 
-            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto" data-i18n-html="org.7.desc">
-              Saya mengurus desain, konten media sosial (Instagram dan YouTube), dan tampilan website organisasi.
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto" data-i18n-html="org.5.desc">
+              Bertanggung jawab atas operasional website resmi, publikasi 4 media sosial, dan dokumentasi lapangan untuk seluruh program kerja organisasi, menjaga alur informasi kegiatan tetap aktif dan terarsip rapi, lewat produksi konten promosi berkala serta pelatihan praktis penggunaan tools digital bagi anggota.
             </p>
 
             <div class="skill-row pt-1">
               <span class="skill-label" data-i18n="label.skill">Skill</span>
               <div class="skill-chips">
-                <span class="skill-chip">Website Management</span>
-                <span class="skill-chip">Multi-Channel Content Operations</span>
-                <span class="skill-chip">Multimedia Design</span>
-                <span class="skill-chip">Training Facilitation</span>
+                <span class="skill-chip">Website CMS Management</span>
+                <span class="skill-chip">Technical Training</span>
               </div>
             </div>
           </div>
-
-          <!-- Org 8 -->
-          <div class="p-5 sm:p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 bg-white/80 dark:bg-freshCard/80 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-brand-500/40 transition-all hover:-translate-y-0.5 space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-x-6 gap-y-2 items-start sm:items-center">
-              <div>
-                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug" data-i18n-html="org.8.role">
-                  Staf Departemen Minat dan Bakat
-                </h3>
-                <p class="text-xs sm:text-sm font-semibold text-brand-600 dark:text-brand-400 mt-0.5" data-i18n-html="org.8.context">
-                  Himpunan Mahasiswa Program Studi Informatika <span class="text-slate-400 dark:text-slate-500 font-normal">&bull;</span> <span class="text-slate-500 dark:text-slate-400 font-normal">UIN Sunan Kalijaga</span>
-                </p>
-              </div>
-              <div class="flex items-center flex-wrap sm:flex-col sm:items-end gap-2 mt-1 sm:mt-0">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60" data-i18n-html="org.8.period">
-                  Jan 2023 &mdash; Jan 2024
-                </span>
-                <a href="assets/docs/sertifikat-hmps-informatika-anggota.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-500 hover:text-white border border-brand-500/20 transition-all shadow-sm">
-                  <i data-lucide="file-text" class="w-3.5 h-3.5"></i><span data-i18n="doc.cert">Lihat sertifikat</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="h-px bg-slate-100 dark:bg-slate-800/60"></div>
-
-            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-justify" style="text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto" data-i18n-html="org.8.desc">
-              Saya menjalankan program kerja untuk mengembangkan minat dan bakat mahasiswa Informatika di bidang seni, olahraga, dan keterampilan interpersonal.
-            </p>
-
-            <div class="skill-row pt-1">
-              <span class="skill-label" data-i18n="label.skill">Skill</span>
-              <div class="skill-chips">
-                <span class="skill-chip">Program Coordination</span>
-                <span class="skill-chip">Event Planning &amp; Execution</span>
-              </div>
-            </div>
-          </div>
-
 
         </div>
-
 
       </div>
     </section>
@@ -1840,11 +1654,36 @@
     </button>
   </div>
 
+  <!-- MODAL LIGHTBOX ZOOM SERTIFIKAT -->
+  <div id="cert-lightbox-modal" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-slate-900 rounded-2xl border border-slate-700/80 shadow-2xl overflow-hidden" onclick="event.stopPropagation();">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-950/90 text-xs font-mono">
+        <div class="flex items-center gap-2 min-w-0">
+          <i data-lucide="award" class="w-4 h-4 text-brand-400 shrink-0"></i>
+          <span id="cert-modal-title" class="font-bold text-white truncate">Sertifikat Kelulusan Coding Camp 2025</span>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a id="cert-modal-pdf-link" href="assets/docs/sertifikat-coding-camp-2025.pdf" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white flex items-center gap-1.5 transition-colors">
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline">Buka Dokumen PDF</span>
+          </a>
+          <button id="cert-modal-close" type="button" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" aria-label="Tutup Preview">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Modal Image View -->
+      <div class="p-2 sm:p-4 overflow-auto flex items-center justify-center bg-slate-950 flex-1">
+        <img id="cert-modal-img" src="assets/docs/sertifikat-coding-camp-page-1.jpg" alt="Preview Sertifikat" class="max-w-full max-h-[78vh] object-contain rounded-lg shadow-xl" />
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
-  <script src="guide-copy.js"></script>
   <script src="i18n.js"></script>
   <script src="script.js"></script>
-  <script src="depth.js" defer></script>
+  
   <script>
     lucide.createIcons();
   </script>

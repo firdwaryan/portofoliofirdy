@@ -1,0 +1,344 @@
+=== ANALISIS COPY PORTOFOLIO ===
+
+
+================= SEKSI: HERO =================
+
+[meta.desc] (27 kata):
+"Portofolio Firdy Dwi Aryani, lulusan S1 Informatika yang melamar posisi IT Support dan Project Management. Pengalaman menangani gangguan IT di rumah sakit, membangun website, dan mengelola kepanitiaan."
+
+[modal.title] (8 kata):
+"Ruang kecil untuk karyadan hal yang saya tekuni."
+
+[modal.sub] (26 kata):
+"Saya Firdy, lulusan Informatika UIN Sunan Kalijaga Yogyakarta. Di sini, ada proyek yang saya kerjakan, pengalaman yang saya jalani, dan hal-hal yang saya pelajari sepanjang prosesnya."
+
+[hero.bio] (58 kata):
+"Perjalanan kerja saya diwarnai oleh beragam peran, mulai dari pengembangan web dan dukungan IT hingga pengelolaan kanal digital dan koordinasi kegiatan. Dari setiap peran, saya belajar menata langkah kerja, memperhatikan detail, dan menyesuaikan pendekatan dengan kebutuhan yang ada. Saya menikmati proses mencari tahu apa yang perlu dilakukan, menentukan cara yang tepat, dan memastikan setiap pekerjaan terselesaikan dengan baik."
+
+================= SEKSI: EXP =================
+
+[exp.allHint] (5 kata):
+"Menampilkan semua 4 pengalaman kerja"
+
+[exp.hint] (11 kata):
+"Geser kartu, atau gunakan tombol (>) dan tombol panah pada keyboard"
+
+[exp.1.title] (6 kata):
+"Pengelola Website, Email &amp; Media Sosial"
+
+[exp.1.company] (7 kata):
+"Fakultas Sains dan Teknologi, UIN Sunan Kalijaga"
+
+[exp.1.p1] (28 kata):
+"Kebutuhan publikasi dan tata kelola informasi terintegrasi lintas 9 program studi serta 20+ agenda fakultas menuntut koordinasi jadwal yang ketat, standardisasi konten multi-kanal, dan komunikasi stakeholder yang responsif."
+
+[exp.1.p2] (27 kata):
+"Mengkoordinasikan kebutuhan publikasi dan sistem informasi dengan dosen, staf, dan panitia kegiatan—mulai dari pengumpulan kebutuhan (requirement gathering), penentuan spesifikasi teknis, hingga memastikan delivery pekerjaan selesai sesuai jadwal."
+
+[exp.1.b1] (40 kata):
+"Mengelola kebutuhan publikasi 9 program studi serta 20+ agenda fakultas secara paralel dan end-to-end, mulai dari perancangan identitas visual, pembuatan materi promosi, hingga produksi konten digital, iklan, dan dokumentasi, dengan penjadwalan pekerjaan berdasarkan kalender kegiatan dan tenggat masing-masing program studi."
+
+[exp.1.b2] (28 kata):
+"Mengkoordinasikan kebutuhan publikasi dan sistem informasi dengan dosen, staf, dan panitia kegiatan, mulai dari pengumpulan kebutuhan (requirement gathering), penentuan spesifikasi teknis, hingga memastikan delivery pekerjaan selesai sesuai jadwal."
+
+[exp.1.b3] (21 kata):
+"Mengelola 4 kanal digital fakultas (website, Instagram, Facebook, dan YouTube), meliputi pembaruan informasi, pengelolaan konten, serta pengeditan dan pengembangan tampilan website."
+
+[exp.2.title] (8 kata):
+"Junior Web Developer &amp; UI/UX Designer &mdash; Intern"
+
+[exp.2.p1] (34 kata):
+"Klien dan pengguna membutuhkan platform web komersial yang cepat, stabil, dan bebas kendala teknis saat peluncuran, terutama pada penanganan data kuliner dalam jumlah besar serta tampilan yang harus tetap rapi di berbagai jenis perangkat."
+
+[exp.2.b1] (24 kata):
+"Menjaga stabilitas operasional platform web komersial agar siap diluncurkan sesuai jadwal melalui pengembangan modul backend berbasis PHP dan penataan alur logika sistem yang rapi."
+
+[exp.2.b2] (24 kata):
+"Merancang dan mengelola struktur basis data relasional MySQL untuk direktori tempat makan, menu, dan ulasan guna memastikan proses pencarian serta filter informasi berjalan lancar."
+
+[exp.2.b3] (26 kata):
+"Memperoleh predikat evaluasi Sangat Baik dari manajemen atas kinerja selama masa magang berkat ketepatan waktu dalam menyelesaikan setiap tugas teknis dan kerja sama aktif bersama tim."
+
+[exp.3.company] (8 kata):
+"PT KAI Medika Indonesia &bull; Brawijaya Hospital Tangerang"
+
+[exp.3.p1] (23 kata):
+"Operasional rumah sakit di gedung 5 lantai menuntut keandalan seluruh infrastruktur IT, sistem informasi, dan konektivitas jaringan agar pelayanan medis berjalan tanpa hambatan."
+
+[exp.3.p2] (30 kata):
+"Mengelola dukungan teknis operasional secara menyeluruh, menangani pemecahan masalah perangkat dan konektivitas jaringan secara langsung di lokasi maupun jarak jauh, serta memastikan sistem informasi rumah sakit beroperasi stabil tanpa gangguan."
+
+[exp.3.b1] (40 kata):
+"Menangani lebih dari 15 tiket insiden IT per hari di 5 lantai operasional rumah sakit secara end-to-end, mulai dari diagnosis hingga penyelesaian, meliputi troubleshooting hardware, sistem operasi, dan jaringan (konfigurasi IP, konektivitas server), baik secara on-site maupun remote melalui AnyDesk."
+
+[exp.3.b2] (24 kata):
+"Mengoptimalkan operasional mesin anjungan pendaftaran mandiri (kiosk check-in) dengan merancang panduan visual langsung pada fisik mesin sehingga berhasil mengurai antrean dan memperlancar registrasi pasien."
+
+[exp.3.b3] (29 kata):
+"Menata ulang tata kelola 300+ aset IT rumah sakit menggunakan label barcode ber-ID unik, memproses pengajuan pengadaan perangkat baru, serta memasang instalasi komputer dan jaringan untuk operasional gedung baru."
+
+[exp.4.title] (5 kata):
+"IT Helpdesk &amp; Infrastructure Staff"
+
+[exp.4.company] (7 kata):
+"Bidang Statistika dan Persandian, Diskominfo Kab. Lebak"
+
+[exp.4.p1] (25 kata):
+"Pemerintah daerah membutuhkan pengawasan keamanan situs web secara berkala dari serangan siber serta penerapan tanda tangan digital resmi guna menjamin keaslian dokumen kedinasan aparatur sipil."
+
+[exp.4.p2] (22 kata):
+"Menjalankan tugas pemantauan keamanan portal web daerah, administrasi verifikasi tanda tangan digital ASN, dan penyediaan layanan bantuan teknis sistem informasi bagi masyarakat."
+
+[exp.4.b1] (30 kata):
+"Memonitor situs resmi pemerintah daerah secara berkala dari insiden keamanan siber seperti peretasan tampilan situs (defacement) dan penyusupan konten ilegal, serta menyusun laporan teknis untuk eskalasi penanganan tim tanggap insiden."
+
+[exp.4.b2] (24 kata):
+"Memproses registrasi dan verifikasi teknis tanda tangan digital bagi Aparatur Sipil Negara (ASN) bekerja sama dengan balai sertifikasi elektronik guna menjamin keaslian berkas kedinasan."
+
+[exp.4.b3] (21 kata):
+"Melayani konsultasi teknis helpdesk bagi masyarakat sipil dan staf dinas dalam mengatasi kendala akun serta akses portal layanan sistem informasi daerah."
+
+================= SEKSI: CERT =================
+
+[cert.sub] (12 kata):
+"Program intensif 6 bulan untuk mendalami Full-Stack Web Development dan kesiapan industri."
+
+[cert.1.title] (6 kata):
+"Coding Camp powered by DBS Foundation"
+
+[cert.1.meta] (6 kata):
+"Dicoding Academy x DBS Foundation 2025"
+
+[cert.track] (9 kata):
+"Jalur Full-Stack Web Development &bull; 910 Jam Pembelajaran Terakreditasi"
+
+[cert.selectivity] (6 kata):
+"Terpilih Melalui Seleksi 63.000 Pendaftar Nasional"
+
+[cert.1.pitch] (101 kata):
+"Terpilih melalui seleksi nasional dari 63.356 pendaftar dengan tingkat penerimaan kompetitif sebesar 5% pada program beasiswa intensif kolaborasi DBS Foundation dan Dicoding Academy. Program ini memiliki beban belajar 910 jam yang terakreditasi oleh Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi. Kurikulum mencakup rekayasa web berstandar industri secara komprehensif, mulai dari logika komputasi, pengembangan front-end modern, perancangan RESTful API berbasis Node.js dan Hapi, komputasi awan AWS, hingga komunikasi bisnis profesional bersama The British Institute. Seluruh materi diselesaikan melalui evaluasi proyek pemrograman berbasis standar industri dengan meraih predikat Grade A, status kelulusan Full Graduate, serta nilai proyek akhir Capstone sebesar 96,4 dari skala 100."
+
+[cert.showcase.page1] (4 kata):
+"Halaman 1: Sertifikat Kelulusan"
+
+[cert.showcase.page2] (5 kata):
+"Halaman 2: Transkrip Nilai Resmi"
+
+[cert.skills.heading] (6 kata):
+"Keahlian & Materi 910 Jam Pembelajaran"
+
+[cert.vault.found] (7 kata):
+"Cloud, AI & Soft Skills 5 Berkas"
+
+[cert.vault.search] (5 kata):
+"Cari modul, skill, atau materi..."
+
+[cert.vault.hint] (12 kata):
+"Pilih berkas dari silabus untuk melihat inspeksi detail dan mengunduh berkas fisik."
+
+[cert.fan.dbs] (6 kata):
+"Beasiswa DBS x Dicoding 14 Berkas"
+
+[cert.fan.work] (6 kata):
+"Pengalaman Kerja & Magang 4 Berkas"
+
+[cert.fan.hint] (11 kata):
+"Pilih atau geser kartu di kipas untuk melihat & mengunduh berkas"
+
+[cert.fan.allList] (5 kata):
+"Pilihan Lengkap Seluruh 24 Berkas"
+
+[cert.tab.found] (7 kata):
+"Cloud, AI & Soft Skills 5 Berkas"
+
+[cert.doc1.d] (17 kata):
+"Sertifikat kelulusan beasiswa 6 bulan alur Full-Stack Web Development, mencakup 910 jam materi teori dan praktik coding."
+
+[cert.doc2.d] (5 kata):
+"Dokumen Keterangan Resmi DBS Foundation"
+
+[cert.doc3.d] (20 kata):
+"Daftar nilai dari 12 modul teknis dan soft skills yang diselesaikan dengan kehadiran 100% serta seluruh tugas proyek dinyatakan lulus."
+
+[cert.toggle.btn] (6 kata):
+"Buka Menu 12 Sertifikat Modul Silabus"
+
+[cert.sup.title] (5 kata):
+"12 Sertifikat Modul Terakreditasi Lengkap"
+
+[cert.sup.sub] (12 kata):
+"Setiap modul terverifikasi resmi oleh Dicoding Academy, AWS, dan The British Institute."
+
+================= SEKSI: PROJ =================
+
+[proj.gallery] (6 kata):
+"Galeri proyek (klik untuk melihat foto):"
+
+[proj.1.name] (5 kata):
+"Sistem Penyusunan Dokumen SRS (Multi-LLM)"
+
+[proj.1.tagline] (10 kata):
+"Platform Pemandu Penyusunan Dokumen Spesifikasi Software Standar IEEE Berbasis Multi-LLM"
+
+[proj.1.title] (5 kata):
+"Sistem Penyusunan SRS Berbasis Multi-LLM"
+
+[proj.1.alt] (8 kata):
+"Tangkapan layar Sistem Penyusunan SRS dengan Dukungan Multi-LLM"
+
+[proj.1.need] (47 kata):
+"Banyak pengembang sistem dan akademisi menghadapi kendala dalam menyusun dokumen Software Requirements Specification (SRS) yang sesuai dengan standar IEEE. Penyusunan secara manual memerlukan waktu signifikan, rentan terjadi inkonsistensi format, dan penggunaan model AI generatif tanpa pembatasan (guardrail) ketat kerap memicu halusinasi yang menyimpang dari kebutuhan riil sistem."
+
+[proj.1.role] (7 kata):
+"Full-Stack Developer & Prompt Engineer (Solo Project)"
+
+[proj.1.sol] (58 kata):
+"Membangun aplikasi web full-stack mandiri (JavaScript &amp; Node.js Express REST API) yang berfungsi sebagai sistem pemandu langkah demi langkah: memandu pengguna mendefinisikan kebutuhan sistem, membatasi AI dengan guardrail dan aturan prompt ketat agar tidak berhalusinasi, serta fleksibel dihubungkan ke model AI mana pun (OpenAI, Claude, Gemini, DeepSeek, Groq, hingga LLM lokal) dengan konfigurasi API key langsung dari UI."
+
+[proj.1.ph3] (6 kata):
+"Foto 3: Hasil Generasi Dokumen SRS"
+
+[proj.1.b1] (17 kata):
+"Memandu pengguna dari nol hingga menghasilkan dokumen SRS lengkap yang rapi dan konsisten sesuai standar resmi industri."
+
+[proj.1.b2] (19 kata):
+"Aturan prompt ketat memastikan AI hanya menghasilkan spesifikasi fungsional dan teknis yang realistis, logis, dan dapat dieksekusi tim developer."
+
+[proj.1.b3] (26 kata):
+"Mendukung penggunaan beragam model cloud berbayar, layanan tingkat gratis (free tier), maupun model lokal offline, serta ekspor hasil dokumen secara langsung ke format DOCX dan Markdown."
+
+[proj.2.tagline] (13 kata):
+"Platform Direktori &amp; Panduan Kuliner Bali Interaktif dengan Kurasi Kategori &amp; Navigasi Rute"
+
+[proj.2.role] (5 kata):
+"Web Developer &amp; UI Designer"
+
+[proj.2.period] (6 kata):
+"PT Vinix Seven Aurum &bull; 2025"
+
+[proj.2.title] (11 kata):
+"Bali Kuliner Finder &bull; Platform Komersial Kurasi Kuliner Halal di Bali"
+
+[proj.2.meta] (10 kata):
+"PT Vinix Seven Aurum &bull; Agt 2025 &mdash; Des 2025"
+
+[proj.2.alt] (7 kata):
+"Tangkapan layar platform komersial Bali Kuliner Finder"
+
+[proj.2.need] (32 kata):
+"Wisatawan di Bali sering kesulitan menemukan tempat makan yang tepat sesuai preferensi mereka—baik mencari kuliner halal yang terverifikasi, kuliner khas non-halal, tempat dengan pemandangan terindah (sunset/alam), maupun tempat terdekat dengan ulasan jujur."
+
+[proj.2.sol] (43 kata):
+"Berkolaborasi bersama sesama tim pengembang magang di PT Vinix Seven Aurum untuk membangun platform direktori kuliner: merancang prototipe antarmuka interaktif di Figma, merancang database relasional MySQL, mengembangkan backend PHP, serta membuat sistem filter multi-kategori, fitur ulasan &amp; favorit pengguna, dan peta navigasi rute."
+
+[proj.2.ph1] (6 kata):
+"Foto 1: Beranda & Pencarian Cepat"
+
+[proj.2.ph2] (7 kata):
+"Foto 2: Hasil Pencarian & Filter Halal"
+
+[proj.2.ph3] (7 kata):
+"Foto 3: Detail Merchant & Jam Buka"
+
+[proj.2.ph4] (7 kata):
+"Foto 4: Peta Lokasi & Rute Restoran"
+
+[proj.2.b1] (21 kata):
+"Memisahkan kategori Halal dan Non-Halal secara transparan, serta menyediakan filter pencarian berdasarkan panorama pemandangan, penilaian tertinggi, daftar favorit, dan jarak terdekat."
+
+[proj.2.b2] (16 kata):
+"Pengunjung dapat memberi rating bintang, menulis ulasan pengalaman bersantap, serta menyimpan restoran favorit ke daftar pribadi."
+
+[proj.2.b3] (17 kata):
+"Terintegrasi peta interaktif agar pengguna dapat langsung membuka petunjuk arah jalan ke lokasi tempat makan dari browser."
+
+[proj.3.tagline] (11 kata):
+"Aplikasi Web Edukasi Budaya &amp; Identifikasi Relief Karmawibhangga Berbasis Kamera AI"
+
+[proj.3.role] (4 kata):
+"Front-End Developer (Tim Capstone)"
+
+[proj.3.title] (7 kata):
+"BorobudurTales &bull; Web Edukasi Relief Berbasis AI"
+
+[proj.3.alt] (5 kata):
+"Tangkapan layar proyek web BorobudurTales"
+
+[proj.3.need] (39 kata):
+"Sebagian besar pengunjung Candi Borobudur menikmati keindahan arsitektur tanpa memahami narasi sejarah serta nilai filosofis pada reliefnya. Selain itu, referensi digital mengenai makna setiap panel relief Karmawibhangga masih sangat terbatas dan tersebar secara fragmentaris, sehingga menyulitkan proses pembelajaran mandiri."
+
+[proj.3.sol] (49 kata):
+"Berperan sebagai Front-End Developer dalam tim Capstone: merancang dan membangun antarmuka web interaktif yang modern dan responsif (Tailwind CSS &amp; Vite), membuat alur kamera real-time dan upload foto yang mulus, serta menghubungkan input visual pengguna ke endpoint API model Machine Learning tim untuk menampilkan narasi kisah budaya secara instan."
+
+[proj.3.b1] (21 kata):
+"Mengubah wisata pasif menjadi eksplorasi edukatif interaktif dengan mengarahkan kamera ke relief candi untuk memunculkan narasi sejarah dan nilai moralnya seketika."
+
+[proj.3.b2] (17 kata):
+"Menyediakan katalog digital panel relief Karmawibhangga lengkap yang dapat dicari melalui kata kunci maupun pencocokan foto visual."
+
+[proj.3.b3] (18 kata):
+"Performa web mobile dioptimalkan agar tangkapan kamera, kompresi foto, dan rendering narasi berjalan mulus di perangkat ponsel pengguna."
+
+================= SEKSI: ORG =================
+
+[org.sub] (12 kata):
+"Memimpin divisi, mengelola anggaran, dan mengelola administrasi dokumen pada berbagai kegiatan kampus."
+
+[org.1.context] (15 kata):
+"Dies Natalis ke-20 Fakultas Sains dan Teknologi (Symphony of Saintek) &bull; FST UIN Sunan Kalijaga"
+
+[org.1.title] (8 kata):
+"Koordinator Logistik &bull; Symphony of Saintek 20th Extravaganza"
+
+[org.1.desc] (43 kata):
+"Memimpin operasional divisi logistik dalam penyediaan perlengkapan teknis panggung untuk acara Dies Natalis Fakultas ke-20, memastikan seluruh agenda terlaksana tepat waktu bebas dari kendala peralatan, melalui seleksi perbandingan vendor, pengaturan instalasi perangkat keras di lokasi acara, serta pengawasan berkala alur keluar-masuk barang inventaris."
+
+[org.2.context] (9 kata):
+"Himpunan Mahasiswa Informatika (HMPS Informatika) &bull; UIN Sunan Kalijaga"
+
+[org.2.title] (8 kata):
+"Staf Divisi Minat &amp; Bakat &bull; HMPS Informatika"
+
+[org.2.desc] (40 kata):
+"Mengarahkan koordinasi operasional minat bakat mahasiswa Informatika dan mengawal kesiapan agenda divisi; mengelola alokasi anggaran belanja sebagai Bendahara acara orientasi serta menangani komunikasi dan alur registrasi peserta sebagai Humas turnamen tahunan hingga seluruh kegiatan terlaksana tepat waktu tanpa kendala operasional."
+
+[org.3.context] (11 kata):
+"UIN Informatic Competition 5.0 (UINIC) &bull; HMPS Informatika UIN Sunan Kalijaga"
+
+[org.3.title] (5 kata):
+"Sekretaris Pelaksana &bull; UINIC 5.0"
+
+[org.3.desc] (52 kata):
+"Mengelola administrasi pendaftaran UIN IT Competition (UINIC), kompetisi IT tahunan himpunan tingkat DIY dengan banyak cabang lomba, dengan memverifikasi kelengkapan berkas seluruh peserta menggunakan spreadsheet sehingga data siap sebelum technical meeting. Menyusun surat perizinan kampus dan surat kerja sama dengan vendor eksternal, serta menerbitkan sertifikat digital peserta dan panitia sesuai jadwal acara."
+
+[org.4.context] (15 kata):
+"Penyambutan Mahasiswa Baru (Welcoming Ceremony) &bull; BEM &amp; Senat Mahasiswa Universitas (DEMA &amp; SEMA UIN)"
+
+[org.4.title] (9 kata):
+"Humas &amp; Kemitraan &bull; Welcoming Ceremony, DEMA &amp; SEMA"
+
+[org.4.desc] (30 kata):
+"Memimpin komunikasi eksternal dan negosiasi teknis kemitraan dengan puluhan perusahaan serta vendor logistik; mengamankan 10+ kesepakatan sponsorship dan pasokan produk resmi guna mendukung kebutuhan operasional orientasi ribuan mahasiswa baru universitas."
+
+[org.5.context] (11 kata):
+"Forum Kajian Islam dan Sains Teknologi (FKIST) &bull; UIN Sunan Kalijaga"
+
+[org.5.title] (6 kata):
+"Staf Media dan Jaringan &bull; FKIST"
+
+[org.5.desc] (40 kata):
+"Bertanggung jawab atas operasional website resmi, publikasi 4 media sosial, dan dokumentasi lapangan untuk seluruh program kerja organisasi, menjaga alur informasi kegiatan tetap aktif dan terarsip rapi, lewat produksi konten promosi berkala serta pelatihan praktis penggunaan tools digital bagi anggota."
+
+================= SEKSI: CONTACT =================
+
+[contact.sub] (12 kata):
+"Sedang membuka lowongan? Mari diskusikan bagaimana saya bisa berkontribusi untuk tim Anda."
+
+[contact.cvSub] (4 kata):
+"Ringkasan profesional, 1 halaman"
+
+[form.messagePh] (7 kata):
+"Tuliskan posisi atau topik yang ingin didiskusikan..."
+
+[form.sent] (7 kata):
+"Pesan terkirim. Terima kasih sudah menghubungi saya."

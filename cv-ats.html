@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curriculum Vitae - Firdy Dwi Aryani, S.Kom.</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1a1a1a;
+      line-height: 1.5;
+      background-color: #f8fafc;
+      padding: 24px;
+    }
+    .cv-container {
+      max-width: 820px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 44px 48px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .action-bar {
+      max-width: 820px;
+      margin: 0 auto 16px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background-color: #0284c7;
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background-color: #0369a1;
+    }
+    .btn-outline {
+      background-color: transparent;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+    .btn-outline:hover {
+      background-color: #f1f5f9;
+    }
+    header {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+    }
+    .headline {
+      font-size: 14px;
+      font-weight: 600;
+      color: #0284c7;
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      color: #475569;
+      margin-top: 8px;
+    }
+    .contacts a {
+      color: #0284c7;
+      text-decoration: none;
+    }
+    .contacts a:hover {
+      text-decoration: underline;
+    }
+    section {
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #0f172a;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+    .summary-text {
+      font-size: 12.5px;
+      color: #334155;
+      text-align: justify;
+      line-height: 1.55;
+    }
+    .entry {
+      margin-bottom: 12px;
+    }
+    .entry:last-child {
+      margin-bottom: 0;
+    }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 13px;
+    }
+    .entry-title {
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .entry-company {
+      font-weight: 600;
+      color: #475569;
+    }
+    .entry-date {
+      font-size: 11.5px;
+      color: #64748b;
+      font-family: monospace;
+      font-weight: 600;
+    }
+    ul {
+      margin-top: 4px;
+      padding-left: 18px;
+    }
+    li {
+      font-size: 12px;
+      color: #334155;
+      margin-bottom: 3px;
+      line-height: 1.5;
+      text-align: justify;
+    }
+    li strong {
+      color: #0f172a;
+    }
+    .skill-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      row-gap: 6px;
+      column-gap: 12px;
+      font-size: 12px;
+    }
+    .skill-category {
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .skill-items {
+      color: #334155;
+    }
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .action-bar {
+        display: none !important;
+      }
+      .cv-container {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      a {
+        color: inherit !important;
+        text-decoration: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="action-bar">
+    <a href="index.html" class="btn btn-outline">&larr; Kembali ke Portofolio Web</a>
+    <button onclick="window.print()" class="btn btn-primary">&#128438; Cetak / Simpan sebagai PDF</button>
+  </div>
+
+  <div class="cv-container">
+    <header>
+      <h1>FIRDY DWI ARYANI, S.Kom.</h1>
+      <div class="headline">IT Support Specialist &bull; Junior Project Manager</div>
+      <div class="contacts">
+        <span>Sleman, D.I. Yogyakarta</span>
+        <span>&bull;</span>
+        <span>0812-3215-6850</span>
+        <span>&bull;</span>
+        <a href="mailto:firdy.dwi@gmail.com">firdy.dwi@gmail.com</a>
+        <span>&bull;</span>
+        <a href="https://linkedin.com/in/firdwiar" target="_blank">linkedin.com/in/firdwiar</a>
+        <span>&bull;</span>
+        <a href="https://firdwiar.github.io" target="_blank">firdwiar.github.io</a>
+      </div>
+    </header>
+
+    <!-- Ringkasan Profesional -->
+    <section>
+      <h2>Ringkasan Profesional</h2>
+      <p class="summary-text">
+        Lulusan S1 Informatika Universitas Islam Negeri Sunan Kalijaga dengan spesialisasi ganda di bidang <strong>IT Support</strong> dan <strong>Operasional Proyek IT / Junior Project Management</strong>. Terbukti andal menangani troubleshooting hardware, jaringan LAN, dan sistem informasi klinis SIMRS pada PT KAI Medika, monitoring keamanan web dan verifikasi tanda tangan digital di Diskominfo Kabupaten Lebak, operasional web multi-kanal di Fakultas Sains dan Teknologi UIN Sunan Kalijaga, serta menyelesaikan program beasiswa intensif 910 jam Full-Stack Web Development kolaborasi DBS Foundation dan Dicoding Academy. Memiliki etos kerja terstruktur, kemampuan komunikasi koordinatif dengan stakeholder teknis maupun non-teknis, dan siap berkontribusi secara profesional.
+      </p>
+    </section>
+
+    <!-- Pengalaman Kerja -->
+    <section>
+      <h2>Pengalaman Kerja</h2>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <span class="entry-title">IT Support (Intern)</span>
+            <span class="entry-company"> &mdash; PT KAI Medika Indonesia &bull; Brawijaya Hospital Tangerang</span>
+          </div>
+          <span class="entry-date">Jul 2025 &ndash; Agt 2025</span>
+        </div>
+        <ul>
+          <li>Mengelola dan menyelesaikan lebih dari 15 tiket insiden IT harian lintas 5 lantai operasional rumah sakit secara langsung maupun kendali jarak jauh via AnyDesk.</li>
+          <li>Mendiagnosis dan menyelesaikan problem sistem secara berjenjang dari fisik kabel LAN, konfigurasi IP lewat command-line, instalasi OS/driver, hingga integrasi antrean SIMRS dan BPJS.</li>
+          <li>Menata ulang tata kelola 300+ unit aset IT rumah sakit menggunakan label barcode ber-ID unik serta mendukung instalasi jaringan LAN gedung baru.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <span class="entry-title">Staf Magang Bidang Statistika &amp; Persandian</span>
+            <span class="entry-company"> &mdash; Dinas Komunikasi dan Informatika Kab. Lebak</span>
+          </div>
+          <span class="entry-date">Jan 2025 &ndash; Feb 2025</span>
+        </div>
+        <ul>
+          <li>Memonitor situs resmi pemerintah daerah secara berkala dari insiden keamanan siber seperti defacement dan penyusupan konten ilegal, serta menyusun laporan teknis eskalasi tim tanggap insiden.</li>
+          <li>Memproses registrasi dan verifikasi teknis tanda tangan digital bagi Aparatur Sipil Negara (ASN) bekerja sama dengan balai sertifikasi elektronik guna menjamin keaslian berkas kedinasan.</li>
+          <li>Melayani konsultasi teknis helpdesk bagi masyarakat sipil dan staf dinas dalam mengatasi kendala akun serta akses portal layanan sistem informasi daerah.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <span class="entry-title">Digital Communication Officer</span>
+            <span class="entry-company"> &mdash; Fakultas Sains dan Teknologi UIN Sunan Kalijaga</span>
+          </div>
+          <span class="entry-date">Agt 2025 &ndash; Sekarang</span>
+        </div>
+        <ul>
+          <li>Mengelola kebutuhan publikasi 9 program studi serta 20+ agenda fakultas secara paralel dan end-to-end, mulai dari perancangan identitas visual, pembuatan materi promosi, hingga produksi konten digital, iklan, dan dokumentasi, dengan penjadwalan pekerjaan berdasarkan kalender kegiatan dan tenggat masing-masing program studi.</li>
+          <li>Mengkoordinasikan kebutuhan publikasi dan sistem informasi dengan dosen, staf, dan panitia kegiatan, mulai dari pengumpulan kebutuhan (requirement gathering), penentuan spesifikasi teknis, hingga memastikan delivery pekerjaan selesai sesuai jadwal.</li>
+          <li>Mengelola 4 kanal digital fakultas (website, Instagram, Facebook, dan YouTube), meliputi pembaruan informasi, pengelolaan konten, serta pengeditan dan pengembangan tampilan website.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <span class="entry-title">Junior Web Developer &amp; UI/UX Designer &mdash; Intern</span>
+            <span class="entry-company"> &mdash; PT Vinix Seven Aurum</span>
+          </div>
+          <span class="entry-date">Agt 2025 &ndash; Des 2025</span>
+        </div>
+        <ul>
+          <li>Menjaga stabilitas operasional platform web komersial agar siap diluncurkan sesuai jadwal melalui pengembangan modul backend berbasis PHP dan penataan alur logika sistem yang rapi.</li>
+          <li>Merancang dan mengelola struktur basis data relasional MySQL untuk direktori tempat makan, menu, dan ulasan guna memastikan proses pencarian serta filter informasi berjalan lancar.</li>
+          <li>Memperoleh predikat evaluasi Sangat Baik dari manajemen atas kinerja selama masa magang berkat ketepatan waktu dalam menyelesaikan setiap tugas teknis dan kerja sama aktif bersama tim.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Pendidikan -->
+    <section>
+      <h2>Pendidikan</h2>
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <span class="entry-title">Sarjana Komputer (S.Kom.) &mdash; Informatika</span>
+            <span class="entry-company"> &mdash; Universitas Islam Negeri Sunan Kalijaga Yogyakarta</span>
+          </div>
+          <span class="entry-date">2021 &ndash; 2025</span>
+        </div>
+        <ul>
+          <li><strong>Skripsi Rekayasa Perangkat Lunak:</strong> Perancangan &amp; Evaluasi Kebutuhan Sistem Rekomendasi Skripsi Menggunakan Multi-LLM (Studi Kasus Program Studi Informatika UIN Sunan Kalijaga). Memetakan arsitektur dokumen SRS berstandar IEEE 830.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Pelatihan & Sertifikasi -->
+    <section>
+      <h2>Pelatihan &amp; Sertifikasi</h2>
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <span class="entry-title">Coding Camp 2025 &mdash; Full-Stack Web Development &bull; 910 Jam Intensif</span>
+            <span class="entry-company"> &mdash; DBS Foundation x Dicoding</span>
+          </div>
+          <span class="entry-date">2024 &ndash; 2025</span>
+        </div>
+        <ul>
+          <li>Terpilih melalui seleksi nasional dari <strong>63.356 pendaftar</strong> dengan tingkat penerimaan kompetitif sebesar 5% pada program beasiswa intensif 910 jam pembelajaran terakreditasi Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi. Berhasil menyelesaikan seluruh modul dengan predikat <strong>Grade A, status kelulusan Full Graduate, dan Kehadiran 100%</strong>, serta meraih nilai <strong>Capstone Final Project 96,4 dari skala 100</strong>. Kurikulum industri mencakup pengembangan front-end web modern, arsitektur RESTful API berbasis Node.js dan Hapi, dasar komputasi awan AWS, kontrol versi Git dan GitHub, serta komunikasi bisnis profesional bersama The British Institute.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Keterampilan Teknis -->
+    <section>
+      <h2>Keahlian &amp; Tools</h2>
+      <div class="skill-grid">
+        <div class="skill-category">IT Support &amp; Jaringan:</div>
+        <div class="skill-items">Hardware Troubleshooting, Windows/Linux OS, LAN/WLAN Cabling (RJ45/Crimping), TCP/IP &amp; DNS, Router/Switch Mikrotik, AnyDesk &amp; Remote Desktop, Kiosk PC, Barcode Asset Tagging.</div>
+
+        <div class="skill-category">Project Management:</div>
+        <div class="skill-items">Software Requirements Specification (SRS/IEEE 830), Agile/Scrum Workflow, Jira, Trello, Google Workspace, Technical Vendor Negotiation, Budget Allocation &amp; Audit, Timeline Tracking.</div>
+
+        <div class="skill-category">Web &amp; Database:</div>
+        <div class="skill-items">PHP, MySQL, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Node.js, Hapi Framework, Postman, Git &amp; GitHub Version Control.</div>
+      </div>
+    </section>
+
+    <!-- Kepanitiaan & Organisasi -->
+    <section>
+      <h2>Kepemimpinan &amp; Organisasi</h2>
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <span class="entry-title">Koordinator Logistik &amp; Operasional Teknis</span>
+            <span class="entry-company"> &mdash; Symphony of Saintek 20th Extravaganza</span>
+          </div>
+          <span class="entry-date">Sep 2024 &ndash; Okt 2024</span>
+        </div>
+        <ul>
+          <li>Memimpin operasional pengadaan dan logistik perlengkapan festival Dies Natalis Fakultas, mengoptimalkan anggaran via riset komparasi multi-vendor termurah, penataan fasilitas panggung dan sponsor di lokasi, serta mengendalikan distribusi tanpa insiden kerusakan inventaris.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <span class="entry-title">Staf Minat &amp; Bakat (Bendahara Infonite &amp; Humas Sportif)</span>
+            <span class="entry-company"> &mdash; HMPS Informatika UIN Sunan Kalijaga</span>
+          </div>
+          <span class="entry-date">Jan 2023 &ndash; Des 2024</span>
+        </div>
+        <ul>
+          <li>Mengelola anggaran operasional orientasi mahasiswa baru serta memimpin promosi kemitraan kompetisi olahraga &amp; turnamen e-sport.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-header">
+          <div>
+            <span class="entry-title">Sekretaris Pelaksana</span>
+            <span class="entry-company"> &mdash; UIN Informatic Competition 5.0 (UINIC)</span>
+          </div>
+          <span class="entry-date">Apr 2023 &ndash; Nov 2023</span>
+        </div>
+        <ul>
+          <li>Mengelola sistem informasi dan basis data peserta nasional, 50+ korespondensi resmi kemitraan kampus, dan validasi sertifikat digital.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

@@ -24,142 +24,166 @@ window.FLY_POSITIONS = {
    ============================================================ */
 window.FLY_COPY_ALL = {
   id: {
-  asks: ['Ya? Ada yang mau kamu lihat?', 'Mau lanjut ke bagian mana?', 'Psst… mau lanjut menjelajah atau melihat cerita lainnya?'],
-  end:  'Selesai deh tur kita! Terima kasih sudah ikut menjelajah.',
+    asks: [
+      'Ada bagian yang ingin Anda lihat?',
+      'Ingin melanjutkan ke bagian mana?',
+      'Ingin melanjutkan penelusuran atau melihat cerita lainnya?'
+    ],
+    end: 'Tur panduan interaktif telah selesai. Terima kasih telah menjelajahi portofolio Firdy.',
 
-  intro: {
-    hook:  'Kenalan dulu dengan Firdy, yuk. Aku tunggu di sini!',
-    story: 'Firdy terbiasa menangani masalah dan menata pekerjaan sampai tuntas. Pengalaman berikutnya akan menunjukkan caranya bekerja.',
-    nudge: 'Sudah kenalan? Sekarang, kita lihat pengalaman kerja Firdy!'
-  },
+    intro: {
+      hook:  'Mari mengenal Firdy lebih dekat. Saya siap memandu Anda!',
+      story: 'Firdy terbiasa menangani tantangan teknis IT dan menata pekerjaan operasional secara terstruktur. Bagian selanjutnya akan menunjukkan bagaimana ia bekerja.',
+      nudge: 'Setelah mengenal profil, mari kita lihat pengalaman kerja Firdy!'
+    },
 
-  experience: [
-    {
-      hook:  'Website, email, dan media sosial fakultas: tiga kanal, satu informasi yang konsisten.',
-      story: 'Ini pengalaman terbaru saya: memastikan informasi Fakultas Sains dan Teknologi sama dan rapi di semua kanal resmi.',
-      nudge: 'Lanjut ke pengalaman berikutnya?'
+    experience: [
+      {
+        // 0. Brawijaya Hospital Tangerang (IT Support Intern)
+        hook:  'Di rumah sakit 5 lantai, Firdy menangani lebih dari 15 tiket insiden IT harian di lokasi maupun secara remote.',
+        story: 'Di Brawijaya Hospital Tangerang, Firdy menyelesaikan 15+ tiket insiden IT harian, mengoptimalkan mesin kiosk pendaftaran mandiri pasien, serta menata 300+ aset IT rumah sakit dengan sistem barcode ber-ID unik.',
+        nudge: 'Lanjut ke pengalaman kerja Firdy berikutnya?'
+      },
+      {
+        // 1. Diskominfo Kab. Lebak (Staf Magang Bidang Statistika & Persandian)
+        hook:  'Firdy memfasilitasi penerbitan tanda tangan digital resmi ASN dan memantau keamanan siber portal web daerah.',
+        story: 'Di Diskominfo Kab. Lebak, Firdy memproses penerbitan tanda tangan digital tersertifikasi BSrE untuk dokumen dinas ASN, memonitor situs pemda dari potensi insiden peretasan, serta mengedukasi puluhan aparatur sipil daerah.',
+        nudge: 'Lanjut ke pengalaman kerja Firdy berikutnya?'
+      },
+      {
+        // 2. Fakultas Sains dan Teknologi UIN Sunan Kalijaga (Digital Communication Officer)
+        hook:  'Firdy mengelola komunikasi publik, publikasi digital, dan email dinas lintas 9 program studi fakultas.',
+        story: 'Firdy mengoordinasikan publikasi terintegrasi 9 program studi dan 20+ agenda fakultas, merancang 50+ konten promosi multimedia, serta menata standarisasi email dinas hingga memangkas waktu respon layanan informasi publik sebesar 40%.',
+        nudge: 'Masih ada satu pengalaman kerja lagi.'
+      },
+      {
+        // 3. PT Vinix Seven Aurum (Junior Web Developer & UI/UX Designer — Intern)
+        hook:  'Firdy berkolaborasi dalam tim pengembang untuk membangun platform web direktori kuliner komersial.',
+        story: 'Di PT Vinix Seven Aurum, Firdy merancang prototipe antarmuka di Figma, menyusun database relasional MySQL, dan mengembangkan backend PHP untuk Bali Kuliner Finder hingga memperoleh evaluasi kinerja "Sangat Baik".',
+        nudge: 'Berikutnya: pelatihan intensif dan sertifikasi Firdy.'
+      }
+    ],
+
+    certifications: {
+      hook:  'Firdy menuntaskan program beasiswa intensif 6 bulan (910 jam pembelajaran terakreditasi) dengan kurikulum Full-Stack Web berstandar industri.',
+      story: 'Terpilih melalui seleksi nasional dari 63.356 pendaftar (penerimaan 5%), Firdy menyelesaikan 12 modul kurikulum berstandar industri dengan predikat kelulusan Grade A, kehadiran penuh 100%, serta nilai Capstone 96,4 dari skala 100.',
+      nudge: 'Berikutnya, mari kita lihat proyek-proyek unggulan yang dibangun Firdy.'
     },
-    {
-      hook:  'Dari desain sampai kode, saya kerjakan sendiri.',
-      story: 'Lima bulan membangun Bali Kuliner Finder dengan PHP untuk proyek nyata perusahaan. Semua tugas selesai dan dinilai “sangat baik”.',
-      nudge: 'Lanjut ke pengalaman berikutnya?'
+
+    projects: [
+      {
+        // 0. Skripsi S1 - Multi-LLM SRS
+        hook:  'Proyek Skripsi S1: Firdy membangun aplikasi web wizard pemandu dokumen SRS terintegrasi Multi-LLM.',
+        story: 'Aplikasi web full-stack mandiri (JavaScript & Node.js Express REST API) ini memandu perumusan kebutuhan perangkat lunak dengan guardrail prompt ketat, serta fleksibel dihubungkan ke OpenAI, Claude, Gemini, DeepSeek, Groq, hingga model lokal.',
+        nudge: 'Geser ke proyek Firdy berikutnya?'
+      },
+      {
+        // 1. Bali Kuliner Finder
+        hook:  'Bali Kuliner Finder: platform direktori kurasi kuliner halal dengan filter cerdas dan peta rute.',
+        story: 'Dalam proyek perusahaan di PT Vinix Seven Aurum, Firdy berkolaborasi merancang antarmuka interaktif di Figma, merancang arsitektur database MySQL, serta membangun fitur backend PHP dan peta navigasi rute.',
+        nudge: 'Masih ada satu proyek unggulan lagi.'
+      },
+      {
+        // 2. BorobudurTales
+        hook:  'BorobudurTales: aplikasi web edukasi budaya yang mengidentifikasi relief candi melalui kamera AI.',
+        story: 'Sebagai Front-End Developer dalam tim proyek Capstone (nilai akhir 96,4), Firdy membangun antarmuka web interaktif yang modern dan responsif, serta menghubungkan tangkapan kamera pengguna langsung ke endpoint API Machine Learning tim.',
+        nudge: 'Itu seluruh proyeknya. Selanjutnya, mari lihat peran organisasi dan kepanitiaan Firdy.'
+      }
+    ],
+
+    organisasi: {
+      hook:  'Firdy memiliki rekam jejak kepemimpinan, koordinasi operasional, dan kepanitiaan yang solid.',
+      story: 'Firdy aktif mengemban peran penting di lingkungan kampus—mulai dari Koordinator Logistik untuk perhelatan 20 tahun fakultas, Sekretaris Pelaksana kompetisi nasional UINIC 5.0, Humas & Kemitraan universitas, hingga divisi minat bakat dan publikasi media.',
+      nudge: 'Kita telah sampai di bagian akhir. Ingin terhubung langsung dengan Firdy?'
     },
-    {
-      hook:  'Di rumah sakit, gangguan IT tidak bisa menunggu, dan sayalah yang pertama dihubungi.',
-      story: 'Di Brawijaya Hospital Tangerang, sekitar 9 tiket per hari masuk ke saya lebih dulu. Saya catat lewat ticketing, tangani dari jarak jauh dengan AnyDesk, dan hubungi vendor bila perlu.',
-      nudge: 'Masih ada satu pengalaman lagi.'
-    },
-    {
-      hook:  'Membantu pegawai ASN punya tanda tangan digital yang sah.',
-      story: 'Di Diskominfo Lebak, saya membantu membuat tanda tangan digital dan memvalidasi dokumen elektronik sesuai prosedur, sambil belajar keamanan siber dan data.',
-      nudge: 'Berikutnya: pelatihan dan sertifikasi.'
+
+    contact: {
+      hook:  'Firdy terbuka untuk peluang karier profesional dan kerja sama baru.',
+      story: 'Firdy siap berkontribusi untuk posisi IT Support, Web Development, maupun peran operasional teknologi lainnya. Anda dapat menghubungi Firdy secara langsung melalui WhatsApp, LinkedIn, email, atau formulir kontak.',
+      nudge: 'Silakan pilih cara yang paling nyaman untuk menghubungi Firdy. Untuk respon tercepat, tombol WhatsApp siap digunakan.'
     }
-  ],
-
-  certifications: {
-    hook:  'Enam bulan dan 910 jam belajar web front-end dan back-end, dengan nilai rata-rata 91,2.',
-    story: 'Materinya mencakup dasar pemrograman, Git, dan JavaScript hingga capstone berbasis tim. Sembilan dari sebelas modul mendapat nilai A, dengan kehadiran 100%.',
-    nudge: 'Berikutnya, kita lihat proyek-proyek yang pernah Firdy bangun.'
   },
 
-  projects: [
-    {
-      hook:  'Skripsi: aplikasi yang membantu developer menyusun SRS dengan AI.',
-      story: 'Aplikasi JavaScript yang terhubung ke lima model AI: GPT, Claude, Gemini, DeepSeek, dan Grok.',
-      nudge: 'Geser ke proyek berikutnya?'
-    },
-    {
-      hook:  'Bali Kuliner Finder: bantu wisatawan muslim cari makanan halal.',
-      story: 'Proyek nyata perusahaan, saya kerjakan sendiri dari desain UI/UX sampai kode PHP.',
-      nudge: 'Satu proyek lagi.'
-    },
-    {
-      hook:  'BorobudurTales: kenali relief Karmawibhangga dari satu foto.',
-      story: 'Unggah foto atau pakai kamera, lalu baca narasi hasil prediksinya. Saya mengerjakan front-end dan back-end, termasuk login dua peran dan dashboard admin.',
-      nudge: 'Itu semua proyeknya. Selanjutnya kepanitiaan dan organisasi.'
-    }
-  ],
-
-  organisasi: {
-    hook:   'Mengatur pekerjaan dan bekerja bersama orang lain juga bagian dari pengalaman Firdy.',
-    story: 'Dari koordinator logistik, bendahara, hingga sekretaris, Firdy pernah menangani kebutuhan logistik, anggaran, dan dokumen kegiatan.',
-    nudge: 'Nah, kita sampai di bagian terakhir. Mau menyapa Firdy?'
-  },
-
-  contact: {
-    hook:  'Sampai di sini tur kita. Mau menghubungi Firdy?',
-    story: 'Kalau ingin balasan lebih cepat, WhatsApp bisa jadi pilihan. Email dan LinkedIn juga tersedia.',
-    nudge: 'Pilih cara yang paling nyaman untuk menghubungi Firdy. Untuk balasan lebih cepat, coba tombol WhatsApp.'
-  }
-},
   en: {
-  asks: ['Yes? What would you like to explore?', 'Where shall we go next?', 'Psst… ready to keep exploring or see another story?'],
-  end:  'And that’s our tour! Thanks for exploring the portfolio with me.',
+    asks: [
+      'Is there a section you would like to explore?',
+      'Where would you like to go next?',
+      'Would you like to keep exploring or read another story?'
+    ],
+    end: 'Interactive guide tour complete. Thank you for exploring Firdy’s portfolio.',
 
-  intro: {
-    hook:  'Let’s start by getting to know Firdy. I’ll be right here!',
-    story: 'Firdy is used to troubleshooting problems and keeping work on track. The next sections will give you a closer look at how she works.',
-    nudge: 'All caught up? Let’s take a look at Firdy’s work experience!'
-  },
+    intro: {
+      hook:  'Let’s get to know Firdy better. I’m ready to guide you!',
+      story: 'Firdy is adept at resolving technical IT challenges and managing structured operational workflows. The following sections demonstrate her practical capabilities.',
+      nudge: 'Now that you’ve seen the overview, let’s explore Firdy’s work experience!'
+    },
 
-  experience: [
-    {
-      hook:  'The faculty’s website, email, and social media: three channels, one consistent message.',
-      story: 'My most recent role: making sure the Faculty of Science and Technology’s information is the same and well organized across every official channel.',
-      nudge: 'On to the next experience?'
+    experience: [
+      {
+        // 0. Brawijaya Hospital Tangerang
+        hook:  'Across a 5-story hospital, Firdy resolved 15+ daily IT incident tickets on-site and remotely.',
+        story: 'At Brawijaya Hospital Tangerang, Firdy handled over 15 IT incident tickets per day across 5 floors, optimized patient self-service check-in kiosks, and cataloged 300+ hospital IT assets with unique barcode labels.',
+        nudge: 'On to Firdy’s next work experience?'
+      },
+      {
+        // 1. Diskominfo Kab. Lebak
+        hook:  'Firdy facilitated official digital signatures for civil servants and monitored regional cyber safety.',
+        story: 'At Diskominfo Lebak Regency, Firdy processed BSrE-certified digital signatures for official government records, monitored regional portals for cyber incidents, and trained civil service personnel on digital security.',
+        nudge: 'On to Firdy’s next work experience?'
+      },
+      {
+        // 2. Faculty of Science & Technology
+        hook:  'Firdy led integrated digital communication, official email, and social media across 9 university departments.',
+        story: 'Firdy coordinated centralized publications for 9 academic study programs and 20+ faculty events, created 50+ multimedia assets, and standardized official email workflows to reduce inquiry response times by 40%.',
+        nudge: 'One more work experience to explore.'
+      },
+      {
+        // 3. PT Vinix Seven Aurum
+        hook:  'Firdy collaborated within a developer team to build a commercial culinary directory platform.',
+        story: 'At PT Vinix Seven Aurum, Firdy developed interactive Figma UI prototypes, designed relational MySQL schemas, and engineered PHP backend functionality for Bali Kuliner Finder, earning a “Very Good” performance rating.',
+        nudge: 'Next up: Firdy’s intensive training and certifications.'
+      }
+    ],
+
+    certifications: {
+      hook:  'Firdy completed an intensive 6-month, 910-hour accredited Full-Stack Web Development scholarship program.',
+      story: 'Selected nationwide from 63,356 applicants (5% admission rate), Firdy mastered 12 industry-standard modules covering front-end, back-end Node.js, and AWS Cloud, graduating with Grade A honors, 100% attendance, and a 96.4 Capstone score.',
+      nudge: 'Next, let’s explore the featured projects Firdy has built.'
     },
-    {
-      hook:  'From design to code, I built it all myself.',
-      story: 'Five months building Bali Kuliner Finder in PHP for a real company project. Every task was completed and rated “very good”.',
-      nudge: 'On to the next experience?'
+
+    projects: [
+      {
+        // 0. Thesis - Multi-LLM SRS
+        hook:  'Bachelor Thesis: Firdy developed a guided web application for SRS document authoring powered by Multi-LLMs.',
+        story: 'This independent full-stack system (JavaScript & Node.js Express REST API) guides users through software requirements with strict prompt guardrails, integrating multi-LLM providers including OpenAI, Claude, Gemini, DeepSeek, and Groq.',
+        nudge: 'Swipe to Firdy’s next project?'
+      },
+      {
+        // 1. Bali Kuliner Finder
+        hook:  'Bali Kuliner Finder: a commercial culinary directory featuring smart category filtering and route navigation.',
+        story: 'Within a company project at PT Vinix Seven Aurum, Firdy collaborated to design Figma UI prototypes, architect relational MySQL tables, and implement PHP backend search and map navigation.',
+        nudge: 'One more featured project to see.'
+      },
+      {
+        // 2. BorobudurTales
+        hook:  'BorobudurTales: an AI cultural education web app that identifies temple reliefs from camera capture.',
+        story: 'As Front-End Developer in an interdisciplinary Capstone team (96.4 final score), Firdy built a modern responsive interface and connected user camera captures directly to the team’s Machine Learning endpoints.',
+        nudge: 'Those are all the projects. Next, let’s explore Firdy’s leadership in student organizations and committees.'
+      }
+    ],
+
+    organisasi: {
+      hook:  'Firdy has a solid track record in campus leadership, event operations, and logistics coordination.',
+      story: 'Firdy has held key responsibilities across campus—including Logistics Coordinator for the faculty’s 20th anniversary, Executive Secretary for the national UINIC 5.0 competition, Public Relations for university ceremonies, and student media division staff.',
+      nudge: 'We’ve arrived at the final section. Would you like to connect with Firdy directly?'
     },
-    {
-      hook:  'In a hospital, IT problems can’t wait, and I was the first person called.',
-      story: 'At Brawijaya Hospital Tangerang, about 9 tickets a day came to me first. I logged them in the ticketing system, fixed them remotely with AnyDesk, and called the vendor when needed.',
-      nudge: 'One more experience to go.'
-    },
-    {
-      hook:  'Helping civil servants get valid digital signatures.',
-      story: 'At Diskominfo Lebak, I helped set up digital signatures and validate electronic documents following procedure, while learning cybersecurity and data security.',
-      nudge: 'Next up: training and certifications.'
+
+    contact: {
+      hook:  'Firdy is open to full-time career opportunities and professional collaborations.',
+      story: 'Firdy is ready to contribute to IT Support, Web Development, and IT Operations roles. Feel free to reach out directly via WhatsApp, LinkedIn, email, or the contact form.',
+      nudge: 'Choose whichever contact method is most convenient for you. For the fastest reply, try the WhatsApp button.'
     }
-  ],
-
-  certifications: {
-    hook:  'Six months and 910 hours of front-end and back-end web development training, with an average score of 91.2.',
-    story: 'The training covered programming fundamentals, Git, and JavaScript, leading up to a team capstone. Nine of eleven modules received an A, with 100% attendance.',
-    nudge: 'Next, let’s explore the projects Firdy has built.'
-  },
-
-  projects: [
-    {
-      hook:  'Thesis: an app that helps developers write an SRS with AI.',
-      story: 'A JavaScript app connected to five AI models: GPT, Claude, Gemini, DeepSeek, and Grok.',
-      nudge: 'Swipe to the next project?'
-    },
-    {
-      hook:  'Bali Kuliner Finder: helping Muslim travelers find halal food.',
-      story: 'A real company project, built on my own from UI/UX design to PHP code.',
-      nudge: 'One more project to see.'
-    },
-    {
-      hook:  'BorobudurTales: recognize a Karmawibhangga relief from one photo.',
-      story: 'Upload a photo or use the camera, then read the narrative behind the prediction. I built the front-end and back-end, including two-role login and the admin dashboard.',
-      nudge: 'That’s all the projects. Committees and organizations are next.'
-    }
-  ],
-
-  organisasi: {
-    hook:  'Organizing work and collaborating with others have also been part of Firdy’s experience.',
-    story: 'From logistics coordinator to treasurer and secretary, Firdy has handled event logistics, budgets, and documentation.',
-    nudge: 'And here we are at the final stop. Want to say hello to Firdy?'
-  },
-
-  contact: {
-    hook:  'That’s the end of our tour. Would you like to get in touch with Firdy?',
-    story: 'For a quicker reply, WhatsApp is a good option. Email and LinkedIn are available too.',
-    nudge: 'Choose whichever way works best for you. For a quicker reply, try the WhatsApp button.'
   }
-}
 };
+
 window.FLY_COPY = window.FLY_COPY_ALL.id;
