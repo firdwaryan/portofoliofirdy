@@ -1,6 +1,6 @@
 # Master Portofolio & CV Database — Firdy Dwi Aryani
 
-Dokumen induk ini memuat seluruh data pengalaman kerja, pelatihan/sertifikasi, proyek teknis, dan kepanitiaan/organisasi yang telah dipoles dengan bahasa profesional, bebas dari kata kerja lemah (*weak verbs*), dan disesuaikan untuk melamar ke posisi **IT Support** maupun **Junior PM (Project/Product Management)**.
+Dokumen induk ini memuat seluruh data pengalaman kerja, pelatihan/sertifikasi, proyek teknis unggulan, dan kepanitiaan/organisasi yang telah dipoles dengan bahasa profesional berstandar industri, bebas dari kata kerja lemah (*weak verbs*), dan disinkronkan 100% dengan portofolio web untuk melamar ke posisi **IT Support** maupun **Junior IT Project Coordinator / Project Management**.
 
 ---
 
@@ -8,14 +8,14 @@ Dokumen induk ini memuat seluruh data pengalaman kerja, pelatihan/sertifikasi, p
 
 | Bagian / Pengalaman | Prioritas untuk **CV IT Support** | Prioritas untuk **CV Junior PM** |
 | :--- | :--- | :--- |
-| **KAI Medika** (IT Support (Intern)) | ⭐⭐⭐⭐⭐ **Wajib No. 1** (Troubleshooting, AnyDesk, LAN/Wi-Fi, SIMRS/BPJS) | ⭐⭐⭐⭐ (Incident SLA, Asset Management, Kiosk UX Problem-Solving) |
-| **Diskominfo Lebak** (Staf Magang Bidang Statistika & Persandian) | ⭐⭐⭐⭐ (Helpdesk publik, TTE, monitoring web) | ⭐⭐⭐ (Kepatuhan dokumen, regulasi siber) |
-| **UIN Sunan Kalijaga** (Digital Comm & Web) | ⭐⭐⭐⭐ (Web maintenance, 4 kanal digital) | ⭐⭐⭐⭐⭐ **Wajib No. 1** (Koordinasi 9 prodi & 20+ agenda, stakeholder, scope) |
-| **Vinix Seven Aurum** (Junior Web Developer & UI/UX Designer (Intern)) | ⭐⭐⭐⭐ (Database MySQL, testing bug, PHP web) | ⭐⭐⭐⭐ (SDLC, Figma to prototype, deliverable on-time) |
-| **Skripsi SRS Multi-LLM** | ⭐⭐⭐ (Node.js API, prompt engineering) | ⭐⭐⭐⭐⭐ **Wajib** (SRS IEEE 830, requirement engineering, guardrails) |
-| **Organisasi: Dies Natalis (Logistik)** | ⭐⭐ | ⭐⭐⭐⭐⭐ (Vendor management, sponsorship Indosat, timeline) |
-| **Organisasi: Infonite (Bendahara)** | ⭐⭐ | ⭐⭐⭐⭐ (Budgeting control, financial tracking) |
-| **Organisasi: UINIC (Sekretaris)** | ⭐⭐ | ⭐⭐⭐⭐ (Administrasi multi-tahap, timeline kompetisi) |
+| **KAI Medika** (IT Support Intern) | ⭐⭐⭐⭐⭐ **Wajib No. 1** (Troubleshooting hardware/OS, TCP/IP, AnyDesk, SIMRS, Kiosk, 300+ Aset Barcode) | ⭐⭐⭐⭐ (Incident SLA, Asset Management, Kiosk UX Problem-Solving) |
+| **Diskominfo Lebak** (Staf Magang Bidang Persandian) | ⭐⭐⭐⭐⭐ **Wajib No. 2** (Helpdesk portal ASN, User Access/Credentials, Web Security Monitoring) | ⭐⭐⭐ (Kepatuhan dokumen, regulasi siber pemda) |
+| **Vinix Seven Aurum** (Digital Communication Officer) | ⭐⭐⭐⭐ (Website operations, CMS, QA UAT Testing) | ⭐⭐⭐⭐⭐ **Wajib No. 1** (Koordinasi lintas stakeholder, timeline rilis fitur, requirement gathering) |
+| **Vinix Seven Aurum** (Junior Web Dev & UI Designer) | ⭐⭐⭐⭐ (Database MySQL, technical troubleshooting, bug fixing) | ⭐⭐⭐⭐ (SDLC, prototipe Figma to web, deliverable on-time) |
+| **Skripsi SRS Multi-LLM** | ⭐⭐⭐ (Node.js API, troubleshooting integrasi LLM) | ⭐⭐⭐⭐⭐ **Wajib** (SRS IEEE 830, requirement engineering, guardrails anti-halusinasi) |
+| **Organisasi: Koordinator Logistik** | ⭐⭐⭐⭐ (Hardware & AV stage setup, inventory control) | ⭐⭐⭐⭐⭐ (Vendor management, tender pengadaan, mitigasi risiko) |
+| **Organisasi: UINIC (Sekretaris Pelaksana)** | ⭐⭐⭐⭐ (Data management puluhan tim lomba IT) | ⭐⭐⭐⭐⭐ (Project administration, vendor coordination, timeline kerja sama) |
+| **Organisasi: Welcoming Ceremony (Humas)** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ (Negosiasi sponsorship korporat, stakeholder management) |
 
 ---
 
@@ -25,55 +25,47 @@ Dokumen induk ini memuat seluruh data pengalaman kerja, pelatihan/sertifikasi, p
 **IT Support (Intern)**  
 *Juli 2025 – Agustus 2025*
 
-* Mengelola dan menyelesaikan lebih dari 15 tiket insiden IT harian lintas 5 lantai operasional rumah sakit secara langsung maupun kendali jarak jauh via AnyDesk.
-* Mendiagnosis dan menyelesaikan problem sistem secara berjenjang dari fisik kabel LAN, konfigurasi IP lewat command-line, instalasi OS/driver, hingga integrasi antrean SIMRS dan BPJS.
-* Menata ulang tata kelola 300+ unit aset IT rumah sakit menggunakan label barcode ber-ID unik serta mendukung instalasi jaringan LAN gedung baru.
+* Menangani lebih dari 15 tiket insiden IT per hari di 5 lantai operasional rumah sakit secara end-to-end, mulai dari diagnosis hingga penyelesaian, meliputi troubleshooting hardware, sistem operasi, dan jaringan (konfigurasi IP, konektivitas server), baik secara on-site maupun remote melalui AnyDesk.
+* Mengoptimalkan operasional mesin anjungan pendaftaran mandiri (kiosk check-in) dengan merancang panduan visual langsung pada fisik mesin sehingga berhasil mengurai antrean dan memperlancar registrasi pasien.
+* Menata ulang tata kelola 300+ aset IT rumah sakit menggunakan label barcode ber-ID unik, memproses pengajuan pengadaan perangkat baru, serta memasang instalasi komputer dan jaringan untuk operasional gedung baru.
+
+**Skill Utama:** `IT Support & Helpdesk` • `Hardware & OS Troubleshooting` • `Network (TCP/IP)` • `Remote Support` • `IT Asset Management` • `Ticketing System`
 
 ---
 
 ### 2. Dinas Komunikasi dan Informatika Kab. Lebak
 **Staf Magang Bidang Statistika & Persandian**  
-*Januari 2025 – Februari 2025*
+*Juli 2024 – Agustus 2024*
 
-* Memonitor situs resmi pemerintah daerah secara berkala dari insiden keamanan siber seperti defacement dan penyusupan konten ilegal, serta menyusun laporan teknis eskalasi tim tanggap insiden.
+* Memonitor situs resmi pemerintah daerah secara berkala dari insiden keamanan siber seperti peretasan tampilan situs (*defacement*) dan penyusupan konten ilegal, serta menyusun laporan teknis untuk eskalasi penanganan tim tanggap insiden.
 * Memproses registrasi dan verifikasi teknis tanda tangan digital bagi Aparatur Sipil Negara (ASN) bekerja sama dengan balai sertifikasi elektronik guna menjamin keaslian berkas kedinasan.
 * Melayani konsultasi teknis helpdesk bagi masyarakat sipil dan staf dinas dalam mengatasi kendala akun serta akses portal layanan sistem informasi daerah.
 
+**Skill Utama:** `IT Helpdesk Support` • `User Access Management` • `Web Security Monitoring`
+
 ---
 
-### 3. Fakultas Sains dan Teknologi, UIN Sunan Kalijaga Yogyakarta
+### 3. PT Vinix Seven Aurum
 **Digital Communication Officer**  
-*Agustus 2025 – Sekarang*
+*Februari 2026 – Agustus 2026*
 
 * Mengelola kebutuhan publikasi 9 program studi serta 20+ agenda fakultas secara paralel dan end-to-end, mulai dari perancangan identitas visual, pembuatan materi promosi, hingga produksi konten digital, iklan, dan dokumentasi, dengan penjadwalan pekerjaan berdasarkan kalender kegiatan dan tenggat masing-masing program studi.
-* Mengkoordinasikan kebutuhan publikasi dan sistem informasi dengan dosen, staf, dan panitia kegiatan, mulai dari pengumpulan kebutuhan (requirement gathering), penentuan spesifikasi teknis, hingga memastikan delivery pekerjaan selesai sesuai jadwal.
+* Mengkoordinasikan kebutuhan publikasi dan sistem informasi dengan dosen, staf, dan panitia kegiatan, mulai dari pengumpulan kebutuhan (*requirement gathering*), penentuan spesifikasi teknis, hingga memastikan *delivery* pekerjaan selesai sesuai jadwal.
 * Mengelola 4 kanal digital fakultas (website, Instagram, Facebook, dan YouTube), meliputi pembaruan informasi, pengelolaan konten, serta pengeditan dan pengembangan tampilan website.
+
+**Skill Utama:** `IT Project Coordination` • `Website CMS Management` • `Quality Assurance (UAT)`
 
 ---
 
 ### 4. PT Vinix Seven Aurum
-**Junior Web Developer & UI/UX Designer (Intern)**  
+**Junior Web Developer & UI/UX Designer — Intern**  
 *Agustus 2025 – Desember 2025*
 
-* Membangun platform direktori kuliner berbasis PHP dan MySQL, mengintegrasikan fitur pencarian dinamis, kurasi multi-kategori, dan peta navigasi rute.
-* Merancang struktur basis data relasional MySQL serta menyelesaikan pengujian antarmuka responsif berdasarkan Figma dengan evaluasi kinerja 'Sangat Baik'.
-**Junior Web Developer & UI/UX Designer**  
-*Agustus 2025 – Desember 2025*
+* Menjaga stabilitas operasional platform web komersial agar siap diluncurkan sesuai jadwal melalui pengembangan modul backend berbasis PHP dan penataan alur logika sistem yang rapi.
+* Merancang dan mengelola struktur basis data relasional MySQL untuk direktori tempat makan, menu, dan ulasan guna memastikan proses pencarian serta filter informasi berjalan lancar.
+* Menguji tampilan antarmuka dan memperbaiki kendala teknis (bug) pada perangkat mobile dan desktop agar pengalaman pengguna sesuai rancangan prototipe Figma.
 
-* Membangun platform direktori kuliner komersial berbasis PHP dan MySQL, mengintegrasikan fitur pencarian dinamis, kurasi multi-kategori, dan peta navigasi rute.
-* Merancang dan memelihara struktur basis data relasional MySQL guna memastikan integritas data ulasan, profil tempat makan, dan akun pengguna.
-* Menguji keandalan sistem dan menyelesaikan kendala bug antarmuka responsif berdasarkan rancangan prototipe Figma lintas peramban.
-* Menuntaskan seluruh target pengembangan modul aplikasi bersama tim tepat waktu dengan predikat evaluasi kinerja "Sangat Baik" dari manajemen.
-
----
-
-### 4. Diskominfo Kabupaten Lebak
-**IT Helpdesk & Infrastructure Staff**  
-*Bidang Statistika dan Persandian | Juli 2024 – Agustus 2024*
-
-* Memonitor situs resmi pemerintah daerah secara berkala dari insiden keamanan siber seperti defacement dan penyusupan konten ilegal, serta menyusun laporan teknis eskalasi tim tanggap insiden.
-* Memproses registrasi dan verifikasi teknis tanda tangan digital bagi Aparatur Sipil Negara (ASN) bekerja sama dengan balai sertifikasi elektronik guna menjamin keaslian berkas kedinasan.
-* Melayani konsultasi teknis helpdesk bagi masyarakat sipil dan staf dinas dalam mengatasi kendala akun serta akses portal layanan sistem informasi daerah.
+**Skill Utama:** `PHP` • `MySQL` • `Technical Troubleshooting` • `UI/UX (Figma)`
 
 ---
 
@@ -81,13 +73,13 @@ Dokumen induk ini memuat seluruh data pengalaman kerja, pelatihan/sertifikasi, p
 
 ### Coding Camp powered by DBS Foundation — Full-Stack Web Development Track
 **Dicoding Academy x DBS Foundation | 2025**
-* **Akreditasi & Jam Belajar:** Program beasiswa intensif 6 bulan dengan total **910 jam pembelajaran terakreditasi**, diselesaikan dengan predikat **Lulus Terverifikasi** dan **Tingkat Kehadiran 100%**.
-* **Kompetensi Inti:**  
-  Menguasai pengembangan Full-Stack Web modern dari hulu ke hilir: dasar logika pemrograman, arsitektur Front-End modern, pengembangan RESTful API dengan **Node.js**, dasar arsitektur cloud **AWS**, hingga komunikasi bahasa Inggris bisnis.
-* **Proyek Akhir (Capstone):**  
-  Menyelesaikan proyek kolaborasi tim lintas disiplin untuk membangun aplikasi web berbasis kamera dan AI.
-* **Dokumen Kredensial Resmi:**  
-  Sertifikat Kelulusan Utama Resmi DBS Foundation x Dicoding & Transkrip Akademik 12 Modul Kurikulum.
+* **Seleksi & Akreditasi:** Terpilih melalui seleksi nasional dari 63.356 pendaftar (tingkat kelulusan 5%) pada program beasiswa intensif 910 jam pembelajaran terakreditasi Kemendikbudristek.
+* **Hasil & Prestasi:** Meraih predikat **Grade A**, status **Full Graduate**, kehadiran **100%**, serta nilai Capstone Project **96,4 / 100**.
+* **Kurikulum 12 Modul Teruji:**
+  * **Front-End:** HTML5, CSS3, Modern JavaScript (ES6+), DOM Manipulation, Responsive Web Design.
+  * **Back-End & API:** Node.js, Hapi Framework, RESTful API Design, Postman API Testing.
+  * **Cloud & DevOps Tools:** AWS Cloud Foundations, Git, GitHub.
+  * **Komunikasi Profesional:** Business English (The British Institute), Problem Solving, Kolaborasi Tim Lintas Disiplin.
 
 ---
 
@@ -95,46 +87,53 @@ Dokumen induk ini memuat seluruh data pengalaman kerja, pelatihan/sertifikasi, p
 
 ### 1. Sistem Penyusunan Dokumen SRS Berbasis Multi-LLM *(Skripsi S1 — 2026)*
 * **Peran:** Full-Stack Developer & Prompt Engineer *(Solo Project)*
-* **Teknologi:** JavaScript, Node.js Express REST API, Multi-LLM API (OpenAI, Claude, Gemini, DeepSeek, Local LLM), Markdown/DOCX Generator.
-* **Deskripsi & Dampak:**  
-  Membangun aplikasi web *full-stack* yang memandu pengguna menyusun dokumen spesifikasi perangkat lunak (*Software Requirements Specification* - SRS) berstandar resmi **IEEE 830**. Mengimplementasikan *prompt guardrails* yang ketat untuk mengeliminasi halusinasi AI, memastikan spesifikasi fungsional dan teknis yang dihasilkan realistis dan siap dieksekusi tim developer.
+* **Tech Stack:** `JavaScript (ES6+)` • `Node.js` • `Express.js` • `REST API` • `Multi-LLM API`
+* **Dampak & Kontribusi Nyata:**  
+  * Memandu pengguna dari nol hingga menghasilkan dokumen SRS lengkap yang rapi dan konsisten sesuai standar resmi industri (IEEE 830).
+  * Aturan prompt ketat memastikan AI hanya menghasilkan spesifikasi fungsional dan teknis yang realistis, logis, dan dapat dieksekusi tim developer.
+  * Mendukung penggunaan beragam model cloud berbayar, layanan tingkat gratis (*free tier*), maupun model lokal offline, serta ekspor hasil dokumen secara langsung ke format DOCX dan Markdown.
 
 ### 2. Bali Kuliner Finder *(PT Vinix Seven Aurum — 2025)*
-* **Peran:** Web Developer & UI Designer *(Tim Magang)*
-* **Teknologi:** PHP, MySQL, Figma, Tailwind CSS, Maps API.
-* **Deskripsi & Dampak:**  
-  Membangun platform direktori kuliner interaktif di Bali yang memisahkan kurasi Halal dan Non-Halal secara transparan. Dilengkapi fitur filter cerdas (*view*, rating, jarak terdekat), ulasan pengguna, bookmark favorit, serta integrasi peta rute langsung dari peramban.
+* **Peran:** Web Developer & UI Designer *(Tim Pengembang)*
+* **Tech Stack:** `PHP` • `MySQL` • `JavaScript` • `UI/UX (Figma)`
+* **Dampak & Kontribusi Nyata:**  
+  * Memisahkan kategori Halal dan Non-Halal secara transparan, serta menyediakan filter pencarian berdasarkan panorama pemandangan, penilaian tertinggi, daftar favorit, dan jarak terdekat.
+  * Pengunjung dapat memberi rating bintang, menulis ulasan pengalaman bersantap, serta menyimpan restoran favorit ke daftar pribadi.
+  * Terintegrasi peta interaktif agar pengguna dapat langsung membuka petunjuk arah jalan ke lokasi tempat makan dari browser.
 
 ### 3. BorobudurTales *(Dicoding Capstone — 2025)*
 * **Peran:** Front-End Developer *(Tim Capstone Lintas Disiplin)*
-* **Teknologi:** Tailwind CSS, Vite, RESTful API, Laravel Breeze + Sanctum (RBAC), Mobile Camera AI Integration.
-* **Deskripsi & Dampak:**  
-  Membangun aplikasi web edukasi budaya interaktif untuk identifikasi relief Karmawibhangga Candi Borobudur menggunakan tangkapan kamera AI secara *real-time*. Mengoptimasi performa *front-end* pada perangkat *mobile* untuk kompresi citra dan pemuatan narasi cerita sejarah.
+* **Tech Stack:** `JavaScript (ES6+)` • `Tailwind CSS` • `Vite` • `REST API Integration` • `Figma`
+* **Dampak & Kontribusi Nyata:**  
+  * Mengubah wisata pasif menjadi eksplorasi edukatif interaktif dengan mengarahkan kamera ke relief candi untuk memunculkan narasi sejarah dan nilai moralnya seketika.
+  * Menyediakan katalog digital panel relief Karmawibhangga lengkap yang dapat dicari melalui kata kunci maupun pencocokan foto visual.
+  * Performa web mobile dioptimalkan agar tangkapan kamera, kompresi foto, dan rendering narasi berjalan mulus di perangkat ponsel pengguna.
 
 ---
 
-## IV. PENGALAMAN ORGANISASI & KEPANITIAAN *(Nilai Plus Junior PM & IT Operations)*
+## IV. PENGALAMAN ORGANISASI & KEPANITIAAN *(Nilai Plus Operasional & Proyek)*
 
 ### 1. Symphony of Saintek 20th Extravaganza — FST UIN Sunan Kalijaga
-**Koordinator Logistik & Operasional Teknis** *(Sep 2024 – Okt 2024)*
-* Memimpin tata kelola pengadaan dan operasional perlengkapan untuk seluruh divisi kepanitiaan festival Dies Natalis Fakultas.
-* Mengoptimalkan alokasi anggaran melalui perbandingan harga multi-vendor guna menekan biaya pengadaan, mengarahkan tata letak fasilitas sponsor dan panggung di lokasi acara, serta mengendalikan alur distribusi peralatan dari penjemputan hingga pengembalian tepat waktu tanpa insiden kerusakan inventaris.
+**Koordinator Logistik** *(Sep 2024 – Okt 2024)*
+* Memimpin operasional divisi logistik dalam penyediaan perlengkapan teknis panggung untuk acara Dies Natalis Fakultas ke-20, memastikan seluruh agenda terlaksana tepat waktu bebas dari kendala peralatan, melalui seleksi perbandingan vendor, pengaturan instalasi perangkat keras di lokasi acara, serta pengawasan berkala alur keluar-masuk barang inventaris.
+* **Skill Utama:** `Hardware & AV Setup` • `Vendor Management` • `Inventory Control`
 
 ### 2. HMPS Informatika (Himpunan Mahasiswa Program Studi Informatika)
-**Staf Minat & Bakat (Bendahara Infonite & Humas Sportif)** *(Jan 2023 – Des 2024)*
-* Mengemban tanggung jawab dua program kerja strategis HMPS Informatika. Sebagai Bendahara Infonite, merencanakan alokasi anggaran, mengontrol efisiensi belanja, dan menyusun laporan pertanggungjawaban keuangan secara transparan. Sebagai Humas Sportif, memimpin kampanye media sosial multi-kanal serta menjalin komunikasi kemitraan dengan vendor dan peserta turnamen.
+**Staf Divisi Minat & Bakat** *(Jan 2023 – Des 2024)*
+* Mengarahkan koordinasi operasional minat bakat mahasiswa Informatika dan mengawal kesiapan agenda divisi; mengelola alokasi anggaran belanja sebagai Bendahara acara orientasi serta menangani komunikasi dan alur registrasi peserta sebagai Humas turnamen tahunan hingga seluruh kegiatan terlaksana tepat waktu tanpa kendala operasional.
+* **Skill Utama:** `Budget Management` • `Event Operations`
 
 ### 3. UIN Informatic Competition 5.0 (UINIC) — HMPS Informatika
 **Sekretaris Pelaksana** *(Apr 2023 – Nov 2023)*
-* Mengelola tata kelola administrasi dan sistem informasi kompetisi IT tingkat nasional, mengarsipkan basis data ratusan tim peserta secara digital.
-* Menerbitkan 50+ surat resmi kemitraan dan perizinan birokrasi kampus, serta memvalidasi dan mendistribusikan sertifikat digital terverifikasi.
+* Mengelola administrasi pendaftaran UIN IT Competition (UINIC), kompetisi IT tahunan himpunan tingkat DIY dengan banyak cabang lomba, dengan memverifikasi kelengkapan berkas seluruh peserta menggunakan spreadsheet sehingga data siap sebelum technical meeting. Menyusun surat perizinan kampus dan surat kerja sama dengan vendor eksternal, serta menerbitkan sertifikat digital peserta dan panitia sesuai jadwal acara.
+* **Skill Utama:** `Data Management` • `Project Administration` • `Vendor Coordination`
 
 ### 4. Welcoming Ceremony DEMA & SEMA — UIN Sunan Kalijaga
-**Humas & Negosiator Kemitraan** *(Agt 2022 – Sep 2022)*
-* Membangun komunikasi eksternal dan memimpin negosiasi kemitraan sponsorship dengan puluhan calon mitra industri dan vendor logistik.
-* Berhasil mengamankan sekitar 10 bentuk kesepakatan sponsorship guna menyukseskan agenda penyambutan mahasiswa baru tingkat universitas.
+**Humas & Kemitraan** *(Agt 2022 – Sep 2022)*
+* Memimpin komunikasi eksternal dan negosiasi teknis kemitraan dengan puluhan perusahaan serta vendor logistik; mengamankan 10+ kesepakatan sponsorship dan pasokan produk resmi guna mendukung kebutuhan operasional orientasi ribuan mahasiswa baru universitas.
+* **Skill Utama:** `Sponsorship Negotiation` • `Stakeholder Management`
 
 ### 5. Forum Kajian Islam dan Sains Teknologi (FKIST) — UIN Sunan Kalijaga
 **Staf Media dan Jaringan** *(Feb 2024 – Jan 2025)*
-* Mengelola operasional 4 kanal media informasi digital organisasi (website, Facebook, Instagram, YouTube) dan merancang materi publikasi visual.
-* Menyelenggarakan dan memfasilitasi sesi pelatihan multimedia serta pengelolaan platform digital bagi anggota organisasi.
+* Bertanggung jawab atas operasional website resmi, publikasi 4 media sosial, dan dokumentasi lapangan untuk seluruh program kerja organisasi, menjaga alur informasi kegiatan tetap aktif dan terarsip rapi, lewat produksi konten promosi berkala serta pelatihan praktis penggunaan tools digital bagi anggota.
+* **Skill Utama:** `Website CMS Management` • `Technical Training`
